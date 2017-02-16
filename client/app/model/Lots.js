@@ -8,4 +8,4 @@ var Lots = (function () {
     return Lots;
 }());
 exports.Lots = Lots;
-//# sourceMappingURL=lots.js.map
+//# sourceMappingURL=Lots.js.map
