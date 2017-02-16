@@ -12,7 +12,7 @@ $ cd client
 $ npm install
 ```
 
-* si vous ne l'avez pas déjà fait installer nodemon (permet de rafraichir le serveur à chaque modification. cf. tuto mean app)
+* si vous ne l'avez pas déjà fait installer [nodemon](https://www.npmjs.com/package/nodemon) (permet de rafraichir le serveur à chaque modification. cf. tuto mean app)
 ```bash
 $ npm install -g nodemon
 ```
