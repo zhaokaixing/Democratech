@@ -1,4 +1,4 @@
-import {Authority} from "./Authority";
+import {Organisation} from "./Organisation";
 import {Lots} from "./Lots";
 /**
  * Created by quentinC on 16/02/2017.
@@ -13,6 +13,6 @@ export class Tender{
     attributionDate : Date;
     signDate : Date;
     startDate : Date;
-    authority : Authority;
+    authority : Organisation;
     listLots : Array<Lots>;
 }
