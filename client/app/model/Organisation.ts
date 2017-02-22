@@ -1,10 +1,9 @@
-import {Tender} from "./Tender";
+import {Project} from "./Project";
 /**
  * Created by quentinC on 16/02/2017.
  */
 export class Organisation{
-    // 0 Authority   1 Enterprise
-    boolOrga : boolean;
+    //Entreprise
     mailAdresse : string;
     password : string;
     name : string;
@@ -20,6 +19,17 @@ export class Organisation{
         region : string;
         country : string;
     }
+    listProjects : Array<Project>;
 
-    listTender : Array<Tender>;
+    listJobs : [{
+        label : string;
+        startDate : Date;
+        endDate : Date;
+        description : string;
+        category : string;
+        listTags : [{
+            label : string;
+            category : string;
+        }]
+    }]
 }

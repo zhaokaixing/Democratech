@@ -8,4 +8,3 @@ var Project = (function () {
     return Project;
 }());
 exports.Project = Project;
-//# sourceMappingURL=Project.js.map

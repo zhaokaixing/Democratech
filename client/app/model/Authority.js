@@ -8,4 +8,3 @@ var Authority = (function () {
     return Authority;
 }());
 exports.Authority = Authority;
-//# sourceMappingURL=Authority.js.map

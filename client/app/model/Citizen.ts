@@ -1,3 +1,5 @@
+
+import {Project} from "./Project";
 /**
  * Created by quentinC on 16/02/2017.
  */
@@ -18,35 +20,29 @@ export class Citizen{
     }
     resume: {
         path : string;
-        diplomas : [{
+        listDiplomas : [{
             title : string;
             date : string;
         }]
-        skill : [{
+        listSkills : [{
             label : string;
             level : number;
         }]
-        job : [{
+        listJobs : [{
             label : string;
             startDate : Date;
             endDate : Date;
             description : string;
             category : string;
+            listTags : [{
+                label : string;
+                category : string;
+            }]
         }]
     }
-    tag : [{
+    listTags : [{
         label : string;
         category : string;
     }]
-    projet : [{
-        title : string;
-        mark : number;
-        progress : number;
-        comment : [{
-            date : Date;
-            comment : string;
-        }]
-        latitude : number;
-        longitude : number;
-    }]
+    listProjects : Array<Project>;
 }
