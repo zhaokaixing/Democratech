@@ -3,13 +3,12 @@ import {Project} from "./Project";
  * Created by quentinC on 16/02/2017.
  */
 export class Organisation{
-    //Entreprise
-    mailAdresse : string;
+    mail : string;
     password : string;
     name : string;
     description : string;
     SIRET : number;
-    phoneNumber : string;
+    phone : string;
 
     address : {
         streetNumber: number;
@@ -19,9 +18,9 @@ export class Organisation{
         region : string;
         country : string;
     }
-    listProjects : Array<Project>;
+    projects : Array<Project>;
 
-    listJobs : [{
+    jobs : [{
         label : string;
         startDate : Date;
         endDate : Date;

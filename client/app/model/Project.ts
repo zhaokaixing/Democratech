@@ -9,14 +9,14 @@ export class Project{
     progress : number;
     latitude : number;
     longitude : number;
-    listComment : [{
+    comments : [{
         citizen : Citizen; // can be null
         organisation : Organisation ; // can be null
         date : Date;
         content : string;
     }]
 
-    listTenders : [{
+    tenders : [{
         description : string;
         type : string;
         amount : number;
@@ -26,7 +26,7 @@ export class Project{
         signDate : Date;
         startDate : Date;
         authority : Organisation;
-        listLots : {
+        lots : {
             name : string;
             number : number;
         }

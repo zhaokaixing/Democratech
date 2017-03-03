@@ -4,7 +4,7 @@ import {Project} from "./Project";
  * Created by quentinC on 16/02/2017.
  */
 export class Citizen{
-    mailAdresse : string;
+    mail : string;
     password : string;
 
     firstName : string;
@@ -20,29 +20,29 @@ export class Citizen{
     }
     resume: {
         path : string;
-        listDiplomas : [{
+        diplomas : [{
             title : string;
             date : string;
         }]
-        listSkills : [{
+        skills : [{
             label : string;
             level : number;
         }]
-        listJobs : [{
+        jobs : [{
             label : string;
             startDate : Date;
             endDate : Date;
             description : string;
             category : string;
-            listTags : [{
+            tags : [{
                 label : string;
                 category : string;
             }]
         }]
     }
-    listTags : [{
+    tags : [{
         label : string;
         category : string;
     }]
-    listProjects : Array<Project>;
+    projects : Array<Project>;
 }
