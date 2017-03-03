@@ -3,9 +3,9 @@
  */
 export class Country{
     name : String;
-    listCounties : [{
+    departments : [{
         name: String;
-        listCities: [{
+        cities: [{
             name: String;
             zipCode: String;
         }]
