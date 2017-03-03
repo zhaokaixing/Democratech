@@ -10,3 +10,6 @@ gen
 
 node_modules
 client/app/**/*.js*
+
+.vscode
+npm-debug*
