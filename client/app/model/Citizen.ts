@@ -15,7 +15,7 @@ export class Citizen{
         streetName : string;
         city: string;
         postalCode : string;
-        region : string;
+        department : string;
         country : string;
     }
     resume: {

@@ -9,16 +9,18 @@ export class Organisation{
     description : string;
     SIRET : number;
     phone : string;
-
+    authority: boolean;
+    isPublic: boolean;
     address : {
         streetNumber: number;
         streetName : string;
         city: string;
         postalCode : string;
-        region : string;
+        department : string;
         country : string;
     }
-    projects : Array<Project>;
+    projectsOwned : Array<Project>;
+    projectsParticipated : Array<Project>;
 
     jobs : [{
         label : string;
