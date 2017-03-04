@@ -3,19 +3,19 @@ import {Project} from "./Project";
  * Created by quentinC on 22/02/2017.
  */
 export class Authority{
-    mailAdresse : string;
+    mail : string;
     password : string;
     name : string;
     description : string;
-    phoneNumber : string;
-
+    phone : string;
     address : {
         streetNumber: number;
         streetName : string;
         city: string;
         postalCode : string;
-        region : string;
+        department : string;
         country : string;
-    }
-    listProjects : Array<Project>;
+    };
+    projects : Array<Project>;
 }
+
