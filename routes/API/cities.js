@@ -2,10 +2,10 @@
  * Created by quentinC on 04/03/2017.
  */
 let express = require('express');
-var router = express.Router();
+let router = express.Router();
 
 let mongojs = require('mongojs');
-var db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['cities']);
+let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['departments']);
 
 //get all cities
 router.get('/cities', function(req, res, next){

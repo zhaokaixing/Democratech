@@ -1,28 +1,23 @@
 
-var isValidAddress = (address) => {
-    if (!address.streetNumber || !address.streeName || !address.city || !address.postalCode || 
-       !address.department || !address.country) {
-           return false
-    }
-    return true
+let isValidAddress = (address) => {
+    return !(!address.streetNumber || !address.streetName || !address.city || !address.postalCode || !address.department || !address.country);
+
 }
 
-var isValidBasic = (user) => {
-    if (!user.mail || !user.password || !user.address || !isValidAddress(user.address)) {
-           return false
-    }
-    return true
-}
+let isValidBasic = (user) => {
+    return !(!user.mail || !user.password || !user.address || !isValidAddress(user.address));
+
+};
 
 exports.isValidCitizen = (citizen) => {
     return !isValidBasic(citizen) || !citizen.firstName || !citizen.lastName || !citizen.birthDate        
-}
+};
 
 exports.isValidOrganisation = (organisation) => {
-    if (!isValidBasic(organisation) || !organisation.name) {
-        return "kikoo"
+    if (!isValidBasic(organisation) || !organisation.name || !(organisation.isPublic + '')) {
+        return false
     } else if (!organisation.isPublic && !organisation.SIRET){
-        return "lol"
+        return false
     } 
     return true
 }
