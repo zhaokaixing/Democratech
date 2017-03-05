@@ -1,6 +1,16 @@
 # democratech
 Réseau sociétal..
 
+## lancement de l'application
+```bash
+## ouvir un terminale à la racine du projet
+$ npm start
+## le serveur se lance
+## ouvrir un autre terminale..
+$ cd client
+$ npm start
+```
+
 ## récupération et mise en place du projet
 * télécharger et installer nodejs : [https://nodejs.org/en/](https://nodejs.org/en/)
 * cloner le projet et installer les dépendances :
