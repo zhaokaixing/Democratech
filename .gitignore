@@ -13,3 +13,5 @@ client/app/**/*.js*
 
 npm-debug*
 .vscode
+
+.DS_Store

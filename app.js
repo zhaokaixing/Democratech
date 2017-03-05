@@ -1,6 +1,8 @@
 var express     = require('express');
 var path        = require('path');
 var bodyParser  = require('body-parser');
+var security    = require('./tools/security')
+var authenticate = security.auth0Jwt;
 
 var port = 3000;
 
