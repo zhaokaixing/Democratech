@@ -5,10 +5,11 @@ Réseau sociétal..
 ```bash
 ## ouvir un terminale à la racine du projet
 $ npm start
-## le serveur se lance
-## ouvrir un autre terminale..
+## le serveur se lance... (disponible à [https://localhost:3000/](https://localhost:3000/))
+## ouvrir un autre terminale à la racine du projet
 $ cd client
 $ npm start
+## angular se lance...
 ```
 
 ## récupération et mise en place du projet
