@@ -1,6 +1,17 @@
 # democratech
 Réseau sociétal..
 
+## lancement de l'application
+```bash
+## ouvir un terminale à la racine du projet
+$ npm start
+## le serveur se lance... (disponible à [https://localhost:3000/](https://localhost:3000/))
+## ouvrir un autre terminale à la racine du projet
+$ cd client
+$ npm start
+## angular se lance...
+```
+
 ## récupération et mise en place du projet
 * télécharger et installer nodejs : [https://nodejs.org/en/](https://nodejs.org/en/)
 * cloner le projet et installer les dépendances :

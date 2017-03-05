@@ -1,0 +1,3 @@
+<div>Home content</div>
+<h4 *ngIf="authService.loggedIn()">You are logged in</h4>
+<h4 *ngIf="!authService.loggedIn()">You are not logged in, please click 'Log in' button to login</h4>

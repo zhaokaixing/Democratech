@@ -2,10 +2,11 @@
   "name": "democratech",
   "version": "1.0.0",
   "description": "societal network",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon app.js && cd client/ && npm start",
+    "stop": "killall node && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
   },
   "homepage": "https://github.com/flwrnt/democratech#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.16.1",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
+    "express-jwt": "^5.1.0",
     "mongojs": "^2.4.0"
   }
 }
