@@ -18,7 +18,7 @@ router.get('/cities', function(req, res, next){
 });
 
 //get one city
-router.get('/cities/:id', function(req, res, next){
+router.get('/city/:id', function(req, res, next){
     db.cities.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, cities){
         if(err){
             res.send(err);
