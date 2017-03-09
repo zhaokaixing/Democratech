@@ -8,7 +8,12 @@ declare var Auth0Lock: any;
 @Injectable()
 export class AuthService {
 
-  lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {'auth': {'callbackURL': myConfig.callbackURL}});
+  lock = new Auth0Lock(myConfig.clientID, myConfig.domain,
+      {
+          'auth': {'callbackURL': myConfig.callbackURL},
+          'language': 'fr'
+      }
+  );
 
   constructor(private router: Router) {
     this.lock.on('authenticated', (authResult: any) => {
