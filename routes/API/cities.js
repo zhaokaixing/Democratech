@@ -5,7 +5,7 @@ let express = require('express');
 let router = express.Router();
 
 let mongojs = require('mongojs');
-let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['departments']);
+let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['cities']);
 
 //get all cities
 router.get('/cities', function(req, res, next){
@@ -19,11 +19,11 @@ router.get('/cities', function(req, res, next){
 
 //get one city
 router.get('/city/:id', function(req, res, next){
-    db.cities.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, cities){
+    db.cities.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, city){
         if(err){
             res.send(err);
         }
-        res.json(task);
+        res.json(city);
     });
 });
 
