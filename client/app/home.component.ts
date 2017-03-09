@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
   moduleId: module.id,
   selector: 'home',
   templateUrl: 'views/home.component.html',
-  styles : ['.navbar-right { margin-right: 0px !important}']
+  styleUrls : ['views/styles/home.component.styles.css']
 })
 
 export class HomeComponent { 
