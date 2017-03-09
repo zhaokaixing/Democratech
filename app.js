@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var organisations = require('./routes/API/organisations');
 var departments = require('./routes/API/departments');
 var cities = require('./routes/API/cities');
+var citizens = require('./routes/API/citizens');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/', index);
 app.use('/api', organisations);
 app.use('/api', departments);
 app.use('/api', cities);
+app.use('/api', citizens);
 
 app.listen(port, function(){
     console.log('server start on port '+port);
