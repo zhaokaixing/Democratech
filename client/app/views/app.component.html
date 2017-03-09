@@ -34,7 +34,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li>
-                    <a (click)=authService.login() *ngIf="!authService.loggedIn()">Log In</a>
+                    <a (click)=authService.login() *ngIf="!authService.loggedIn()" class="btn">Log In</a>
                 </li>
                 <li>
                     <a routerLink="/democratech" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue...</a>

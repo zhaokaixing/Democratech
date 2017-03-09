@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
   moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'views/app.component.html',
-  styleUrls : ['views/styles/home.component.styles.css']
+  styleUrls : ['views/styles/app.component.styles.css']
 })
 
 export class AppComponent { 
