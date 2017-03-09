@@ -10,7 +10,7 @@ let isValidBasic = (user) => {
 };
 
 exports.isValidCitizen = (citizen) => {
-    return !isValidBasic(citizen) || !citizen.firstName || !citizen.lastName || !citizen.birthDate        
+    return (!isValidBasic(citizen) || !citizen.firstName || !citizen.lastName || !citizen.birthDate)
 };
 
 exports.isValidOrganisation = (organisation) => {
