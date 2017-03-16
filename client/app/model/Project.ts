@@ -11,6 +11,7 @@ export class Project{
     longitude : number;**/
 
     /** rajouter pour tester**/
+    id:number;
     image: string;
     label:string;
     description:string;
