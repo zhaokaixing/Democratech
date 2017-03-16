@@ -19,6 +19,8 @@
 .placeholder img {
     display: inline-block;
     border-radius: 50%;
+    width:350px;
+    height:130px;
 }
 
 /*
