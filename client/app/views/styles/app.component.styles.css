@@ -25,6 +25,7 @@ body {
 }
 @media (min-width: 768px) {
     .sidebar {
+        height: 100%;
         position: fixed;
         top: 51px;
         /*bottom: 0;
@@ -40,9 +41,8 @@ body {
 
     }
     .form-control{
-        width: 95%;
-        height: 100%;
-        font-size: 0.7em;
+        width: 100%;
+
 
     }
 }
@@ -53,15 +53,22 @@ body {
     margin-bottom: 10px;
     margin-left: -20px;
 
+
+
     /*background-color: rgb(210,216,221);*/
 }
 
 .btn{
     border-widht:4px;
     border:rgba(45,64,89,100);
+    background-color: rgba(45,64,89,100);
+    color: white;
     border-style:solid;
-    margin-right:30px;
-    margin-left:30px;
+    margin-left:15px;
+
+    width: 87%;
+
+
 }
 .nav-sidebar > li > a {
     padding-right: 20px;
@@ -94,24 +101,6 @@ body {
 }
 
 
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-    margin-bottom: 30px;
-    text-align: center;
-}
-.placeholders h4 {
-    margin-bottom: 0;
-}
-.placeholder {
-    margin-bottom: 20px;
-}
-.placeholder img {
-    display: inline-block;
-    border-radius: 50%;
-}
 
 .page-header {
     padding-top: 40px;
