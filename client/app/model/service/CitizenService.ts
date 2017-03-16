@@ -11,12 +11,12 @@ export class CitizenService {
         console.log('Task Service Initialized...');
     }
 
-    getCities() {
+    getCitizens() {
         return this.http.get('/api/citizens')
             .map(res => res.json());
     }
 
-    getCity(id: string) {
+    getCitizen(id: string) {
         return this.http.get('/api/citizen/'+id)
             .map(res => res.json());
     }

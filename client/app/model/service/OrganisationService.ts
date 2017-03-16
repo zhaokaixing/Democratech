@@ -11,12 +11,12 @@ export class OrganisationService {
         console.log('Task Service Initialized...');
     }
 
-    getCities() {
+    getOrganisations() {
         return this.http.get('/api/organisations')
             .map(res => res.json());
     }
 
-    getCity(id: string) {
+    getOrganisation(id: string) {
         return this.http.get('/api/oraganisation/'+id)
             .map(res => res.json());
     }
