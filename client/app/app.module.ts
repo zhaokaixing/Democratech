@@ -18,13 +18,13 @@ import { AuthGuard } from './auth-guard.service';
     BrowserModule,
     FormsModule,
     routing,
-    HttpModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     PrivateContentComponent,
-    routedComponents
+    routedComponents,
   ],
   providers: [
     AUTH_PROVIDERS,
