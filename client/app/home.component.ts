@@ -6,16 +6,21 @@ import {Project} from'./model/Project';
   moduleId: module.id,
   selector: 'home',
   templateUrl: 'views/home.component.html',
-  styleUrls : ['views/styles/home.component.styles.css']
+  styleUrls : ['views/styles/home.component.styles.css'],
+  providers: []
 })
 
 export class HomeComponent{
+  constructor(private authService: AuthService) {
+    this.user = localStorage.getItem('profile');
+  }
+
+  user: string;
+
   PROJECTS:Project[] = [
     {id:1, image:"/ressources/images/ecole.jpg" , label: 'Construction', description:"Construction d'une école"},
     {id:2, image:"/ressources/images/ecolo.jpg", label: 'Ecologie', description:"Ouverture gîte écologique"},
     {id:3, image: "/ressources/images/pont.jpg", label: 'Construction', description:"Construction d'un pont traversant la Loire"},
-    {id:4, image: "/ressources/images/route.jpg", label: 'Construction', description:"Rénovation de l'autoroute A10"}
+    {id:4, image: "/ressources/images/route.jpg", label: 'Construction', description:"Rénovation de l'autoroute A10"},
   ];
-
-  constructor(private authService: AuthService) {}
 }
