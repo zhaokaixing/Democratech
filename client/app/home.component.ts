@@ -16,6 +16,6 @@ export class HomeComponent{
     {id:3, image: "/ressources/images/pont.jpg", label: 'Construction', description:"Construction d'un pont traversant la Loire"},
     {id:4, image: "/ressources/images/route.jpg", label: 'Construction', description:"Rénovation de l'autoroute A10"}
   ];
-  constructor(private authService: AuthService) {}
 
+  constructor(private authService: AuthService) {}
 }

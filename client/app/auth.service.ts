@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
-import { myConfig } from './auth.config';
+import { myConfig, baseUrl } from './auth.config';
 
 declare var Auth0Lock: any;
 
@@ -11,7 +11,8 @@ export class AuthService {
   lock = new Auth0Lock(myConfig.clientID, myConfig.domain,
       {
           'auth': {'callbackURL': myConfig.callbackURL, responseType: 'token'},
-          'language': 'fr'
+          'language': 'fr',
+          'signUpLink': baseUrl.name + 'inscription'
       }
   );
 
