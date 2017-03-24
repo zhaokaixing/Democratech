@@ -30,6 +30,8 @@ export class AuthService {
         localStorage.setItem('profile', JSON.stringify(profile));
       });
 
+      console.log(localStorage);
+
       this.lock.hide();
     });
   }

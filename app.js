@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', index);
+app.use('**', index);
 app.use('/api', organisations);
 app.use('/api', departments);
 app.use('/api', cities);
