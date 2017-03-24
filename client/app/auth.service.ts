@@ -12,7 +12,7 @@ export class AuthService {
       {
           'auth': {'callbackURL': myConfig.callbackURL, responseType: 'token'},
           'language': 'fr',
-          'signUpLink': baseUrl.name + 'inscription'
+          'signUpLink': baseUrl.name + 'register'
       }
   );
 
