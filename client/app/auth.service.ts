@@ -21,15 +21,13 @@ export class AuthService {
       this.router.navigateByUrl(authResult.state);
 
       localStorage.setItem('id_token', authResult.idToken);
-
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
         if (error) {
           console.log(error);
         }
-
         localStorage.setItem('profile', JSON.stringify(profile));
+        console.log(localStorage.getItem('profile'));
       });
-
       console.log(localStorage);
 
       this.lock.hide();
