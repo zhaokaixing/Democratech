@@ -1,32 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganisationService } from "./service/OrganisationService";
-import {Organisation} from "./model/Organisation";
+import { CitizenService } from "./service/CitizenService";
+import { User } from "./model/User";
 
 @Component({
   moduleId: module.id,
   selector: 'profile',
   templateUrl: 'views/profile.component.html',
-  providers: [ OrganisationService ]
+  providers: [ OrganisationService, CitizenService ]
 })
 
 export class ProfileComponent implements OnInit {
-  user: Organisation = new Organisation();
+  user: User = new User();
   defaultPicture: string;
 
-  constructor(private userService: OrganisationService) {
-
-  }
+  constructor(private userService: OrganisationService, private citizenService: CitizenService) {}
 
   ngOnInit() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
     this.defaultPicture = profile['picture'];
-    console.log(this.defaultPicture);
+
+    console.log(profile);
 
     this.userService.getOrganisation(identity['user_id'])
-      .subscribe(result => {
-        this.user = result;
-        console.log(this.user.name);
+      .subscribe(org => {
+        this.user = org != null ? org : this.user;
+
+        console.log(this.user);
+      });
+
+    this.citizenService.getCitizen(identity['user_id'])
+      .subscribe(citizen => {
+        this.user = citizen != null ? citizen : this.user;
+
+        console.log(this.user);
       });
   }
 }

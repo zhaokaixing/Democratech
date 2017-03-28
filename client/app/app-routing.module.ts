@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: HomeComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: '**', redirectTo: '/home' }
+    { path: ' "**', redirectTo: '/home' }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],
