@@ -27,7 +27,7 @@ export class Project{
     }
     comments : [{
         citizen : Citizen; // can be null
-        organisation : Organisation ; // can be null
+        user : Organisation ; // can be null
         date : Date;
         content : string;
     }]

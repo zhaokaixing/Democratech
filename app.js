@@ -28,12 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', index);
-app.use('**', index);
 app.use('/api', organisations);
 app.use('/api', departments);
 app.use('/api', cities);
 app.use('/api', citizens);
 
+app.use('**', index);
 
 app.listen(port, function(){
     console.log('server start on port '+port);

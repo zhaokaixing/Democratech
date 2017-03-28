@@ -3,6 +3,7 @@ import {Project} from "./Project";
  * Created by quentinC on 16/02/2017.
  */
 export class Organisation{
+    _id: string;
     mail : string;
     password : string;
     name : string;

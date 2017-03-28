@@ -23,7 +23,7 @@ export class OrganisationService {
     }
 
     getOrganisation(id: string): Observable<Organisation> {
-      return this.http.get(BaseUrl.name + 'api/organisation/'+id)
+      return this.http.get(BaseUrl.name + 'api/user/'+id)
           .map(res => res.json())
           .catch(err => this.handleError(err));
     }
