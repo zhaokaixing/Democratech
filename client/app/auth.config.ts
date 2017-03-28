@@ -4,12 +4,12 @@ interface AuthConfiguration {
     callbackURL: string
 }
 
-export const baseUrl = {
+export const BaseUrl = {
   name: 'http://localhost:3000/'
 };
 
-export const myConfig: AuthConfiguration = {
+export const Config: AuthConfiguration = {
     clientID: '5Ai35bg5ZXeE2weSeXHUdf3KW5zwB4NF',
     domain: 'democratch.eu.auth0.com',
-    callbackURL: baseUrl.name
+    callbackURL: BaseUrl.name
 };
