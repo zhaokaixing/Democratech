@@ -12,21 +12,45 @@ import {Organisation} from "../model/Organisation";
 
 @Injectable()
 export class OrganisationService {
-    constructor(private http: Http) {
-        console.log('Organisation Service Initialized...');
-    }
+  constructor(private http: Http) {
+    console.log('Organisation Service Initialized...');
+  }
 
-    getOrganisations(): Observable<Organisation[]> {
-      return this.http.get(BaseUrl.name + 'api/organisations')
+  getAll(): Observable<Organisation[]> {
+    return this.http.get(BaseUrl.name + 'api/organisations')
+      .map(res => res.json())
+      .catch(err => this.handleError(err));
+  }
+
+  getOne(id: string): Observable<Organisation> {
+    return this.http.get(BaseUrl.name + 'api/organisation/' + id)
         .map(res => res.json())
         .catch(err => this.handleError(err));
-    }
+  }
 
-    getOrganisation(id: string): Observable<Organisation> {
-      return this.http.get(BaseUrl.name + 'api/user/'+id)
-          .map(res => res.json())
-          .catch(err => this.handleError(err));
-    }
+  add(organisation: Organisation): Observable<Organisation> {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.post('/api/organisation', JSON.stringify(organisation), {headers: headers})
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  update(organisation: Organisation) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put('/api/organisation/' + organisation._id, JSON.stringify(organisation), {headers: headers})
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  delete(id: String) {
+    return this.http.delete('/api/organisation/' + id)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
 
   private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure

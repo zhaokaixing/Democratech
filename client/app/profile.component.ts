@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
     console.log(profile);
 
-    this.userService.getOrganisation(identity['user_id'])
+    this.userService.getOne(identity['user_id'])
       .subscribe(org => {
         this.user = org != null ? org : this.user;
 
