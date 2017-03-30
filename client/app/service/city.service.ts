@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CityService {
     constructor(private http: Http) {
-        console.log('City Service Initialized...');
+        console.log('city Service Initialized...');
     }
 
     getAll() {
