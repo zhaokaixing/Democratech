@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/flwrnt/democratech#readme",
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",
     "ejs": "^2.5.5",
     "express": "^4.14.1",

@@ -7,9 +7,10 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { ProfileComponent } from './profile.component';
+import { RegisterComponent } from './register.component';
 
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './service/auth.service';
+import { AuthGuard } from './service/auth-guard.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,7 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   providers: [
     AUTH_PROVIDERS,

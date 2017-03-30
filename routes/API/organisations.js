@@ -14,14 +14,15 @@ router.get('/organisations', (req, res) => {
     })
 });
 
-router.get('/user/:id', (req, res) => {
+router.get('/organisation/:id', (req, res) => {
     db.organisations.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, organisation) => {
         if (err) res.send(err);
         res.json(organisation)
     })
 });
 
-router.post('/user', (req, res, next) => {
+
+router.post('/organisation', (req, res, next) => {
     var organisation = req.body;
     // check data integrity
     console.log(form.isValidOrganisation(organisation));
@@ -39,14 +40,14 @@ router.post('/user', (req, res, next) => {
     else res.status(400).json({"error": "bad data"})
 });
 
-router.delete('/user/:id', (req, res) => {
+router.delete('/organisation/:id', (req, res) => {
     db.organisations.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, organisation) {
         if (err) res.send(err);
         res.json(organisation)
     })
 });
 
-router.put('/user/:id', (req, res) => {
+router.put('/organisation/:id', (req, res) => {
     let update = updateOrganisation(req.body);
     if (!update) res.status(400).json({'error': 'bad data'});
     
