@@ -24,7 +24,7 @@ export class ProjectService{
 }
 
     getOne(id: string): Observable<Project> {
-        return this.http.get(BaseUrl.name + 'api/organisation/' + id)
+        return this.http.get(BaseUrl.name + 'api/project/' + id)
             .map(res => res.json())
             .catch(err => this.handleError(err));
     }
