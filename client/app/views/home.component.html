@@ -1,8 +1,10 @@
 <h1 class="page-header">Democratech</h1>
 <div class="row placeholders">
-    <div *ngFor='let project of PROJECTS' class="col-xs-6 col-sm-3 placeholder">
-        <img src={{project.image}} class="imgProjects img-responsive" alt="Generic placeholder thumbnail">
-        <h4>{{project.label}}</h4>
-        <span class="text-muted">{{project.description}}</span>
-    </div>
+    <article *ngFor='let project of PROJECTS' class="col-xs-6 col-sm-3 placeholder">
+        <a (click)=selectProject(project)>
+            <img src={{project.image}} class="imgProjects img-responsive" alt="Generic placeholder thumbnail">
+            <h4>{{project.label}}</h4>
+            <span class="text-muted">{{project.description}}</span>
+        </a>
+    </article>
 </div>

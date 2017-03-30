@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { ProfileComponent } from './profile.component';
 import { RegisterComponent } from './register.component';
+import {ProjectComponent} from './project.component'
 
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth-guard.service';
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProjectComponent
   ],
   providers: [
     AUTH_PROVIDERS,
