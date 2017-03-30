@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -10,10 +10,9 @@ import { AuthService } from './service/auth.service';
 
 export class AppComponent { 
   title = 'Democratech';
-  profile = JSON.parse(localStorage.getItem('profile'));
+  profile: any = {};
 
   constructor(private authService: AuthService) {
-    let test = JSON.parse(localStorage.getItem('profile'));
-    console.log(test)
+    this.profile = JSON.parse(localStorage.getItem('profile'));
   }
 }
