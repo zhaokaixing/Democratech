@@ -63,11 +63,23 @@ router.post('/project', (req, res) => {
 
         var collection = db2.collection('projects');
 
-        collection.save(project,(err, project) => {
-            if (err) res.send(err);
-            res.json(project)
-        })
+        if (form.isValidProject(project)) {
+
+            collection.save(project,(err, project) => {
+                if (err) res.send(err);
+                res.json(project)
+            })
+
+        }
     });
+});
+
+
+router.delete('/project/:id', (req, res) => {
+    db.project.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, project) {
+        if (err) res.send(err);
+        res.json(project)
+    })
 });
 
 
