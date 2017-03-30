@@ -23,10 +23,8 @@ export class ProjectComponent implements OnInit{
     ];
 
     ngOnInit(): void {
-        var idProjet = 0;
         idProjet = parseInt(localStorage.getItem("id").valueOf());
         localStorage.setItem("id", "0");
         this.project = this.PROJECTS[idProjet - 1];
-        console.log("Bonjouuuur");
     }
 }
