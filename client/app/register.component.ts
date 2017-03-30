@@ -22,9 +22,9 @@ export class RegisterComponent implements OnInit {
   constructor(private departmentService: DepartmentService, private cityService: CityService) {}
 
   ngOnInit() {
-    this.departmentService.getDepartments()
+    this.departmentService.getAll()
       .subscribe(dpts => this.country.departments = dpts);
-    this.cityService.getCities()
+    this.cityService.getAll()
       .subscribe(cities => {
         this.country.cities = cities;
         console.log(this.country);

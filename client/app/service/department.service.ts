@@ -17,7 +17,7 @@ export class DepartmentService {
             .map(res => res.json());
     }
 
-    getOne(id:string) {
+    getDepartment(id:string) {
         return this.http.get('/api/department/'+id)
             .map(res => res.json());
     }
