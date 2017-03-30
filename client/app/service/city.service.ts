@@ -5,19 +5,22 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
+
 @Injectable()
 export class CityService {
     constructor(private http: Http) {
         console.log('City Service Initialized...');
     }
 
-    getCities() {
+    getAll() {
         return this.http.get('/api/cities')
             .map(res => res.json());
     }
 
-    getCity(id: string) {
-        return this.http.get('/api/city/'+id)
+    getOne(id: string) {
+        return this.http.get('/api/city/' + id)
             .map(res => res.json());
     }
+
 }
