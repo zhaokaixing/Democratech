@@ -1,4 +1,4 @@
-let bcrypt = require('bcrypt');
+let bcrypt = require('bcrypt-nodejs');
 const jwt = require('express-jwt');
 
 exports.cryptPassword = function(password, callback) {

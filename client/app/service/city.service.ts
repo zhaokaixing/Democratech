@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CityService {
     constructor(private http: Http) {
-        console.log('Task Service Initialized...');
+        console.log('City Service Initialized...');
     }
 
     getCities() {

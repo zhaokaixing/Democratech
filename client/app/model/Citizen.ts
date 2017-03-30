@@ -1,13 +1,14 @@
 
 import {Project} from "./Project";
+import {User} from "./User";
 /**
  * Created by quentinC on 16/02/2017.
  */
-export class Citizen{
+export class Citizen implements User {
+    _id: string;
     mail : string;
     password : string;
-
-    firstName : string;
+    name : string;
     lastName : string;
     birthDate : Date;
     address : {
