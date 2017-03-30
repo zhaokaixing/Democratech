@@ -16,16 +16,40 @@ export class CitizenService {
         console.log('Citizen Service Initialized...');
     }
 
-    getCitizens(): Observable<Citizen[]>  {
+    getAll(): Observable<Citizen[]>  {
         return this.http.get('/api/citizens')
             .map(res => res.json())
             .catch(err => this.handleError(err));
     }
 
-    getCitizen(id: string): Observable<Citizen> {
+    getOne(id: string): Observable<Citizen> {
         return this.http.get('/api/citizen/'+id)
             .map(res => res.json())
             .catch(err => this.handleError(err));
+    }
+
+    add(citizen: Citizen): Observable<Citizen> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.post('/api/citizen', JSON.stringify(citizen), {headers: headers})
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
+
+    update(citizen: Citizen) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.put('/api/citizen/' + citizen._id, JSON.stringify(citizen), {headers: headers})
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
+
+    delete(id: String) {
+        return this.http.delete('/api/citizen/' + id)
+            .map(res => res.json())
+            .catch(this.handleError);
     }
 
     private handleError(error: Response | any) {
