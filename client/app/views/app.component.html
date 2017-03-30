@@ -10,20 +10,23 @@
             <a class="navbar-brand" routerLink="/">{{title}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+
             <ul class="nav navbar-nav">
-                <li><a routerLink="/" routerLinkActive="active">Home</a></li>
                 <li>
-                    <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Profile</a>
+                    <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Profil</a>
+                </li>
+                <li>
+                    <form class="navbar-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
                 </li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+
 
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="btn" (click)=authService.login() *ngIf="!authService.loggedIn()" >Log In</a></li>
-                <li><a class="btn" (click)=authService.logout() *ngIf="authService.loggedIn()">Log Out</a></li>
+                <li><a class="btn" (click)=authService.login() *ngIf="!authService.loggedIn()" >Se Connecter</a></li>
+                <li><a class="btn" (click)=authService.logout() *ngIf="authService.loggedIn()">Déconnexion</a></li>
             </ul>
         </div>
     </div>
@@ -35,7 +38,7 @@
         <a (click)=authService.login() *ngIf="!authService.loggedIn()" class="btn" >Log In</a>
       </li>
       <li>
-        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue...</a>
+        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue {{user.name}}</a>
       </li>
     </ul>
     <br>
