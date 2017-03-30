@@ -29,7 +29,7 @@ export class OrganisationService {
   }
 
   add(organisation: Organisation): Observable<Organisation> {
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     
     return this.http.post('/api/organisation', JSON.stringify(organisation), {headers: headers})
@@ -38,7 +38,7 @@ export class OrganisationService {
   }
 
   update(organisation: Organisation) {
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.put('/api/organisation/' + organisation._id, JSON.stringify(organisation), {headers: headers})

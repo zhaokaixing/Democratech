@@ -13,7 +13,7 @@ import {Citizen} from '../model/Citizen';
 @Injectable()
 export class CitizenService {
     constructor(private http: Http) {
-        console.log('Task Service Initialized...');
+        console.log('Citizen Service Initialized...');
     }
 
     getCitizens(): Observable<Citizen[]>  {
