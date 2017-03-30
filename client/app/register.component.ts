@@ -25,8 +25,9 @@ export class RegisterComponent implements OnInit {
     this.departmentService.getDepartments()
       .subscribe(dpts => this.country.departments = dpts);
     this.cityService.getCities()
-      .subscribe(cities => this.country.departments);
-
-    console.log(this.country);
+      .subscribe(cities => {
+        this.country.cities = cities;
+        console.log(this.country);
+      });
   }
 }
