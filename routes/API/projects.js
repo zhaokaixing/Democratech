@@ -40,4 +40,22 @@ router.get('/project/:id', function(req, res, next) {
     });
 });
 
+
+router.get('/projects/:city', function(req, res, next) {
+    MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
+
+        var collection = db2.collection('projects');
+        collection.find({"address.city" : req.params.city}).toArray(function(err, docs){
+            if(err){
+                console.log(err.message);
+                res.send(err);
+            }
+            res.json(docs);
+            db2.close();
+        });
+    });
+});
+
+
+
 module.exports = router
