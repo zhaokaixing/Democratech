@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.user);
       });
 
-    this.citizenService.getCitizen(identity['user_id'])
+    this.citizenService.getOne(identity['user_id'])
       .subscribe(citizen => {
         this.user = citizen != null ? citizen : this.user;
 

@@ -5,6 +5,8 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
+
 @Injectable()
 export class CityService {
     constructor(private http: Http) {
@@ -17,7 +19,8 @@ export class CityService {
     }
 
     getOne(id: string) {
-        return this.http.get('/api/city/'+id)
+        return this.http.get('/api/city/' + id)
             .map(res => res.json());
     }
+
 }
