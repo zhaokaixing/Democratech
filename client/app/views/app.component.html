@@ -13,7 +13,7 @@
 
             <ul class="nav navbar-nav">
                 <li>
-                    <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Profil</a>
+                    <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">{{profile.name}}</a>
                 </li>
                 <li>
                     <form class="navbar-form">
@@ -38,7 +38,7 @@
         <a (click)=authService.login() *ngIf="!authService.loggedIn()" class="btn" >Log In</a>
       </li>
       <li>
-        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue {{user.name}}</a>
+        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue {{profile.given_name}}</a>
       </li>
     </ul>
     <br>

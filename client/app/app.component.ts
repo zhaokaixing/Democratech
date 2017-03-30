@@ -10,5 +10,10 @@ import { AuthService } from './service/auth.service';
 
 export class AppComponent { 
   title = 'Democratech';
-  constructor(private authService: AuthService) {}
+  profile = JSON.parse(localStorage.getItem('profile'));
+
+  constructor(private authService: AuthService) {
+    let test = JSON.parse(localStorage.getItem('profile'));
+    console.log(test)
+  }
 }
