@@ -11,12 +11,12 @@ export class CityService {
         console.log('City Service Initialized...');
     }
 
-    getCities() {
+    getAll() {
         return this.http.get('/api/cities')
             .map(res => res.json());
     }
 
-    getCity(id: string) {
+    getOne(id: string) {
         return this.http.get('/api/city/'+id)
             .map(res => res.json());
     }
