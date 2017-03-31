@@ -12,6 +12,7 @@ import {Country} from "./model/Country";
   moduleId: module.id,
   selector: 'register',
   templateUrl: 'views/register.component.html',
+  styleUrls: ['views/style/register.component.css'],
   providers: [ DepartmentService, CityService, CitizenService, OrganisationService ]
 })
 

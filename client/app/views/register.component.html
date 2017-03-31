@@ -1,29 +1,29 @@
 <h1 class="page-header">Inscription</h1>
 <div class="row">
-    <form class="col-md-12" data-toggle="validator" id="register-form">
+    <form class="col-md-12" id="register-form">
         <h3 class="Title">Veuillez remplir les champs ci-dessous :</h3>
         <h6 class="Title">Les champs accompagnés d'un astérisque sont requis.</h6>
         <div class="form-group">
-            <label for="InputName" >Nom </label>
-            <input type="text" class="form-control" name="lastName" placeholder="Entrez votre nom">
+            <label for="lastName" >Nom </label>
+            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom">
         </div>
         <div class="form-group">
-            <label for="InputLastName">Prénom</label>
-            <input type="text" class="form-control" name="name" placeholder="Entrez votre prénom">
+            <label for="name">Prénom</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom">
         </div>
         <div class="form-group">
-            <label for="InputEmail1">Adresse Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Entrez votre email">
+            <label for="email">Adresse Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email">
         </div>
         <div class="form-group">
-            <label for="InputPassword1">Mot de passe</label>
-            <input type="password" data-minlength="6" class="form-control" name="password" placeholder="Entrez votre mot de passe">
+            <label for="password">Mot de passe</label>
+            <input type="password" data-minlength="6" class="form-control" name="password" id="password" placeholder="Entrez votre mot de passe">
         </div>
         <div class="form-group">
-            <label for="InputConfirmPassword1">Confirmation du mot de passe</label>
-            <input type="password" class="form-control" name="passwordConfirmation" placeholder="Confirmez votre mot de passe">
+            <label for="passwordConfirmation">Confirmation du mot de passe</label>
+            <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirmez votre mot de passe">
         </div>
-        <div class="form-group" id="InputBirthDate">
+        <div class="form-group" id="birthDate">
             <label for="birthDate">Date de naissance</label>
             <select name="DOBDay">
                 <option> Jour </option>
@@ -148,27 +148,27 @@
 
         <div class="form-group">
             <label for="department">Département</label>
-            <input type="text" class="form-control" id="InputDepartment" placeholder="Entrez votre nom de département">
+            <input type="text" class="form-control" id="department" placeholder="Entrez votre nom de département">
         </div>
 
         <div class="form-group">
             <label for="city">Ville</label>
-            <input type="text" class="form-control" id="InputCity" placeholder="Entrez votre ville de résidence">
+            <input type="text" class="form-control" id="city" placeholder="Entrez votre ville de résidence">
         </div>
 
         <div class="form-group">
             <label for="postalCode">Code postal</label>
-            <input type="text" class="form-control" id="InputPostalCode" placeholder="Entrez votre code postal">
+            <input type="text" class="form-control" id="postalCode" placeholder="Entrez votre code postal">
         </div>
 
         <div class="form-group">
             <label for="streetNumber">Numéro de rue</label>
-            <input type="number" class="form-control" id="InputStreetNumber" placeholder="Entrez numéro de rue">
+            <input type="number" class="form-control" id="streetNumber" placeholder="Entrez numéro de rue">
         </div>
 
         <div class="form-group">
             <label for="streetName">Rue</label>
-            <input type="text" class="form-control" id="InputStreetName" placeholder="Entrez votre rue">
+            <input type="text" class="form-control" id="streetName" placeholder="Entrez votre rue">
         </div>
         <button type="submit" class="btn btn-default">Valider</button>
     </form>

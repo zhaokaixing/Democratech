@@ -6,12 +6,13 @@
     display: block;
     margin : auto;
 }
-/**
+
 .h2 {
+    font-size: 50px;
     margin-bottom: 50%;
     text-align: center;
 }
 
 .placeholders h3 {
     text-align: right;
-}*/
+}
