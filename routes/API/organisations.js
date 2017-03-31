@@ -21,7 +21,8 @@ router.get('/organisation/:id', (req, res) => {
     })
 });
 
-router.post('/organisation', (req, res, next) => { 
+
+router.post('/organisation', (req, res, next) => {
     var organisation = req.body;
     // check data integrity
     console.log(form.isValidOrganisation(organisation));

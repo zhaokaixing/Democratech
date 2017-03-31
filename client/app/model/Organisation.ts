@@ -1,8 +1,10 @@
 import {Project} from "./Project";
+import {User} from "./User";
 /**
  * Created by quentinC on 16/02/2017.
  */
-export class Organisation{
+export class Organisation implements User {
+    _id: string;
     mail : string;
     password : string;
     name : string;

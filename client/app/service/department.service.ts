@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class DepartmentService {
 
     constructor(private  http:Http) {
-        console.log('Task Service Initialized...');
+        console.log('Department Service Initialized...');
     }
 
     getDepartments() {
