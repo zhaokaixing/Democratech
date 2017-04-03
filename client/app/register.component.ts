@@ -12,7 +12,7 @@ import {Country} from "./model/Country";
   moduleId: module.id,
   selector: 'register',
   templateUrl: 'views/register.component.html',
-  styleUrls: ['views/style/register.component.css'],
+  styleUrls: ['views/styles/register.component.styles.css'],
   providers: [ DepartmentService, CityService, CitizenService, OrganisationService ]
 })
 
@@ -24,10 +24,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.departmentService.getDepartments()
-      .subscribe(dpts => this.country.departments = dpts);
+        .subscribe(dpts => this.country.departments = dpts);
     this.cityService.getCities()
-      .subscribe(cities => this.country.departments);
+        .subscribe(cities => this.country.departments);
 
     console.log(this.country);
   }
 }
+

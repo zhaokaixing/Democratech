@@ -1,18 +1,10 @@
 /**
  * Created by Florent on 30/03/2017.
  */
-
-.btn btn-default{
-    display: block;
-    margin : auto;
+.asterisque{
+    color : red;
 }
-
-.h2 {
-    font-size: 50px;
-    margin-bottom: 50%;
+.page-header {
+    font-size : 40px;
     text-align: center;
-}
-
-.placeholders h3 {
-    text-align: right;
 }
