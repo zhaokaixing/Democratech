@@ -4,7 +4,7 @@ import {Organisation} from "./Organisation";
  * Created by quentinC on 20/02/2017.
  */
 export class Project{
-    _id: string;
+    readonly _id: string;
     title : string;
     mark : number;
     progress : number;
