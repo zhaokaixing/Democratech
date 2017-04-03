@@ -13,8 +13,8 @@ const routes: Routes = [
     { path: 'home',  component: HomeComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard ] },
     { path: 'register', component: RegisterComponent },
-    { path: 'project', component: ProjectComponent}
-    // { path: '**', redirectTo: '/home' }
+    { path: 'project/:id', component: ProjectComponent},
+    { path: '**', redirectTo: '/home' }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

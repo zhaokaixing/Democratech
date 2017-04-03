@@ -1,31 +1,29 @@
 import { Component,OnInit } from '@angular/core';
-import { AuthService } from './service/auth.service';
-import {Project, Projecct} from'./model/Project';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ProjectService } from './service/project.service';
+import {Project} from'./model/Project';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     moduleId: module.id,
     selector: 'home',
     templateUrl: 'views/project.component.html',
-    styleUrls : ['views/styles/project.component.styles.css']
+    styleUrls : ['views/styles/project.component.styles.css'],
+    providers: [ProjectService]
 })
 
 export class ProjectComponent implements OnInit{
 
-    project:Projecct;
+    project: Project = new Project();
 
-    constructor(private authService: AuthService) { this.project = new Projecct();}
-
-    PROJECTS: Projecct[] = [
-        {id: 1, image: '/ressources/images/ecole.jpg' , label: 'Construction', description: 'Construction d\'une école'},
-        {id: 2, image: '/ressources/images/ecolo.jpg', label: 'Ecologie', description: 'Ouverture gîte écologique'},
-        {id: 3, image: '/ressources/images/pont.jpg', label: 'Construction', description: 'Construction d\'un pont traversant la Loire'},
-        {id: 4, image: '/ressources/images/route.jpg', label: 'Construction', description: 'Rénovation de l\'autoroute A10'}
-    ];
+    constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        var idProjet = 0;
-        idProjet = parseInt(localStorage.getItem("id").valueOf());
-        localStorage.setItem("id", "0");
-        this.project = this.PROJECTS[idProjet - 1];
+      this.route.params
+        .switchMap((params: Params) => this.projectService.getOne(params['id']))
+        .subscribe(project => {
+          console.log(project);
+          this.project = project
+        });
     }
 }

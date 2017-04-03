@@ -13,6 +13,8 @@ import {Project} from "../model/Project";
 
 @Injectable()
 export class ProjectService{
+    selectedProject: Project;
+
     constructor(private http: Http) {
         console.log('Project Service Initialized...');
     }

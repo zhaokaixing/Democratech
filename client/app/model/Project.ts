@@ -10,6 +10,7 @@ export class Project{
     progress : number;
     latitude : number;
     longitude : number;
+    image: string;
 
    address : {
         streetNumber: number;
@@ -40,11 +41,4 @@ export class Project{
             number : number;
         }
     }]
-}
-export class Projecct {
-    /** rajouter pour tester**/
-    id:number;
-    image: string;
-    label:string;
-    description:string;
 }
