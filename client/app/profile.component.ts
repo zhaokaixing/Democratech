@@ -7,6 +7,7 @@ import { User } from "./model/User";
   moduleId: module.id,
   selector: 'profile',
   templateUrl: 'views/profile.component.html',
+  styleUrls: ['views/styles/profile.component.style.css'],
   providers: [ OrganisationService, CitizenService ]
 })
 

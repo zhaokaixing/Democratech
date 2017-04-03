@@ -1,10 +1,51 @@
-<h1 class="page-header">Profile</h1>
-<div class="row">
-  <img class="col-sm-2" src="{{defaultPicture}}" alt="you">
-  <div class="col-sm-2">
-    <ul>
-      <li>{{user.name}}</li>
-      <li>{{user.mail}}</li>
-    </ul>
+
+<div class="row jumbotron masthead" id="firstRow" style="margin-top: 30px">
+  <img class="col-md-2 col-sm-6" src="{{defaultPicture}}" alt="you">
+  <div class="col-md-8 col-sm-12">
+    <h2>{{user.name}}</h2>
   </div>
 </div>
+<div class="row" id="secondRow">
+  <div class="col-md-2 col-sm-12 " id="stats">
+    <h3 class="page-header"> Stats :</h3>
+  </div>
+  <div class="col-md-8 col-sm-12 ">
+    <h3 class="page-header"> Profil description :</h3>
+    <br>
+    <h4>{{user.mail}}</h4>
+  </div>
+</div>
+
+<div class="row" id="thirdRow">
+  <div class="col-md-2 col-sm-12" >
+    <h3 class="page-header"> Compétences :</h3>
+  </div>
+
+  <div class="col-md-8 col-sm-12">
+    <h3 class="page-header"> Expériences :</h3>
+    <table class=" table zebra-striped">
+      <thead>
+      <tr>
+        <th>Années</th>
+        <th>Ville</th>
+        <th>Entreprise</th>
+        <th>Poste</th>
+      </tr>
+      </thead>
+    </table>
+    <br>
+    <h3 class="page-header"> Formations :</h3>
+    <table class=" table zebra-striped">
+      <thead>
+      <tr>
+        <th>Années</th>
+        <th>Ville</th>
+        <th>Diplome</th>
+        <th>Etablissement</th>
+      </tr>
+      </thead>
+    </table>
+    <h3 class="page-header"> Centres d'intérets :</h3>
+  </div>
+</div>
+

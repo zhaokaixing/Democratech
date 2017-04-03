@@ -35,10 +35,10 @@
   <div class="col-sm-2 sidebar">
     <ul class="nav nav-sidebar">
       <li>
-        <a (click)=authService.login() *ngIf="!authService.loggedIn()" class="btn" >Log In</a>
+        <a (click)=authService.login() *ngIf="!authService.loggedIn()" class="btn" >Se connecter</a>
       </li>
       <li>
-        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue {{profile.given_name}}</a>
+        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue {{profile.nickname}}</a>
       </li>
     </ul>
     <br>
