@@ -3,13 +3,13 @@
     <form class="col-md-12" id="register-form">
         <h3 class="title">Veuillez remplir les champs ci-dessous :</h3>
         <h6 class="Title2">Les champs accompagnés d'un astérisque sont requis.</h6>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-error':!registerCitizenForm.controls['lastName'].valid}">
             <label for="lastName" >Nom </label>
-            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom">
+            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom" [formControl]="registerCitizenForm.controls['lastName']">
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-error':!registerCitizenForm.controls['firstName'].valid}">
             <label for="name">Prénom <span class="asterisque"> * </span> </label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom" [formControl]="registerCitizenForm.controls['firstName']">
         </div>
         <div class="form-group">
             <label for="email">Adresse Email <span class="asterisque"> * </span> </label>
@@ -170,6 +170,6 @@
             <label for="streetName">Rue <span class="asterisque"> * </span> </label>
             <input type="text" class="form-control" id="streetName" placeholder="Entrez votre rue">
         </div>
-        <button type="submit" class="btn btn-default">Valider</button>
+        <button type="submit" class="btn btn-default" [disabled]="!registerCitizenForm.valid">Valider</button>
     </form>
 </div>
