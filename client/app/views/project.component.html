@@ -26,7 +26,21 @@
       </sebm-google-map-marker>
     </sebm-google-map>
   </div>
-
+  <div id="chat" class="col-sm-offset-1 col-sm-10 ">
+    <div class="panel-body">
+              <div class="row message-bubble" *ngFor='let message of MessageList'>
+                <p class="text-muted">Le {{message.jour}}/{{message.mois}}/{{message.annee}} à {{message.hour}}h {{message.minute}} min, {{message.username}}:</p>
+                <span>{{message.message}}</span>
+              </div>
+    </div>
+            <div class="panel-footer">
+              <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Send</button>
+                  </span>
+            </div>
+  </div>
 
 
 

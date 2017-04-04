@@ -18,3 +18,24 @@ article
     height:250px;
     text-align: justify
 }
+#chat{
+    margin-top:20px;
+    border-style: solid;
+    border-color: #F5F5F5;
+}
+
+
+.message-bubble
+{
+    padding: 10px 0px 10px 0px;
+}
+
+.message-bubble:nth-child(even)
+{
+    background-color: #F5F5F5;
+}
+
+.message-bubble > *
+{
+    padding-left: 10px;
+}
