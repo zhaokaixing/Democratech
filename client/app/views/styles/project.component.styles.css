@@ -5,14 +5,20 @@ img
     height:250px;
     max-width:300px;
 }
-
+.btn-info{
+    margin-top:20px;
+}
 #map
 {
+    border-style: dashed;
     height:250px;
+    margin-bottom: 20px;
+    margin-top:20px;
 }
 
 article
 {
     margin-top:50px;
+    height:250px;
     text-align: justify
 }

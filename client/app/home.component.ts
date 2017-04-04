@@ -1,7 +1,8 @@
+
 import {Component, OnInit} from '@angular/core';
 import {Project} from'./model/Project';
 import {ProjectService} from "./service/project.service";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -13,9 +14,9 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit{
 
+  constructor(private projectService: ProjectService,/*private authService: AuthService,*/private router: Router,private route: ActivatedRoute,) {}
   projects: Project[];
 
-  constructor(private projectService: ProjectService, private router: Router) {}
 
   ngOnInit(){
     this.projectService.getAll().subscribe(projects => {

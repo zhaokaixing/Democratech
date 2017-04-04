@@ -18,12 +18,15 @@ export class ProjectComponent implements OnInit{
 
     constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) {}
 
+
     ngOnInit(): void {
-      this.route.params
-        .switchMap((params: Params) => this.projectService.getOne(params['id']))
-        .subscribe(project => {
-          console.log(project);
-          this.project = project
-        });
+
+        this.route.params
+                .switchMap((params: Params) => this.projectService.getOne(params['id']))
+                .subscribe(project => {
+                        console.log(project);
+                     this.project = project
+                       });
     }
+
 }
