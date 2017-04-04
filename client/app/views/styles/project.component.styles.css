@@ -8,12 +8,8 @@ img
 .btn-info{
     margin-top:20px;
 }
-#map
-{
-    border-style: dashed;
-    height:250px;
-    margin-bottom: 20px;
-    margin-top:20px;
+.sebm-google-map-container {
+    height: 350px;
 }
 
 article

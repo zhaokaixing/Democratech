@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/flwrnt/democratech#readme",
   "dependencies": {
+    "angular2-google-maps": "^0.17.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",
     "ejs": "^2.5.5",

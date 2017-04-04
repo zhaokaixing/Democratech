@@ -16,7 +16,16 @@
     </div>
 
   </article>
-  <div class="col-sm-7" id="map"> Carte de la position du projet</div>
+  <div class="col-sm-offset-1 col-sm-10 " id="map">
+
+    <sebm-google-map [latitude]="project.latitude"[longitude]="project.longitude">
+      <sebm-google-map-marker [latitude]="project.latitude" [longitude]="project.longitude">
+        <sebm-google-map-info-window>
+          <strong>{{project.title}}</strong>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+    </sebm-google-map>
+  </div>
 
 
 

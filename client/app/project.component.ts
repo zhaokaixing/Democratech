@@ -8,14 +8,15 @@ import 'rxjs/add/operator/switchMap';
     moduleId: module.id,
     selector: 'home',
     templateUrl: 'views/project.component.html',
-    styleUrls : ['views/styles/project.component.styles.css'],
-    providers: [ProjectService]
+    styleUrls: ['views/styles/project.component.styles.css'],
+    providers: [ProjectService],
 })
 
 export class ProjectComponent implements OnInit{
 
     project: Project = new Project();
-
+    lat: number = 51.678418;
+    lng: number = 7.809007;
     constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) {}
 
 
