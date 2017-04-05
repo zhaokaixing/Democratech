@@ -1,5 +1,9 @@
 <h1 class="page-header">Inscription</h1>
 <div class="row">
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="registerCitizen">Citoyen</a></li>
+        <li role="presentation"><a href="registerOrganisation">Entité</a></li>
+    </ul>
     <form class="col-md-12" id="register-form">
         <h3 class="title">Veuillez remplir les champs ci-dessous :</h3>
         <h6 class="Title2">Les champs accompagnés d'un astérisque sont requis.</h6>
@@ -17,12 +21,13 @@
         </div>
         <div class="form-group" [ngClass]="{'has-error':!registerCitizenForm.controls['password'].valid}">
             <label for="password">Mot de passe <span class="asterisque"> * </span> </label>
-            <input type="password" data-minlength="6" class="form-control" name="password" id="password" placeholder="Entrez votre mot de passe" [formControl]="registerCitizenForm.controls['password']">
+            <input type="password" class="form-control" name="password" id="password"  placeholder="Entrez votre mot de passe" [formControl]="registerCitizenForm.controls['password']">
         </div>
         <div class="form-group" [ngClass]="{'has-error':!registerCitizenForm.controls['passwordConfirmation'].valid}">
             <label for="passwordConfirmation">Confirmation du mot de passe <span class="asterisque"> * </span> </label>
-            <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirmez votre mot de passe" [formControl]="registerCitizenForm.controls['passwordConfirmation']">
+            <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" match-password="password" placeholder="Confirmez votre mot de passe" [formControl]="registerCitizenForm.controls['passwordConfirmation']">
         </div>
+
         <label for="birthDate">Date de naissance</label>
         <div class="col-md-12" id="birthDate">
             <div class="col-md-4">
@@ -152,20 +157,20 @@
 
         <div class="form-group" [ngClass]="{'has-error':!registerCitizenForm.controls['department'].valid}">
             <label for="department">Département <span class="asterisque"> * </span> </label>
-            <select class="form-control" id="department" [formControl]="registerCitizenForm.controls['department']"><option value='01'>01 - Ain</option>
+            <select class="form-control" id="department" [formControl]="registerCitizenForm.controls['department']">
                 <option value='01'>Ain</option>
                 <option value='02'>Aisne</option>
                 <option value='03'>Allier</option>
-                <option value='04'>Alpes de Haute Provence</option>
+                <option value='04'>Alpes-de-Haute-Provence</option>
                 <option value='05'>Alpes (Hautes)</option>
-                <option value='06'>Alpes Maritimes</option>
+                <option value='06'>Alpes-Maritimes</option>
                 <option value='07'>Ardèche</option>
                 <option value='08'>Ardennes</option>
                 <option value='09'>Ariège</option>
                 <option value='10'>Aube</option>
                 <option value='11'>Aude</option>
                 <option value='12'>Aveyron</option>
-                <option value='13'>Bouches du Rhône</option>
+                <option value='13'>Bouches-du-Rhône</option>
                 <option value='14'>Calvados</option>
                 <option value='15'>Cantal</option>
                 <option value='16'>Charente</option>
@@ -173,40 +178,40 @@
                 <option value='18'>Cher</option>
                 <option value='19'>Corrèze</option>
                 <option value='20'>Corse</option>
-                <option value='21'>Côte d'Or</option>
-                <option value='22'>Côtes d'Armor</option>
+                <option value='21'>Côte-d'Or</option>
+                <option value='22'>Côtes-d'Armor</option>
                 <option value='23'>Creuse</option>
                 <option value='24'>Dordogne</option>
                 <option value='25'>Doubs</option>
                 <option value='26'>Drôme</option>
                 <option value='27'>Eure</option>
-                <option value='28'>Eure et Loir</option>
+                <option value='28'>Eure-et-Loir</option>
                 <option value='29'>Finistère</option>
                 <option value='30'>Gard</option>
                 <option value='31'>Garonne (Haute)</option>
                 <option value='32'>Gers</option>
                 <option value='33'>Gironde</option>
                 <option value='34'>Hérault</option>
-                <option value='35'>Ille et Vilaine</option>
+                <option value='35'>Ille-et-Vilaine</option>
                 <option value='36'>Indre</option>
-                <option value='37'>Indre et Loire</option>
+                <option value='37'>Indre-et-Loire</option>
                 <option value='38'>Isère</option>
                 <option value='39'>Jura</option>
                 <option value='40'>Landes</option>
-                <option value='41'>Loir et Cher</option>
+                <option value='41'>Loir-et-Cher</option>
                 <option value='42'>Loire</option>
                 <option value='43'>Loire (Haute)</option>
-                <option value='44'>Loire Atlantique</option>
+                <option value='44'>Loire-Atlantique</option>
                 <option value='45'>Loiret</option>
                 <option value='46'>Lot</option>
-                <option value='47'>Lot et Garonne</option>
+                <option value='47'>Lot-et-Garonne</option>
                 <option value='48'>Lozère</option>
-                <option value='49'>Maine et Loire</option>
+                <option value='49'>Maine-et-Loire</option>
                 <option value='50'>Manche</option>
                 <option value='51'>Marne</option>
                 <option value='52'>Marne (Haute)</option>
                 <option value='53'>Mayenne</option>
-                <option value='54'>Meurthe et Moselle</option>
+                <option value='54'>Meurthe-et-Moselle</option>
                 <option value='55'>Meuse</option>
                 <option value='56'>Morbihan</option>
                 <option value='57'>Moselle</option>
@@ -214,27 +219,27 @@
                 <option value='59'>Nord</option>
                 <option value='60'>Oise</option>
                 <option value='61'>Orne</option>
-                <option value='62'>Pas de Calais</option>
-                <option value='63'>Puy de Dôme</option>
-                <option value='64'>Pyrénées Atlantiques</option>
+                <option value='62'>Pas-de-Calais</option>
+                <option value='63'>Puy-de-Dôme</option>
+                <option value='64'>Pyrénées-Atlantiques</option>
                 <option value='65'>Pyrénées (Hautes)</option>
-                <option value='66'>Pyrénées Orientales</option>
+                <option value='66'>Pyrénées-Orientales</option>
                 <option value='67'>Rhin (Bas)</option>
                 <option value='68'>Rhin (Haut)</option>
                 <option value='69'>Rhône</option>
                 <option value='70'>Saône (Haute)</option>
-                <option value='71'>Saône et Loire</option>
+                <option value='71'>Saône-et-Loire</option>
                 <option value='72'>Sarthe</option>
                 <option value='73'>Savoie</option>
                 <option value='74'>Savoie (Haute)</option>
-                <option value='75'>Paris (Dept.)</option>
-                <option value='76'>Seine Maritime</option>
-                <option value='77'>Seine et Marne</option>
+                <option value='75'>Paris</option>
+                <option value='76'>Seine-Maritime</option>
+                <option value='77'>Seine-et-Marne</option>
                 <option value='78'>Yvelines</option>
                 <option value='79'>Sèvres (Deux)</option>
                 <option value='80'>Somme</option>
                 <option value='81'>Tarn</option>
-                <option value='82'>Tarn et Garonne</option>
+                <option value='82'>Tarn-et-Garonne</option>
                 <option value='83'>Var</option>
                 <option value='84'>Vaucluse</option>
                 <option value='85'>Vendôme</option>
@@ -245,7 +250,7 @@
                 <option value='90'>Belfort (Territoire de)</option>
                 <option value='91'>Essonne</option>
                 <option value='92'>Hauts de Seine</option>
-                <option value='93'>Seine Saint Denis</option>
+                <option value='93'>Seine-Saint-Denis</option>
                 <option value='94'>Val de Marne</option>
                 <option value='95'>Val d'Oise</option>
                 <option value='98'>Mayotte</option>

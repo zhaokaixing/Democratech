@@ -1,0 +1,278 @@
+<form class="col-md-12" id="registerCompany-form">
+    <h3 class="title">Veuillez remplir les champs ci-dessous :</h3>
+    <h6 class="Title2">Les champs accompagnés d'un astérisque sont requis.</h6>
+    <div class="form-group" >
+        <label for="lastName" >Nom de l'entreprise</label>
+        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['name'].valid}">
+        <label for="name">Prénom <span class="asterisque"> * </span> </label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom" [formControl]="registerOrganisationForm.controls['name']">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['email'].valid}">
+        <label for="email">Adresse Email <span class="asterisque"> * </span> </label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email" [formControl]="registerOrganisationForm.controls['email']">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['password'].valid}">
+        <label for="password">Mot de passe <span class="asterisque"> * </span> </label>
+        <input type="password" class="form-control" name="password" id="password"  placeholder="Entrez votre mot de passe" [formControl]="registerOrganisationForm.controls['password']">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['passwordConfirmation'].valid}">
+        <label for="passwordConfirmation">Confirmation du mot de passe <span class="asterisque"> * </span> </label>
+        <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirmez votre mot de passe" [formControl]="registerCitizenForm.controls['passwordConfirmation']">
+    </div>
+
+    <label for="birthDate">Date de naissance</label>
+    <div class="col-md-12" id="birthDate">
+        <div class="col-md-4">
+            <select class="form-control">
+                <option> Jour </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option> Mois </option>
+                <option value="January">Janvier</option>
+                <option value="February">Février</option>
+                <option value="March">Mars</option>
+                <option value="April">Avril</option>
+                <option value="May">Mai</option>
+                <option value="June">Juin</option>
+                <option value="July">Juillet</option>
+                <option value="August">Août</option>
+                <option value="September">Septembre</option>
+                <option value="October">Octobre</option>
+                <option value="November">Novembre</option>
+                <option value="December">Decembre</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option> Année </option>
+                <option value="2000">2000</option>
+                <option value="1999">1999</option>
+                <option value="1998">1998</option>
+                <option value="1997">1997</option>
+                <option value="1996">1996</option>
+                <option value="1995">1995</option>
+                <option value="1994">1994</option>
+                <option value="1993">1993</option>
+                <option value="1992">1992</option>
+                <option value="1991">1991</option>
+                <option value="1990">1990</option>
+                <option value="1989">1989</option>
+                <option value="1988">1988</option>
+                <option value="1987">1987</option>
+                <option value="1986">1986</option>
+                <option value="1985">1985</option>
+                <option value="1984">1984</option>
+                <option value="1983">1983</option>
+                <option value="1982">1982</option>
+                <option value="1981">1981</option>
+                <option value="1980">1980</option>
+                <option value="1979">1979</option>
+                <option value="1978">1978</option>
+                <option value="1977">1977</option>
+                <option value="1976">1976</option>
+                <option value="1975">1975</option>
+                <option value="1974">1974</option>
+                <option value="1973">1973</option>
+                <option value="1972">1972</option>
+                <option value="1971">1971</option>
+                <option value="1970">1970</option>
+                <option value="1969">1969</option>
+                <option value="1968">1968</option>
+                <option value="1967">1967</option>
+                <option value="1966">1966</option>
+                <option value="1965">1965</option>
+                <option value="1964">1964</option>
+                <option value="1963">1963</option>
+                <option value="1962">1962</option>
+                <option value="1961">1961</option>
+                <option value="1960">1960</option>
+                <option value="1959">1959</option>
+                <option value="1958">1958</option>
+                <option value="1957">1957</option>
+                <option value="1956">1956</option>
+                <option value="1955">1955</option>
+                <option value="1954">1954</option>
+                <option value="1953">1953</option>
+                <option value="1952">1952</option>
+                <option value="1951">1951</option>
+                <option value="1950">1950</option>
+                <option value="1949">1949</option>
+                <option value="1948">1948</option>
+                <option value="1947">1947</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['country'].valid}">
+        <label for="country">Pays <span class="asterisque"> * </span> </label>
+        <select class="form-control" id="country" [formControl]="registerOrganisationForm.controls['country']">
+            <option>Allemagne</option>
+            <option>Cameroun</option>
+            <option>Espagne</option>
+            <option>France</option>
+            <option>Japon</option>
+        </select>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['department'].valid}">
+        <label for="department">Département <span class="asterisque"> * </span> </label>
+        <select class="form-control" id="department" [formControl]="registerCitizenForm.controls['department']"><option value='01'>01 - Ain</option>
+            <option value='01'>Ain</option>
+            <option value='02'>Aisne</option>
+            <option value='03'>Allier</option>
+            <option value='04'>Alpes-de-Haute-Provence</option>
+            <option value='05'>Alpes (Hautes)</option>
+            <option value='06'>Alpes-Maritimes</option>
+            <option value='07'>Ardèche</option>
+            <option value='08'>Ardennes</option>
+            <option value='09'>Ariège</option>
+            <option value='10'>Aube</option>
+            <option value='11'>Aude</option>
+            <option value='12'>Aveyron</option>
+            <option value='13'>Bouches-du-Rhône</option>
+            <option value='14'>Calvados</option>
+            <option value='15'>Cantal</option>
+            <option value='16'>Charente</option>
+            <option value='17'>Charente Maritime</option>
+            <option value='18'>Cher</option>
+            <option value='19'>Corrèze</option>
+            <option value='20'>Corse</option>
+            <option value='21'>Côte-d'Or</option>
+            <option value='22'>Côtes-d'Armor</option>
+            <option value='23'>Creuse</option>
+            <option value='24'>Dordogne</option>
+            <option value='25'>Doubs</option>
+            <option value='26'>Drôme</option>
+            <option value='27'>Eure</option>
+            <option value='28'>Eure-et-Loir</option>
+            <option value='29'>Finistère</option>
+            <option value='30'>Gard</option>
+            <option value='31'>Garonne (Haute)</option>
+            <option value='32'>Gers</option>
+            <option value='33'>Gironde</option>
+            <option value='34'>Hérault</option>
+            <option value='35'>Ille-et-Vilaine</option>
+            <option value='36'>Indre</option>
+            <option value='37'>Indre-et-Loire</option>
+            <option value='38'>Isère</option>
+            <option value='39'>Jura</option>
+            <option value='40'>Landes</option>
+            <option value='41'>Loir-et-Cher</option>
+            <option value='42'>Loire</option>
+            <option value='43'>Loire (Haute)</option>
+            <option value='44'>Loire-Atlantique</option>
+            <option value='45'>Loiret</option>
+            <option value='46'>Lot</option>
+            <option value='47'>Lot-et-Garonne</option>
+            <option value='48'>Lozère</option>
+            <option value='49'>Maine-et-Loire</option>
+            <option value='50'>Manche</option>
+            <option value='51'>Marne</option>
+            <option value='52'>Marne (Haute)</option>
+            <option value='53'>Mayenne</option>
+            <option value='54'>Meurthe-et-Moselle</option>
+            <option value='55'>Meuse</option>
+            <option value='56'>Morbihan</option>
+            <option value='57'>Moselle</option>
+            <option value='58'>Nièvre</option>
+            <option value='59'>Nord</option>
+            <option value='60'>Oise</option>
+            <option value='61'>Orne</option>
+            <option value='62'>Pas-de-Calais</option>
+            <option value='63'>Puy-de-Dôme</option>
+            <option value='64'>Pyrénées-Atlantiques</option>
+            <option value='65'>Pyrénées (Hautes)</option>
+            <option value='66'>Pyrénées-Orientales</option>
+            <option value='67'>Rhin (Bas)</option>
+            <option value='68'>Rhin (Haut)</option>
+            <option value='69'>Rhône</option>
+            <option value='70'>Saône (Haute)</option>
+            <option value='71'>Saône-et-Loire</option>
+            <option value='72'>Sarthe</option>
+            <option value='73'>Savoie</option>
+            <option value='74'>Savoie (Haute)</option>
+            <option value='75'>Paris</option>
+            <option value='76'>Seine-Maritime</option>
+            <option value='77'>Seine-et-Marne</option>
+            <option value='78'>Yvelines</option>
+            <option value='79'>Sèvres (Deux)</option>
+            <option value='80'>Somme</option>
+            <option value='81'>Tarn</option>
+            <option value='82'>Tarn-et-Garonne</option>
+            <option value='83'>Var</option>
+            <option value='84'>Vaucluse</option>
+            <option value='85'>Vendôme</option>
+            <option value='86'>Vienne</option>
+            <option value='87'>Vienne (Haute)</option>
+            <option value='88'>Vosges</option>
+            <option value='89'>Yonne</option>
+            <option value='90'>Belfort (Territoire de)</option>
+            <option value='91'>Essonne</option>
+            <option value='92'>Hauts de Seine</option>
+            <option value='93'>Seine-Saint-Denis</option>
+            <option value='94'>Val de Marne</option>
+            <option value='95'>Val d'Oise</option>
+            <option value='98'>Mayotte</option>
+            <option value='9A'>Guadeloupe</option>
+            <option value='9B'>Guyane</option>
+            <option value='9C'>Martinique</option>
+            <option value='9D'>Réunion</option>
+        </select>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['city'].valid}">
+        <label for="city">Ville <span class="asterisque"> * </span> </label>
+        <input type="text" class="form-control" id="city" placeholder="Entrez votre ville de résidence" [formControl]="registerOrganisationForm.controls['city']">
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['postalCode'].valid}">
+        <label for="postalCode">Code postal <span class="asterisque"> * </span> </label>
+        <input type="text" class="form-control" id="postalCode" placeholder="Entrez votre code postal" [formControl]="registerOrganisationForm.controls['postalCode']">
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['streetNumber'].valid}">
+        <label for="streetNumber">Numéro de rue <span class="asterisque"> * </span> </label>
+        <input type="number" min="0" class="form-control" id="streetNumber" placeholder="Entrez numéro de rue" [formControl]="registerOrganisationForm.controls['streetNumber']">
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['streetName'].valid}">
+        <label for="streetName">Rue <span class="asterisque"> * </span> </label>
+        <input type="text" class="form-control" id="streetName" placeholder="Entrez votre rue" [formControl]="registerOrganisationForm.controls['streetName']">
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!registerOrganisationForm.valid">Valider</button>
+</form>
