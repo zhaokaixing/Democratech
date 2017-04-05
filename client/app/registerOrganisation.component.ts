@@ -39,8 +39,7 @@ export class RegisterOrganisationComponent implements OnInit {
             'passwordConfirmation' : [null, [Validators.required,
                 Validators.minLength(6),
                 Validators.maxLength(12),
-                Validators.pattern('[a-zA-Z0-9]*')
-            ]],
+                Validators.pattern('[a-zA-Z0-9]*')]],
 
             'country' : [null, [Validators.required,
                 Validators.pattern('[a-zA-Z]*')]],

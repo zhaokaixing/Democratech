@@ -8,6 +8,8 @@ import { ProfileComponent } from './profile.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { RegisterComponent } from './register.component';
 import { AuthGuard } from './service/auth-guard.service';
+import {RegisterCitizenComponent} from "./registerCitizen.component";
+import {RegisterOrganisationComponent} from "./registerOrganisation.component";
 
 
 const routes: Routes = [
@@ -15,8 +17,11 @@ const routes: Routes = [
     { path: 'home',  component: HomeComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard ] },
     { path: 'register', component: RegisterComponent },
+    { path: 'registerCitizen', component: RegisterCitizenComponent },
+    { path: 'registerOrganisation', component: RegisterOrganisationComponent },
     { path: '**', redirectTo: '/home' }
 ];
+
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],
     exports: [ RouterModule ]

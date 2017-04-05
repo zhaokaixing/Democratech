@@ -28,13 +28,12 @@ export class RegisterComponent implements OnInit {
       'name': [null, [Validators.required,
         Validators.pattern('[a-zA-Z]*')]],
 
-      //Ajouter @
       'email': [null, Validators.required],
 
       'password': [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12),
-        //A améliorer
+        //To improve
         Validators.pattern('[a-zA-Z0-9]*')]],
 
       'passwordConfirmation' : [null, [Validators.required,

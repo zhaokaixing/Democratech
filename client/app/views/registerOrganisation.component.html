@@ -1,14 +1,12 @@
 <form class="col-md-12" id="registerCompany-form">
     <h3 class="title">Veuillez remplir les champs ci-dessous :</h3>
     <h6 class="Title2">Les champs accompagnés d'un astérisque sont requis.</h6>
-    <div class="form-group" >
-        <label for="lastName" >Nom de l'entreprise</label>
-        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom">
-    </div>
+
     <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['name'].valid}">
-        <label for="name">Prénom <span class="asterisque"> * </span> </label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom" [formControl]="registerOrganisationForm.controls['name']">
+        <label for="name">Nom<span class="asterisque"> * </span> </label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="Entrez le nom de l'organisation" [formControl]="registerOrganisationForm.controls['name']">
     </div>
+
     <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['email'].valid}">
         <label for="email">Adresse Email <span class="asterisque"> * </span> </label>
         <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email" [formControl]="registerOrganisationForm.controls['email']">
@@ -138,6 +136,24 @@
         </div>
     </div>
 
+
+    <label for="isPublic">Est-ce une organisation publique ou privée ?</label>
+    <div class="col-md-12" id="isPublic" >
+    <div class="col-md-2">
+        <label>
+            <input type="radio" name="optionsRadios" id="Public" value="Public" checked>
+            Pulique
+        </label>
+    </div>
+    <div class="col-md-2">
+        <label>
+            <input type="radio" name="optionsRadios" id="Private" value="Private">
+            Privée
+        </label>
+    </div>
+    </div>
+
+
     <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['country'].valid}">
         <label for="country">Pays <span class="asterisque"> * </span> </label>
         <select class="form-control" id="country" [formControl]="registerOrganisationForm.controls['country']">
@@ -151,7 +167,7 @@
 
     <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['department'].valid}">
         <label for="department">Département <span class="asterisque"> * </span> </label>
-        <select class="form-control" id="department" [formControl]="registerCitizenForm.controls['department']"><option value='01'>01 - Ain</option>
+        <select class="form-control" id="department" [formControl]="registerOrganisationForm.controls['department']">
             <option value='01'>Ain</option>
             <option value='02'>Aisne</option>
             <option value='03'>Allier</option>
