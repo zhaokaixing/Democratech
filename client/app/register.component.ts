@@ -28,10 +28,10 @@ export class RegisterComponent implements OnInit {
     this.registerUserForm = formBuilder.group({
 
       'lastName': [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-Z]*-')]],
 
       'name': [null, [Validators.required,
-       Validators.pattern('[a-zA-Z]*')]],
+       Validators.pattern('[a-zA-Z]*-')]],
 
       'email': [null, Validators.required],
 
@@ -39,31 +39,29 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(6),
         Validators.maxLength(12),
         //To improve
-        Validators.pattern('[a-zA-Z0-9]+')]],
+        Validators.pattern('[a-zA-Z0-9]*')]],
 
       'passwordConfirmation' : [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12),
-        Validators.pattern('[a-z]+[A-Z]+[0-9]+')
+        Validators.pattern('[a-zA-Z0-9]*')
       ]],
 
       'country' : [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-Z]*-')]],
 
       'department' : [null, Validators.required],
 
       'city' : [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-Z]*-')]],
 
       'postalCode' : [null, [Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(5),
-        Validators.pattern('[0-9]*')]],
+        Validators.pattern('[0-9]{5}')]],
 
       'streetNumber' : [null, Validators.required],
 
       'streetName' : [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-Z ]*-')]],
     })
 
       this.registerOrganisationForm = formBuilder.group({
@@ -81,26 +79,23 @@ export class RegisterComponent implements OnInit {
       'passwordConfirmationOrganisation' : [null, [Validators.required,
           Validators.minLength(6),
           Validators.maxLength(12),
-          Validators.pattern('[a-zA-Z0-9]*')
-      ]],
+          Validators.pattern('[a-zA-Z0-9]*')]],
 
       'countryOrganisation' : [null, [Validators.required,
-          Validators.pattern('[a-zA-Z]*')]],
+          Validators.pattern('[a-zA-Z]*-')]],
 
       'departmentOrganisation' : [null, Validators.required],
 
       'cityOrganisation' : [null, [Validators.required,
-          Validators.pattern('[a-zA-Z]*')]],
+          Validators.pattern('[a-zA-Z]*-')]],
 
       'postalCodeOrganisation' : [null, [Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(5),
-          Validators.pattern('[0-9]*')]],
+          Validators.pattern('[0-9]{5}')]],
 
       'streetNumberOrganisation' : [null, Validators.required],
 
       'streetNameOrganisation' : [null, [Validators.required,
-          Validators.pattern('[a-zA-Z]*')]],
+          Validators.pattern('[a-zA-Z ]*-')]],
   })
   }
 
