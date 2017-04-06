@@ -13,8 +13,6 @@ import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth-guard.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import {RegisterCitizenComponent} from "./registerCitizen.component";
-import {RegisterOrganisationComponent} from "./registerOrganisation.component";
 
 @NgModule({
   imports: [
@@ -28,9 +26,7 @@ import {RegisterOrganisationComponent} from "./registerOrganisation.component";
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    RegisterComponent,
-    RegisterCitizenComponent,
-    RegisterOrganisationComponent
+    RegisterComponent
   ],
   providers: [
     AUTH_PROVIDERS,
