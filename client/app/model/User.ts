@@ -15,6 +15,7 @@ export class User {
     phone? : string;
     authority?: boolean;
     isPublic?: boolean;
+    image: string;
     address : {
         streetNumber: number;
         streetName : string;

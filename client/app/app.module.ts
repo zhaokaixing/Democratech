@@ -12,15 +12,19 @@ import {ProjectComponent} from './project.component'
 
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth-guard.service';
-
+import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCPFGAlVK4bEA8olgRQ11w319TRcRjhH4A'
+    })
   ],
   declarations: [
     AppComponent,

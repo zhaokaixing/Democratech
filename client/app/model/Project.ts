@@ -4,12 +4,13 @@ import {Organisation} from "./Organisation";
  * Created by quentinC on 20/02/2017.
  */
 export class Project{
-    _id: string;
+    readonly _id: string;
     title : string;
     mark : number;
     progress : number;
     latitude : number;
     longitude : number;
+    image: string;
 
    address : {
         streetNumber: number;
@@ -40,11 +41,4 @@ export class Project{
             number : number;
         }
     }]
-}
-export class Projecct {
-    /** rajouter pour tester**/
-    id:number;
-    image: string;
-    label:string;
-    description:string;
 }

@@ -12,14 +12,13 @@ import { User } from "./model/User";
 
 export class ProfileComponent implements OnInit {
   user: User = new User();
-  defaultPicture: string;
 
   constructor(private userService: OrganisationService, private citizenService: CitizenService) {}
 
   ngOnInit() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
-    this.defaultPicture = profile['picture'];
+    this.user.image = this.user.image ? profile['picture'] : this.user.image;
 
     console.log(profile);
 
@@ -30,7 +29,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.user);
       });
 
-    this.citizenService.getCitizen(identity['user_id'])
+    this.citizenService.getOne(identity['user_id'])
       .subscribe(citizen => {
         this.user = citizen != null ? citizen : this.user;
 

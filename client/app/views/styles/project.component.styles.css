@@ -5,14 +5,42 @@ img
     height:250px;
     max-width:300px;
 }
-
-#map
-{
-    height:250px;
+.btn-info{
+    background-color: rgba(45,64,89,100);
+    border-color:rgba(45,64,89,100);;
+    margin-top:20px;
+}
+.sebm-google-map-container {
+    height: 350px;
 }
 
 article
 {
     margin-top:50px;
+    height:250px;
     text-align: justify
+}
+#chat{
+    margin-top:20px;
+    border-style: solid;
+    border-color: #F5F5F5;
+}
+
+.panel-body{
+    height:300px;
+    overflow:auto;
+}
+.message-bubble
+{
+    padding: 10px 0px 10px 0px;
+}
+
+.message-bubble:nth-child(even)
+{
+    background-color: #F5F5F5;
+}
+
+.message-bubble > *
+{
+    padding-left: 10px;
 }

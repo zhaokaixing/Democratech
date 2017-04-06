@@ -1,56 +1,60 @@
 /**
- * Created by quentinC on 09/03/2017.
+ * Created by zkx on 30/03/2017.
  */
+
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
+import { BaseUrl } from '../auth.config'
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-
-import {Citizen} from '../model/Citizen';
+import {Project} from "../model/Project";
 
 @Injectable()
-export class CitizenService {
+export class ProjectService{
+    selectedProject: Project;
+
     constructor(private http: Http) {
-        console.log('Citizen Service Initialized...');
+        console.log('Project Service Initialized...');
     }
 
-    getAll(): Observable<Citizen[]>  {
-        return this.http.get('/api/citizens')
+    getAll():Observable<Project[]> {
+    return this.http.get(BaseUrl.name + 'api/projects')
+        .map(res => res.json())
+        .catch(err => this.handleError(err));
+}
+
+    getOne(id: string): Observable<Project> {
+        return this.http.get(BaseUrl.name + 'api/project/' + id)
             .map(res => res.json())
             .catch(err => this.handleError(err));
     }
 
-    getOne(id: string): Observable<Citizen> {
-        return this.http.get('/api/citizen/'+id)
-            .map(res => res.json())
-            .catch(err => this.handleError(err));
-    }
-
-    add(citizen: Citizen): Observable<Citizen> {
+    add(project: Project): Observable<Project> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.post('/api/citizen', JSON.stringify(citizen), {headers: headers})
+        return this.http.post('/api/project', JSON.stringify(project), {headers: headers})
             .map(res => res.json())
             .catch(this.handleError);
     }
 
-    update(citizen: Citizen) {
+    update(project: Project) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.put('/api/citizen/' + citizen._id, JSON.stringify(citizen), {headers: headers})
+        return this.http.put('/api/project/' + project._id, JSON.stringify(project), {headers: headers})
             .map(res => res.json())
             .catch(this.handleError);
     }
 
     delete(id: String) {
-        return this.http.delete('/api/citizen/' + id)
+        return this.http.delete('/api/project/' + id)
             .map(res => res.json())
             .catch(this.handleError);
     }
+
 
     private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
