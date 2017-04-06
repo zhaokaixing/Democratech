@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProjectService } from './service/project.service';
 import {Project} from'./model/Project';
+import { AuthService } from './service/auth.service';
 import 'rxjs/add/operator/switchMap';
 
 export class Message {
@@ -35,7 +36,7 @@ export class ProjectComponent implements OnInit{
         { username: "Claire",hour:18,minute:25,jour:15,mois:3,annee:2017,message:"Quand serons finis les travaux ?"},
         { username: "Entreprise de construction Dupont",hour:18,minute:45,jour:15,mois:3,annee:2017,message:"Les travaux seront terminés avant les vacances de noel !" }
     ];
-    constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) {}
+    constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute,private authService: AuthService) {}
 
 
     ngOnInit(): void {

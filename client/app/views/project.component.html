@@ -7,18 +7,18 @@
     </p>
 
     <div id="icones">
-      <a class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-thumbs-up"></span> J'aime
-      </a>
-      <a class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-thumbs-down"></span> Je n'aime pas
-      </a>
+      <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()">
+        <span class="glyphicon glyphicon-thumbs-up"></span> 25 J'aime
+      </button>
+      <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" >
+        <span class="glyphicon glyphicon-thumbs-down" ></span> 15 Je n'aime pas
+      </button>
     </div>
 
   </article>
   <div class="col-sm-offset-1 col-sm-10 " id="map">
 
-    <sebm-google-map [latitude]="project.latitude"[longitude]="project.longitude">
+    <sebm-google-map [zoom]=15 [latitude]="project.latitude"[longitude]="project.longitude">
       <sebm-google-map-marker [latitude]="project.latitude" [longitude]="project.longitude">
         <sebm-google-map-info-window>
           <strong>{{project.title}}</strong>
@@ -37,7 +37,7 @@
               <div class="input-group">
                 <input type="text" class="form-control">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Send</button>
+                    <button class="btn btn-default" type="button" [disabled]="!authService.loggedIn()">Send</button>
                   </span>
             </div>
   </div>

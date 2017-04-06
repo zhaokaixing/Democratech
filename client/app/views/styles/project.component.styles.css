@@ -6,6 +6,8 @@ img
     max-width:300px;
 }
 .btn-info{
+    background-color: rgba(45,64,89,100);
+    border-color:rgba(45,64,89,100);;
     margin-top:20px;
 }
 .sebm-google-map-container {
@@ -24,7 +26,10 @@ article
     border-color: #F5F5F5;
 }
 
-
+.panel-body{
+    height:300px;
+    overflow:auto;
+}
 .message-bubble
 {
     padding: 10px 0px 10px 0px;

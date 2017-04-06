@@ -23,7 +23,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="btn" (click)=authService.login() *ngIf="!authService.loggedIn()" >Se connecter</a></li>
-                <li><a class="btn" routerLink="/register" *ngIf="!authService.loggedIn()" routerLinkActive="active" >Se connecter</a></li>
+                <li><a class="btn" routerLink="/register" *ngIf="!authService.loggedIn()" routerLinkActive="active" >S'inscrire</a></li>
                 <li><a class="btn" (click)=authService.logout() *ngIf="authService.loggedIn()">Se déconnecter</a></li>
             </ul>
         </div>
