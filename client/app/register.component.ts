@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.departmentService.getDepartments()
         .subscribe(dpts => this.country.departments = dpts);
+
     this.cityService.getCities()
         .subscribe(cities => this.country.departments);
 
