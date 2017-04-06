@@ -10,15 +10,19 @@
             <a class="navbar-brand" routerLink="/"><img id="logo" src="/ressources/images/logo.png"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+
             <ul class="nav navbar-nav">
                 <li><a routerLink="/" routerLinkActive="active">Accueil</a></li>
                 <li>
-                    <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Profil</a>
+                    <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">{{profile.name}}</a>
+                </li>
+                <li>
+                    <form class="navbar-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
                 </li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+
 
 
             <ul class="nav navbar-nav navbar-right">
@@ -36,7 +40,7 @@
         <a (click)=authService.login() *ngIf="!authService.loggedIn()" class="btn" >Se connecter</a>
       </li>
       <li>
-        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue...</a>
+        <a routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active">Bienvenue {{profile.nickname}}</a>
       </li>
     </ul>
     <br>
