@@ -11,10 +11,10 @@
                 <h3 class="title">Veuillez remplir les champs ci-dessous :</h3>
                 <h6 class="title2">Les champs accompagnés d'un astérisque sont requis.</h6>
 
-                <!--<div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['lastName'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['lastName'].valid}">
                     <label for="lastName">Nom <span class="asterisque"> * </span> </label>
                     <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom" [formControl]="registerUserForm.controls['lastName']">
-                </div>-->
+                </div>
 
                 <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['name'].valid}">
                     <label for="name">Prénom <span class="asterisque"> * </span> </label>
@@ -302,9 +302,9 @@
                     <input type="text" class="form-control" name="name" id="nameOrganisation" placeholder="Entrez le nom de l'organisation" [formControl]="registerOrganisationForm.controls['nameOrganisation']">
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['email'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['emailOrganisation'].valid}">
                     <label for="email">Adresse Email <span class="asterisque"> * </span> </label>
-                    <input type="email" class="form-control" name="email" id="emailOrganisation" placeholder="Entrez votre email" [formControl]="registerOrganisationForm.controls['email']">
+                    <input type="email" class="form-control" name="email" id="emailOrganisation" placeholder="Entrez votre email" [formControl]="registerOrganisationForm.controls['emailOrganisation']">
                 </div>
                 <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['password'].valid}">
                     <label for="password">Mot de passe <span class="asterisque"> * </span> </label>

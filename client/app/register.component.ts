@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
   constructor(private departmentService: DepartmentService, private cityService: CityService, formBuilder: FormBuilder) {
     this.registerUserForm = formBuilder.group({
 
-      /*'lastName': [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*')]],*/
+      'lastName': [null, [Validators.required,
+        Validators.pattern('[a-zA-Z]*')]],
 
       'name': [null, [Validators.required,
        Validators.pattern('[a-zA-Z]*')]],
