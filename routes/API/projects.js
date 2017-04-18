@@ -14,7 +14,6 @@ router.get('/projects', function(req, res, next) {
     MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
 
         var collection = db2.collection('projects');
-
         collection.find().toArray(function (err, docs) {
             if(err){
                 res.send(err);

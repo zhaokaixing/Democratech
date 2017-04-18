@@ -20,12 +20,6 @@ export class Project{
         department : string;
         country : string;
     }
-    comments : [{
-        citizen : Citizen; // can be null
-        user : Organisation ; // can be null
-        date : Date;
-        content : string;
-    }]
     tenders : [{
         description : string;
         type : string;

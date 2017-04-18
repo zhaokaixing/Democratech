@@ -8,15 +8,15 @@
 
     <div id="icones">
       <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()">
-        <span class="glyphicon glyphicon-thumbs-up"></span> 25 J'aime
+        <span class="glyphicon glyphicon-thumbs-up"></span>J'aime
       </button>
       <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" >
-        <span class="glyphicon glyphicon-thumbs-down" ></span> 15 Je n'aime pas
+        <span class="glyphicon glyphicon-thumbs-down" ></span> Je n'aime pas
       </button>
     </div>
 
   </article>
-  <div class="col-sm-offset-1 col-sm-10 " id="map">
+  <div class="col-sm-offset-2 col-sm-8 " id="map">
 
     <sebm-google-map [zoom]=15 [latitude]="project.latitude"[longitude]="project.longitude">
       <sebm-google-map-marker [latitude]="project.latitude" [longitude]="project.longitude">
@@ -26,11 +26,11 @@
       </sebm-google-map-marker>
     </sebm-google-map>
   </div>
-  <div id="chat" class="col-sm-offset-1 col-sm-10 ">
+  <div id="chat" class="col-sm-offset-2 col-sm-8 ">
     <div class="panel-body">
               <div class="row message-bubble" *ngFor='let message of MessageList'>
-                <p class="text-muted">Le {{message.jour}}/{{message.mois}}/{{message.annee}} à {{message.hour}}h {{message.minute}} min, {{message.username}}:</p>
-                <span>{{message.message}}</span>
+                <p class="text-muted">Le {{message.date}},{{message.idOrganisation}}:</p>
+                <span>{{message.content}}</span>
               </div>
     </div>
             <div class="panel-footer">

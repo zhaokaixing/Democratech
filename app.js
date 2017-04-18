@@ -12,7 +12,7 @@ var departments = require('./routes/API/departments');
 var cities = require('./routes/API/cities');
 var citizens = require('./routes/API/citizens');
 var project = require('./routes/API/projects');
-
+var comment = require('./routes/API/comments');
 var app = express();
 
 // View engine
@@ -34,7 +34,7 @@ app.use('/api', departments);
 app.use('/api', cities);
 app.use('/api', citizens);
 app.use('/api', project);
-
+app.use('/api',comment);
 app.use('**', index);
 
 app.listen(port, function(){
