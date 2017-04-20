@@ -13,6 +13,13 @@
       <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" >
         <span class="glyphicon glyphicon-thumbs-down" ></span> Je n'aime pas
       </button>
+        <div class="progress">
+
+            <div id="progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                  aria-valuemin="0" aria-valuemax="100">
+                {{getProgress()}}% Complete
+            </div>
+        </div>
     </div>
 
   </article>
@@ -29,7 +36,7 @@
   <div id="chat" class="col-sm-offset-2 col-sm-8 ">
     <div class="panel-body">
               <div class="row message-bubble" *ngFor='let message of MessageList'>
-                <p class="text-muted">Le {{message.date}},{{message.idOrganisation}}:</p>
+                <p class="text-muted">Le {{message.date}}, {{message.name}} {{message.lastname}}:</p>
                 <span>{{message.content}}</span>
               </div>
     </div>

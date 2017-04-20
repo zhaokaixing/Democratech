@@ -48,18 +48,20 @@ export class ProjectComponent implements OnInit{
                         //console.log(project);
                      this.project = project;
                      this.getComments(this.project._id);
+
+                     var progressBar = document.getElementById("progress");
+                     progressBar.style.width=((this.project.progress*100).toString())+"%";
                  });
+
     }
 
     getComments(idProject:string):void{
-        //this.commentService.getComments(idProject).then(comments => this.MessageList = comments);
-        //console.log(this.MessageList[0]);
-        //this.MessageList =this.commentService.getComments(idProject);
         this.commentService
             .getComments(idProject)
             .then(com => this.MessageList = com);
-        //this.commentService.getComments(idProject)
-            //.subscribe(com => this.MessageList = com);
+    }
+    getProgress():number{
+       return this.project.progress*100;
     }
 
 
