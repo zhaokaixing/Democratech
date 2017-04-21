@@ -15,8 +15,8 @@ router.get('/comments', function(req, res, next) {
 
 router.get('/comments/:id', function(req, res, next) {
     MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
-        var collection = db2.collection('comments');//mongojs.ObjectID.createFromHexString(req.params.id)
-        collection.find({'idProject':'58d38e54f36d284fca6d08e5' }).toArray(function(err, docs){
+        var collection = db2.collection('comments');
+        collection.find({'idProject':req.params.id}).toArray(function(err, docs){
             if(err){
                 console.log(err.message);
                 res.send(err);
@@ -28,23 +28,23 @@ router.get('/comments/:id', function(req, res, next) {
 });
 
 
-router.post('/comment', (req, res, next) => {
+router.post('/comments', (req, res, next) => {
 
-    /*var organisation = req.body;
-    // check data integrity
-    console.log(form.isValidOrganisation(organisation));
-
-    if (form.isValidOrganisation(organisation)) {
-        security.cryptPassword(organisation.password, (err, hash) => {
-            if (err) res.send(err);
-            organisation.password = hash;
-            db.organisations.save(organisation, (err, organisation) => {
-                if (err) res.send(err);
-                res.json(organisation)
-            })
-        })
-    }
-    else res.status(400).json({"error": "bad data"})*/
+    var comment = req.body;
+    MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
+        var collection = db2.collection('comments');//mongojs.ObjectID.createFromHexString(req.params.id)
+        collection.insert({
+            "idProject": req.body.projectId,
+            "name": req.body.author,
+            "date": req.body.date,
+            "content": req.body.message
+        }
+        , (err, stats) => {
+            if (!err) {
+                res.send("OK");
+            }
+        });
+    });
 });
 
 module.exports = router

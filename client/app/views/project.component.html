@@ -36,15 +36,15 @@
   <div id="chat" class="col-sm-offset-2 col-sm-8 ">
     <div class="panel-body">
               <div class="row message-bubble" *ngFor='let message of MessageList'>
-                <p class="text-muted">Le {{message.date}}, {{message.name}} {{message.lastname}}:</p>
+                <p class="text-muted">Le {{message.date}}, {{message.name}}:</p>
                 <span>{{message.content}}</span>
               </div>
     </div>
             <div class="panel-footer">
               <div class="input-group">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="messageToSend">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" [disabled]="!authService.loggedIn()">Send</button>
+                    <button class="btn btn-default" type="button" [disabled]="!authService.loggedIn()" (click)="Send()">Send</button>
                   </span>
             </div>
   </div>

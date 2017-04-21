@@ -11,30 +11,28 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CommentService{
-
+    url:string;
+    private headers = new Headers({ 'Content-Type': 'application/json' });
     constructor(private  http:Http) {
         //console.log('Comment Service Initialized...');
     }
 
 
-    /*getComments(idProject:string): Observable<Comments[]> {
-        return this.http.get('/api/comment/'+idProject)
-            .map(res => res.json());
-    }*/
-
     getComments(id:string): Promise<Comments[]>{
-        //console.log(id);
-        /*return this.http.get('/api/comment'+id)
-            .map(res =>{
-                console.log(res.json());
-                return res.json();
-            } );*/
         return this.http.get(BaseUrl.name +'api/comments/'+id)
                 .toPromise()
                 .then(response =>
                     response.json() as Comments[]
                 )
                 .catch(this.handleError);
+    }
+    saveComment(message:string, author:string, projectId:string, date:string): Promise<void> {
+        this.url = BaseUrl.name +'api/comments';
+        return this.http
+            .post(this.url, { projectId,author,date,message}, { headers: this.headers })
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {

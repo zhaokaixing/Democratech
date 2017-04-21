@@ -6,7 +6,7 @@ export class Comments
 {
     readonly _id: string;
     readonly idProject:string;
-    date:Date;
+    date:string;
     content:string;
     name:string;
     lastname:string;
