@@ -5,6 +5,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { OrganisationService } from "./service/organisation.service";
 import { CitizenService } from "./service/citizen.service";
+import { Citizen } from "./model/Citizen";
 import {DepartmentService} from "./service/department.service";
 import {CityService} from "./service/city.service";
 import {Country} from "./model/Country";
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
 
-  constructor(private departmentService: DepartmentService, private cityService: CityService, formBuilder: FormBuilder) {
+  constructor(private departmentService: DepartmentService, private cityService: CityService, private citizenService: CitizenService, formBuilder: FormBuilder) {
     this.registerUserForm = formBuilder.group({
 
       'lastName': [null, [Validators.required,
@@ -94,7 +95,7 @@ export class RegisterComponent implements OnInit {
 
       'streetNameOrganisation' : [null, [Validators.required,
           Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
-  })
+    })
   }
 
    ngOnInit() {
@@ -105,6 +106,32 @@ export class RegisterComponent implements OnInit {
         .subscribe(cities => this.country.departments);
 
     console.log(this.country);
+  }
+
+  doRegister(event: any) {
+    console.log(event);
+    if (this.registerOrganisationForm.status == "VALID") {
+      console.log(this.registerOrganisationForm);
+    } 
+    else if (this.registerUserForm.status == "VALID") {
+      console.log(this.registerUserForm);
+      let params = this.registerUserForm.controls
+      let newUser : Citizen = {
+        name: params.name.value,
+        lastName: params.lastName.value,
+        mail: params.mail.value,
+        password: params.password.value,
+        birthDate: new Date(),
+        address : {
+          streetNumber: params.streetNumber.value,
+          streetName : params.streetName.value,
+          city: params.city.value,
+          postalCode : params.postalCode.value,
+          department : params.department.value,
+          country : params.country.value
+        }
+      }
+    }
   }
 }
 
