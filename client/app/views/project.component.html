@@ -7,10 +7,10 @@
     </p>
 
     <div id="icones">
-      <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()">
+      <button id="like" class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" (click)="voteFor()">
         <span class="glyphicon glyphicon-thumbs-up"></span>J'aime
       </button>
-      <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" >
+      <button id="dislike" class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" (click)="voteAgainst()">
         <span class="glyphicon glyphicon-thumbs-down" ></span> Je n'aime pas
       </button>
         <div class="progress">
