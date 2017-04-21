@@ -2,7 +2,7 @@
 <div class="row">
     <ul class="nav nav-tabs" id="my-tab">
         <li role="presentation" class="active"><a href="#registerCitizen" role="tab" data-toggle="tab">Citoyen</a></li>
-        <li role="presentation"><a href="#registerOrganisation" role="tab" data-toggle="tab">Entité</a></li>
+        <li role="presentation"><a href="#registerOrganisation" role="tab" data-toggle="tab">Entreprise ou Association</a></li>
     </ul>
 
     <div class="tab-content">
@@ -299,20 +299,20 @@
 
                 <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['nameOrganisation'].valid}">
                     <label for="nameOrganisation">Nom<span class="asterisque"> * </span> </label>
-                    <input type="text" class="form-control" name="name" id="nameOrganisation" placeholder="Entrez le nom de l'organisation" [formControl]="registerOrganisationForm.controls['nameOrganisation']">
+                    <input type="text" class="form-control" name="nameOrganisation" id="nameOrganisation" placeholder="Entrez le nom de l'organisation" [formControl]="registerOrganisationForm.controls['nameOrganisation']">
                 </div>
 
                 <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['emailOrganisation'].valid}">
-                    <label for="email">Adresse Email <span class="asterisque"> * </span> </label>
-                    <input type="email" class="form-control" name="email" id="emailOrganisation" placeholder="Entrez votre email" [formControl]="registerOrganisationForm.controls['emailOrganisation']">
+                    <label for="emailOrganisation">Adresse Email <span class="asterisque"> * </span> </label>
+                    <input type="email" class="form-control" name="emailOrganisation" id="emailOrganisation" placeholder="Entrez votre email" [formControl]="registerOrganisationForm.controls['emailOrganisation']">
                 </div>
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['password'].valid}">
-                    <label for="password">Mot de passe <span class="asterisque"> * </span> </label>
-                    <input type="password" class="form-control" name="password" id="passwordOrganisation"  placeholder="Entrez votre mot de passe" [formControl]="registerUserForm.controls['password']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['passwordOrganisation'].valid}">
+                    <label for="passwordOrganisation">Mot de passe <span class="asterisque"> * </span> </label>
+                    <input type="password" class="form-control" name="passwordOrganisation" id="passwordOrganisation"  placeholder="Entrez votre mot de passe" [formControl]="registerOrganisationForm.controls['passwordOrganisation']">
                 </div>
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['passwordConfirmation'].valid}">
-                    <label for="passwordConfirmation">Confirmation du mot de passe <span class="asterisque"> * </span> </label>
-                    <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmationOrganisation" placeholder="Confirmez votre mot de passe" [formControl]="registerUserForm.controls['passwordConfirmation']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['passwordConfirmationOrganisation'].valid}">
+                    <label for="passwordConfirmationOrganisation">Confirmation du mot de passe <span class="asterisque"> * </span> </label>
+                    <input type="password" class="form-control" name="passwordConfirmationOrganisation" id="passwordConfirmationOrganisation" placeholder="Confirmez votre mot de passe" [formControl]="registerOrganisationForm.controls['passwordConfirmationOrganisation']">
                 </div>
 
                 <label for="isPublic">Est-ce une organisation publique ou privée ?</label>
@@ -331,11 +331,9 @@
                     </div>
                 </div>
 
-
-
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['country'].valid}">
-                    <label for="country">Pays <span class="asterisque"> * </span> </label>
-                    <select class="form-control" id="countryOrganisation" [formControl]="registerUserForm.controls['country']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['countryOrganisation'].valid}">
+                    <label for="countryOrganisation">Pays <span class="asterisque"> * </span> </label>
+                    <select class="form-control" name="countryOrganisation" id="countryOrganisation" [formControl]="registerOrganisationForm.controls['countryOrganisation']">
                         <option>Allemagne</option>
                         <option>Cameroun</option>
                         <option>Espagne</option>
@@ -344,9 +342,9 @@
                     </select>
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['department'].valid}">
-                    <label for="department">Département <span class="asterisque"> * </span> </label>
-                    <select class="form-control" id="departmentOrganisation" [formControl]="registerUserForm.controls['department']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['departmentOrganisation'].valid}">
+                    <label for="departmentOrganisation">Département <span class="asterisque"> * </span> </label>
+                    <select class="form-control" id="departmentOrganisation" [formControl]="registerOrganisationForm.controls['departmentOrganisation']">
                         <option value='01'>Ain</option>
                         <option value='02'>Aisne</option>
                         <option value='03'>Allier</option>
@@ -450,28 +448,27 @@
                     </select>
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['city'].valid}">
-                    <label for="city">Ville <span class="asterisque"> * </span> </label>
-                    <input type="text" class="form-control" id="cityOrganisation" placeholder="Entrez votre ville de résidence" [formControl]="registerUserForm.controls['city']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['cityOrganisation'].valid}">
+                    <label for="cityOrganisation">Ville <span class="asterisque"> * </span> </label>
+                    <input type="text" class="form-control" id="cityOrganisation" placeholder="Entrez votre ville de résidence" [formControl]="registerOrganisationForm.controls['cityOrganisation']">
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['postalCode'].valid}">
-                    <label for="postalCode">Code postal <span class="asterisque"> * </span> </label>
-                    <input type="text" class="form-control" id="postalCodeOrganisation" placeholder="Entrez votre code postal" [formControl]="registerUserForm.controls['postalCode']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['postalCodeOrganisation'].valid}">
+                    <label for="postalCodeOrganisation">Code postal <span class="asterisque"> * </span> </label>
+                    <input type="text" class="form-control" id="postalCodeOrganisation" placeholder="Entrez votre code postal" [formControl]="registerOrganisationForm.controls['postalCodeOrganisation']">
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['streetNumber'].valid}">
-                    <label for="streetNumber">Numéro de rue <span class="asterisque"> * </span> </label>
-                    <input type="number" min="0" class="form-control" id="streetNumberOrganisation" placeholder="Entrez numéro de rue" [formControl]="registerUserForm.controls['streetNumber']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['streetNumberOrganisation'].valid}">
+                    <label for="streetNumberOrganisation">Numéro de rue <span class="asterisque"> * </span> </label>
+                    <input type="number" min="0" class="form-control" id="streetNumberOrganisation" placeholder="Entrez numéro de rue" [formControl]="registerOrganisationForm.controls['streetNumberOrganisation']">
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['streetName'].valid}">
-                    <label for="streetName">Rue <span class="asterisque"> * </span> </label>
-                    <input type="text" class="form-control" id="streetNameOrganisation" placeholder="Entrez votre rue" [formControl]="registerUserForm.controls['streetName']">
+                <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['streetNameOrganisation'].valid}">
+                    <label for="streetNameOrganisation">Rue <span class="asterisque"> * </span> </label>
+                    <input type="text" class="form-control" id="streetNameOrganisation" placeholder="Entrez votre rue" [formControl]="registerOrganisationForm.controls['streetNameOrganisation']">
                 </div>
-                <button type="submit" class="btn btn-default" [disabled]="!registerUserForm.valid">Valider</button>
+                <button type="submit" class="btn btn-default" [disabled]="!registerOrganisationForm.valid">Valider</button>
             </form>
-
         </div>
     </div>
 </div>
