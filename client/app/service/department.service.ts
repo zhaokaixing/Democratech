@@ -12,7 +12,7 @@ export class DepartmentService {
         console.log('Department Service Initialized...');
     }
 
-    getDepartments() {
+    getAll() {
         return this.http.get('/api/departments')
             .map(res => res.json());
     }

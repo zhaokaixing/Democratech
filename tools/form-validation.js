@@ -9,6 +9,7 @@ let isValidBasic = (user) => {
 
 };
 
+
 exports.isValidCitizen = (citizen) => {
     return (!isValidBasic(citizen) || !citizen.firstName || !citizen.lastName || !citizen.birthDate)
 };
@@ -21,6 +22,11 @@ exports.isValidOrganisation = (organisation) => {
     } 
     return true
 }
+
+exports.isValidProject = (project) => {
+    return (!isValidBasic(project) || !project.title || !project.latitude || !project.longitude||!project.address)
+};
+
 
 
 

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }  from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { FlashMessagesModule } from 'angular2-flash-messages'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FlashMessagesModule
   ],
   declarations: [
     AppComponent,
