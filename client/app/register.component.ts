@@ -60,7 +60,11 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('[a-zA-Z]+[0-9]+')
       ]],
 
-      'country' : ["0", Validators.required],
+      'day' : ['', Validators.required],
+      'month' : ['', Validators.required],
+      'year' : ['', Validators.required],
+
+      'country' : ['', Validators.required],
 
       'department' : [null, Validators.required],
 
@@ -95,7 +99,7 @@ export class RegisterComponent implements OnInit {
 
       'type': ['Public'],
 
-      'country' : ["0", [Validators.required]],
+      'country' : ['', [Validators.required]],
 
       'department' : [null, Validators.required],
 
@@ -148,13 +152,14 @@ export class RegisterComponent implements OnInit {
       }) 
     } 
     else if (this.registerUserForm.status == "VALID") {
+      console.log(this.registerUserForm)
       let params = this.registerUserForm.value
       let newUser : Citizen = {
         name: params.name,
         lastName: params.lastName,
         mail: params.email,
         password: params.password,
-        birthDate: new Date(),      //todo: parse date
+        birthDate: new Date(params.year, params.month, params.day),
         address : {
           streetNumber: params.streetNumber,
           streetName : params.streetName,

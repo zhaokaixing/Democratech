@@ -51,9 +51,9 @@
                 <div class="form-group">
                     <label for="birthDate" class="col-md-2">Date de naissance</label>
                     <div class="col-md-10" id="birthDate">
-                        <div class="col-md-4">
-                            <select class="form-control" id="day">
-                                <option> Jour </option>
+                        <div class="col-md-4" [ngClass]="{'has-error':!registerUserForm.controls['day'].valid}">
+                            <select class="form-control" id="day" [formControl]="registerUserForm.controls['day']">
+                                <option value=""> Jour </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -87,26 +87,26 @@
                                 <option value="31">31</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <select class="form-control" id="">
-                                <option> Mois </option>
-                                <option value="January">Janvier</option>
-                                <option value="February">Février</option>
-                                <option value="March">Mars</option>
-                                <option value="April">Avril</option>
-                                <option value="May">Mai</option>
-                                <option value="June">Juin</option>
-                                <option value="July">Juillet</option>
-                                <option value="August">Août</option>
-                                <option value="September">Septembre</option>
-                                <option value="October">Octobre</option>
-                                <option value="November">Novembre</option>
-                                <option value="December">Decembre</option>
+                        <div class="col-md-4" [ngClass]="{'has-error':!registerUserForm.controls['month'].valid}">
+                            <select class="form-control" id="month" [formControl]="registerUserForm.controls['month']">
+                                <option value=""> Mois </option>
+                                <option value="1">Janvier</option>
+                                <option value="2">Février</option>
+                                <option value="3">Mars</option>
+                                <option value="4">Avril</option>
+                                <option value="5">Mai</option>
+                                <option value="6">Juin</option>
+                                <option value="7">Juillet</option>
+                                <option value="8">Août</option>
+                                <option value="9">Septembre</option>
+                                <option value="10">Octobre</option>
+                                <option value="11">Novembre</option>
+                                <option value="12">Decembre</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <select class="form-control">
-                                <option> Année </option>
+                        <div class="col-md-4" [ngClass]="{'has-error':!registerUserForm.controls['year'].valid}">
+                            <select class="form-control" id="year" [formControl]="registerUserForm.controls['year']">
+                                <option value=""> Année </option>
                                 <option value="2000">2000</option>
                                 <option value="1999">1999</option>
                                 <option value="1998">1998</option>
@@ -170,7 +170,7 @@
                     <label for="country" class="col-sm-2">Pays <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <select class="form-control" id="country" [formControl]="registerUserForm.controls['country']">
-                            <option value="0" selected>-- sélectionnez un pays --</option>
+                            <option value="" selected>-- sélectionnez un pays --</option>
 -                           <option value='Cameroun'>Cameroun</option>
                             <option value='France'>France</option>
                         </select>
@@ -181,9 +181,9 @@
                     <label for="department" class="col-sm-2">Département <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <select class="form-control" id="department" [formControl]="registerUserForm.controls['department']">
-                            <option value="0" selected>-- sélectionnez un département --</option>
+                            <option value="" selected>-- sélectionnez un département --</option>
                             <option *ngFor="let department of country.departments" 
-                                [value]="department.zip_code">
+                                [value]="department.name">
                                 {{department.zip_code}} - {{department.name}}
                             </option>
                         </select>
@@ -277,7 +277,7 @@
                     <label for="country" class="col-sm-2">Pays <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <select class="form-control" id="country" [formControl]="registerOrganisationForm.controls['country']">
-                            <option value="0" selected>-- sélectionnez un pays --</option>
+                            <option value="" selected>-- sélectionnez un pays --</option>
 -                           <option value='Cameroun'>Cameroun</option>
                             <option value='France'>France</option>
                         </select>
@@ -288,7 +288,7 @@
                     <label for="department" class="col-sm-2">Département <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <select class="form-control" id="department" [formControl]="registerOrganisationForm.controls['department']">
-                            <option value="0" selected>-- sélectionnez un département --</option>
+                            <option value="" selected>-- sélectionnez un département --</option>
                             <option *ngFor="let department of country.departments" 
                                 [value]="department.zip_code">
                                 {{department.zip_code}} - {{department.name}}
