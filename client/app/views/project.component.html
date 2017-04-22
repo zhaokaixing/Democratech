@@ -7,16 +7,23 @@
     </p>
 
     <div id="icones">
-      <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()">
-        <span class="glyphicon glyphicon-thumbs-up"></span> 25 J'aime
+      <button id="like" class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" (click)="voteFor()">
+        <span class="glyphicon glyphicon-thumbs-up"></span>J'aime
       </button>
-      <button class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" >
-        <span class="glyphicon glyphicon-thumbs-down" ></span> 15 Je n'aime pas
+      <button id="dislike" class="btn btn-info btn-lg" [disabled]="!authService.loggedIn()" (click)="voteAgainst()">
+        <span class="glyphicon glyphicon-thumbs-down" ></span> Je n'aime pas
       </button>
+        <div class="progress">
+
+            <div id="progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                  aria-valuemin="0" aria-valuemax="100">
+                {{getProgress()}}% Complete
+            </div>
+        </div>
     </div>
 
   </article>
-  <div class="col-sm-offset-1 col-sm-10 " id="map">
+  <div class="col-sm-offset-2 col-sm-8 " id="map">
 
     <sebm-google-map [zoom]=15 [latitude]="project.latitude"[longitude]="project.longitude">
       <sebm-google-map-marker [latitude]="project.latitude" [longitude]="project.longitude">
@@ -26,18 +33,18 @@
       </sebm-google-map-marker>
     </sebm-google-map>
   </div>
-  <div id="chat" class="col-sm-offset-1 col-sm-10 ">
+  <div id="chat" class="col-sm-offset-2 col-sm-8 ">
     <div class="panel-body">
               <div class="row message-bubble" *ngFor='let message of MessageList'>
-                <p class="text-muted">Le {{message.jour}}/{{message.mois}}/{{message.annee}} à {{message.hour}}h {{message.minute}} min, {{message.username}}:</p>
-                <span>{{message.message}}</span>
+                <p class="text-muted">Le {{message.date}}, {{message.name}}:</p>
+                <span>{{message.content}}</span>
               </div>
     </div>
             <div class="panel-footer">
               <div class="input-group">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="messageToSend">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" [disabled]="!authService.loggedIn()">Send</button>
+                    <button class="btn btn-default" type="button" [disabled]="!authService.loggedIn()" (click)="Send()">Send</button>
                   </span>
             </div>
   </div>

@@ -21,12 +21,12 @@ export class HomeComponent implements OnInit{
   ngOnInit(){
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects;
-      console.log(projects);
+      //console.log(projects);
     });
   }
   selectProject(project: Project):void {
     // localStorage.setItem("id", project.id.toString());
-    this.router.navigate(['/project', project._id]).then(res => console.log(res));
+    this.router.navigate(['/project', project._id])//.then(res => console.log(res));
   }
 }
 
