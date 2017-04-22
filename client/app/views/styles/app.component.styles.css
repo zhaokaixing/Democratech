@@ -2,7 +2,7 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 
 .body {
-    margin-top: 50px;
+    margin-top: 40px; 
 }
 
 
@@ -90,6 +90,9 @@
    color:white;
 }
 
+.banner {
+    margin-top: 50px;
+}
 #log{
     border:rgb(207,0,18);
     background-color: rgb(207,0,18);
