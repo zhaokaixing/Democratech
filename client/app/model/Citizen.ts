@@ -11,7 +11,7 @@ export class Citizen implements User {
     name : string;
     lastName : string;
     birthDate : Date;
-    image: string;
+    image?: string;
     address : {
         streetNumber: number;
         streetName : string;

@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit {
   registerOrganisationForm : FormGroup;
 
   constructor(private departmentService: DepartmentService, 
-              private cityService: CityService, 
-              private citizenService: CitizenService, 
+              private cityService: CityService,
+              private citizenService: CitizenService,
               private organisationService: OrganisationService, 
               private formBuilder: FormBuilder,
               private router: Router,
