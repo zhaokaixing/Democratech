@@ -31,18 +31,6 @@ export class AuthService {
         }
         localStorage.setItem('profile', JSON.stringify(profile));
         console.log(localStorage.getItem('profile'));
-        citizenService.getOne(profile.clientID).subscribe(
-            citizen => {
-          if(citizen == null)
-          {
-            console.log("oui");
-          }
-        },
-            errorHandler => {
-          console.log("non");
-          this.router.navigateByUrl('register');
-        });
-
       });
       console.log(localStorage);
 
