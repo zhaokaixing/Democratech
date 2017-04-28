@@ -10,6 +10,8 @@ import { ProfileComponent } from './profile.component';
 import { RegisterComponent } from './register.component';
 import {ProjectComponent} from './project.component'
 
+import { LoadingAnimateModule, LoadingAnimateService } from 'ng2-loading-animate';
+
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth-guard.service';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -24,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCPFGAlVK4bEA8olgRQ11w319TRcRjhH4A'
-    })
+    }),
+    LoadingAnimateModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     AUTH_PROVIDERS,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    LoadingAnimateService
   ],
   bootstrap:    [ AppComponent ]
 })

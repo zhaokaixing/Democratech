@@ -29,6 +29,7 @@
     "angular2-google-maps": "^0.17.0",
     "angular2-jwt": "^0.1.28",
     "core-js": "^2.4.1",
+    "ng2-loading-animate": "0.0.16",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
     "uuid": "^3.0.1",
