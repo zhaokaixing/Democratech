@@ -4,7 +4,7 @@
 import {Project} from "./Project";
 
 export class User {
-    readonly _id: string;
+    readonly _id?: string;
     mail : string;
     password : string;
     name : string;
@@ -15,7 +15,7 @@ export class User {
     phone? : string;
     authority?: boolean;
     isPublic?: boolean;
-    image: string;
+    image?: string;
     address : {
         streetNumber: number;
         streetName : string;

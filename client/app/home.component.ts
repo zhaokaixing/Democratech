@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit{
   }
   selectProject(project: Project):void {
     // localStorage.setItem("id", project.id.toString());
-    this.router.navigate(['/project', project._id]).then(res => console.log(res));
+    this.router.navigate(['/project', project._id])//.then(res => console.log(res));
   }
   start() {
     this._loadingSvc.setValue(true);

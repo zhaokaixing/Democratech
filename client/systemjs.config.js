@@ -28,13 +28,19 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
       'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
-        'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
+      'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
+      'angular2-flash-messages':    'npm:angular2-flash-messages',
+      'ng2-loading-animate':    'npm:ng2-loading-animate'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: {
         main: './main.js',
         defaultExtension: 'js'
+      },
+      'angular2-flash-messages': {
+            main: 'index.js',
+            defaultExtension: 'js'
       },
       rxjs: {
         defaultExtension: 'js'

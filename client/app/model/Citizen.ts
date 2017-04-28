@@ -5,13 +5,13 @@ import {User} from "./User";
  * Created by quentinC on 16/02/2017.
  */
 export class Citizen implements User {
-    _id: string;
+    _id?: string;
     mail : string;
     password : string;
     name : string;
     lastName : string;
     birthDate : Date;
-    image: string;
+    image?: string;
     address : {
         streetNumber: number;
         streetName : string;
@@ -20,7 +20,7 @@ export class Citizen implements User {
         department : string;
         country : string;
     }
-    resume: {
+    resume?: {
         path : string;
         diplomas : [{
             title : string;
@@ -42,9 +42,9 @@ export class Citizen implements User {
             }]
         }]
     }
-    tags : [{
+    tags? : [{
         label : string;
         category : string;
     }]
-    projects : Array<Project>;
+    projects? : Array<Project>;
 }

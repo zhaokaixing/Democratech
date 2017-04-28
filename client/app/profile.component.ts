@@ -14,18 +14,18 @@ import { User } from "./model/User";
 export class ProfileComponent implements OnInit {
   user: User = new User();
 
-  constructor(private userService: OrganisationService, private citizenService: CitizenService) {}
+  constructor(private organisationService: OrganisationService, private citizenService: CitizenService) {}
 
   ngOnInit() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
-    this.user.image = this.user.image ? profile['picture'] : this.user.image;
 
     console.log(profile);
 
-    this.userService.getOne(identity['user_id'])
+    this.organisationService.getOne(identity['user_id'])
       .subscribe(org => {
         this.user = org != null ? org : this.user;
+        this.user.image = this.user.image ? this.user.image : profile['picture'];
 
         console.log(this.user);
       });
@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
     this.citizenService.getOne(identity['user_id'])
       .subscribe(citizen => {
         this.user = citizen != null ? citizen : this.user;
+        this.user.image = this.user.image ? this.user.image : profile['picture'];
 
         console.log(this.user);
       });
