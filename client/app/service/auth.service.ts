@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Config, BaseUrl } from '../auth.config';
+import {CitizenService} from "./citizen.service";
+import {Citizen} from "../model/Citizen";
+import {Observable} from "rxjs";
+import {errorHandler} from "@angular/platform-browser/src/browser";
 
 declare var Auth0Lock: any;
 
@@ -16,7 +20,7 @@ export class AuthService {
       }
   );
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private citizenService : CitizenService) {
     this.lock.on('authenticated', (authResult: any) => {
       this.router.navigateByUrl(authResult.state);
 
@@ -27,6 +31,18 @@ export class AuthService {
         }
         localStorage.setItem('profile', JSON.stringify(profile));
         console.log(localStorage.getItem('profile'));
+        citizenService.getOne(profile.clientID).subscribe(
+            citizen => {
+          if(citizen == null)
+          {
+            console.log("oui");
+          }
+        },
+            errorHandler => {
+          console.log("non");
+          this.router.navigateByUrl('register');
+        });
+
       });
       console.log(localStorage);
 
