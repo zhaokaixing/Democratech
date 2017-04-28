@@ -17,6 +17,7 @@ import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth-guard.service';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppRoutingModule } from './app-routing.module';
+import {CitizenService} from "./service/citizen.service";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
     ProjectComponent
   ],
   providers: [
+      CitizenService,
     AUTH_PROVIDERS,
     AuthService,
     AuthGuard,
