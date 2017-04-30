@@ -1,0 +1,33 @@
+{
+  "name": "democratech",
+  "version": "1.0.0",
+  "description": "societal network",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "stop": "killall node && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flwrnt/democratech.git"
+  },
+  "author": "devteam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flwrnt/democratech/issues"
+  },
+  "homepage": "https://github.com/flwrnt/democratech#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
+    "connect-timeout": "^1.8.0",
+    "cors": "^2.8.3",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "express-jwt": "^5.1.0",
+    "mongodb": "^2.2.25",
+    "mongojs": "^2.4.0"
+  }
+}

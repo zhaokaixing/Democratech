@@ -1,0 +1,16 @@
+<div class="jumbotron masthead" style="margin-top: 30px ">
+    <h1>Democratech</h1>
+    <p>Grâce à Démocratech, casser les frontières !</p>
+</div>
+
+
+<div class="row placeholders">
+    <article *ngFor='let project of projects' class="col-xs-6 col-sm-3 placeholder">
+        <a (click)=selectProject(project)>
+            <img src={{project.image}} class="imgProjects img-responsive" alt="Generic placeholder thumbnail">
+            <h4>{{project.title}}</h4>
+            <span class="text-muted">{{project.description}}</span>
+
+        </a>
+    </article>
+</div>
