@@ -1,16 +1,46 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
+# compiled output
+client/dist
+client/tmp
 
-node_modules
-client/app/**/*.js*
+# dependencies
+/**/node_modules
 
-npm-debug*
-.vscode
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.editorconfig
+
+# IDE - VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/client/e2e/*.map
+/client/e2e/*.js
+# app
+/client/src/app/**/*.js
+/client/src/app/**/*.map
+/client/src/app/**/**/*.js
+/client/src/app/**/**/*.map
+
+#System Files
 .DS_Store
+Thumbs.db
