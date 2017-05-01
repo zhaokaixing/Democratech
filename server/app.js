@@ -8,11 +8,9 @@ const security    = require('./tools/security');
 const port = 3000;
 
 // define routes path
-let organisations = require('./routes/API/organisations');
 let departments = require('./routes/API/departments');
 let users = require('./routes/API/users');
 let cities = require('./routes/API/cities');
-let citizens = require('./routes/API/citizens');
 let project = require('./routes/API/projects');
 let comment = require('./routes/API/comments');
 let opinion=require('./routes/API/opinion');
@@ -32,10 +30,8 @@ app.use(function(req, res, next) {
 });
 
 // app.use('/', index);
-app.use('/api', organisations);
 app.use('/api', departments);
 app.use('/api', cities);
-app.use('/api', citizens);
 app.use('/api', users);
 app.use('/api', project);
 app.use('/api',comment);

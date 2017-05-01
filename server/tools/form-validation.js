@@ -14,9 +14,10 @@ let isValidCitizen = (citizen) => {
 let isValidOrganisation = (organisation) => {
     if (!isValidBasic(organisation) || !organisation.name || !(organisation.isPublic + '')) {
         return false
-    } else if (!organisation.isPublic && !organisation.SIRET){
-        return false
     } 
+    // else if (!organisation.isPublic && !organisation.SIRET){
+    //     return false
+    // } 
     return true
 }
 

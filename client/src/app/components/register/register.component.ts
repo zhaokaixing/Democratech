@@ -31,89 +31,94 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private flashMessagesService: FlashMessagesService) {
 
-    // this.registerUserForm = formBuilder.group({
-
-    //   'lastName': [null, [Validators.required,
-    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
-    //   'name': [null, [Validators.required,
-    //    Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
-    //   'email': [null, Validators.required],
-
-    //   'password': [null, [Validators.required,
-    //     Validators.minLength(6),
-    //     Validators.maxLength(12),
-    //     //To improve
-    //     Validators.pattern('[a-zA-Z]+[0-9]+')]],
-
-    //   'passwordConfirmation' : [null, [Validators.required,
-    //     Validators.minLength(6),
-    //     Validators.maxLength(12),
-    //     Validators.pattern('[a-zA-Z]+[0-9]+')
-    //   ]],
-
-    //   'day' : ['', Validators.required],
-    //   'month' : ['', Validators.required],
-    //   'year' : ['', Validators.required],
-
-    //   'country' : ['', Validators.required],
-
-    //   'department' : ['', Validators.required],
-
-    //   'city' : [null, [Validators.required,
-    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
-
-    //   'postalCode' : [null, [Validators.required,
-    //     Validators.pattern('[0-9]{5}')]],
-
-    //   'streetNumber' : [null, Validators.required],
-
-    //   'streetName' : [null, [Validators.required,
-    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
-    // })
-
     this.registerUserForm = formBuilder.group({
 
-      'lastName': ['Doe', [Validators.required,
+      'lastName': [null, [Validators.required,
         Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'name': ['John', [Validators.required,
+      'name': [null, [Validators.required,
        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'email': ['jd@mail.fr', Validators.required],
+      'email': [null, Validators.required],
 
-      'password': ['Azerty1', [Validators.required,
+      'password': [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12),
         //To improve
         Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
-      'passwordConfirmation' : ['Azerty1', [Validators.required,
+      'passwordConfirmation' : [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12),
         Validators.pattern('[a-zA-Z]+[0-9]+')
       ]],
 
-      'day' : ['1', Validators.required],
-      'month' : ['1', Validators.required],
-      'year' : ['1991', Validators.required],
+      'day' : ['', Validators.required],
+      'month' : ['', Validators.required],
+      'year' : ['', Validators.required],
 
-      'country' : ['France', Validators.required],
+      'country' : ['', Validators.required],
 
-      'department' : ['1', Validators.required],
+      'department' : ['', Validators.required],
 
-      'city' : ['test', [Validators.required,
+      'city' : [null, [Validators.required,
         Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'postalCode' : [45000, [Validators.required,
+      'postalCode' : [null, [Validators.required,
         Validators.pattern('[0-9]{5}')]],
 
-      'streetNumber' : [1, Validators.required],
+      'streetNumber' : [null, Validators.required],
 
-      'streetName' : ['rue du test', [Validators.required,
+      'streetName' : [null, [Validators.required,
         Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
     })
+
+    /**
+     * ****************************************************************************
+     * pre-fill citizen form
+     * ****************************************************************************
+     */
+    // this.registerUserForm = formBuilder.group({
+
+    //   'lastName': ['Doe', [Validators.required,
+    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
+
+    //   'name': ['John', [Validators.required,
+    //    Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
+
+    //   'email': ['jd@mail.fr', Validators.required],
+
+    //   'password': ['Azerty1', [Validators.required,
+    //     Validators.minLength(6),
+    //     Validators.maxLength(12),
+    //     //To improve
+    //     Validators.pattern('[a-zA-Z]+[0-9]+')]],
+
+    //   'passwordConfirmation' : ['Azerty1', [Validators.required,
+    //     Validators.minLength(6),
+    //     Validators.maxLength(12),
+    //     Validators.pattern('[a-zA-Z]+[0-9]+')
+    //   ]],
+
+    //   'day' : ['1', Validators.required],
+    //   'month' : ['1', Validators.required],
+    //   'year' : ['1991', Validators.required],
+
+    //   'country' : ['France', Validators.required],
+
+    //   'department' : ['1', Validators.required],
+
+    //   'city' : ['test', [Validators.required,
+    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
+
+    //   'postalCode' : [45000, [Validators.required,
+    //     Validators.pattern('[0-9]{5}')]],
+
+    //   'streetNumber' : [1, Validators.required],
+
+    //   'streetName' : ['rue du test', [Validators.required,
+    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
+    // })
 
     this.registerOrganisationForm = formBuilder.group({
       'name': [null, [Validators.required,
@@ -154,46 +159,32 @@ export class RegisterComponent implements OnInit {
     this.departmentService.getAll()
       .subscribe(dpts => this.country.departments = dpts);
   }
-
+  // todo: add SIRET number ?
   doRegister($event: any) {
-    console.log($event);
     $event.preventDefault();
-
+    var newUser: User;
     if (this.registerOrganisationForm.status == "VALID") {
-      let params = this.registerOrganisationForm.value
-      let newOrganisation : User = {
+      let inputs = this.registerOrganisationForm.value
+      newUser = {
         isPhysic: false,
-        name: params.name,
-        mail: params.email,
-        password: params.password,
+        name: inputs.name,
+        mail: inputs.email,
+        password: inputs.password,
         authority: false,
-        isPublic: params.type,
+        isPublic: inputs.type,
         address : {
-          streetNumber: params.streetNumber,
-          streetName : params.streetName,
-          city: params.city,
-          postalCode : params.postalCode,
-          department : params.department,
-          country : params.country
+          streetNumber: inputs.streetNumber,
+          streetName : inputs.streetName,
+          city: inputs.city,
+          postalCode : inputs.postalCode,
+          department : inputs.department,
+          country : inputs.country
         }
       }
-      console.log(newOrganisation);
-
-      this.userService.add(newOrganisation).subscribe(res =>{
-        console.log(res)
-        if (res._id) {
-          this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
-          this.router.navigate(['/'])
-          console.log('success');
-        }
-        else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
-
-      }) 
-    } 
+    }
     else if (this.registerUserForm.status == "VALID") {
-      console.log(this.registerUserForm)
       let params = this.registerUserForm.value
-      let newUser : User = {
+      newUser = {
         isPhysic: true,
         name: params.name,
         lastName: params.lastName,
@@ -209,18 +200,17 @@ export class RegisterComponent implements OnInit {
           country : params.country
         }
       }
-      console.log(newUser);
-
-      this.userService.add(newUser).subscribe(res => {
-        console.log(res)
-        if (res._id) {
-          this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
-          this.router.navigate(['/'])
-          console.log('success');
-        }
-        else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
-      })
     }
-  }
+    console.log(newUser);
 
+    this.userService.add(newUser).subscribe(res =>{
+      console.log(res)
+      if (res._id) {
+        this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
+        this.router.navigate(['/'])
+        // console.log('success');
+      }
+      else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
+    }) 
+  } 
 }

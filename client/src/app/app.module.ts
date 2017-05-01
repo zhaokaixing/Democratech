@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AUTH_PROVIDERS, AuthConfig, AuthHttp, provideAuth } from 'angular2-jwt';
 import { Auth0Service } from 'app/services/auth0.service';
-import { Auth0GuardService } from 'app/services/auth0-guard.service';
+import { AuthUserGuardService, AuthAdminGuardService } from 'app/services/auth0-guard.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { UserService } from "app/services/user.service";
 
@@ -17,6 +17,9 @@ import { ProjectComponent } from './components/project/project.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GlobalProfileService } from "app/services/global.service";
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileCitizenComponent } from './components/profile/profile-citizen/profile-citizen.component';
+import { ProfileOrganisationComponent } from './components/profile/profile-organisation/profile-organisation.component';
+import { HomeAdminComponent } from './components/admin/home/home-admin.component';
 
 export function authFactory() {
   return provideAuth({
@@ -35,7 +38,11 @@ export function authFactory() {
     HomeComponent,
     ProjectComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileCitizenComponent,
+    ProfileOrganisationComponent,
+    ProfileOrganisationComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule, CommonModule,
@@ -45,8 +52,8 @@ export function authFactory() {
     FlashMessagesModule
   ],
   providers: [
-    Auth0Service, Auth0GuardService, AuthHttp, 
-    UserService, GlobalProfileService,
+    Auth0Service, AuthUserGuardService, AuthAdminGuardService,
+    AuthHttp, UserService, GlobalProfileService,
     {
       provide: AuthHttp,
       useFactory:  authFactory

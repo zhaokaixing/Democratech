@@ -14,7 +14,7 @@ import { GlobalProfileService } from "app/services/global.service";
 export class AppComponent implements OnInit {
   title = 'Democratech';
   user = new User();
-
+  role: any;
 
   constructor(private authService: Auth0Service, private userService: UserService, private globalService: GlobalProfileService) {}
 
@@ -35,5 +35,12 @@ export class AppComponent implements OnInit {
         });
       }
     }
+  }
+
+  isAdmin(): string {
+    if (!this.role) 
+      this.role = this.authService.isAdmin() ? 'admin' : 'user';
+    
+    return this.role;
   }
 }

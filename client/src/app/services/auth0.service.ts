@@ -15,20 +15,23 @@ export class Auth0Service {
       });
 
   constructor(private router: Router, private globalService: GlobalProfileService) {
-    this.lock.on('authenticated', (authResult: any) => {
-      console.log('auth result:');
-      console.log(authResult);
+    this.lock.on('authenticated', (authResult: any) => {      
 
       localStorage.setItem('id_token', authResult.idToken);
+      
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
-        if (error) {
-          console.log(error);
-        }
+        if (error) console.log(error);
+        
         console.log('profile:');
         console.log(profile);
 
         globalService.profile = JSON.stringify(profile);
-        // localStorage.setItem('profile', JSON.stringify(profile));
+
+        var redirectUrl: string = localStorage.getItem('redirect_url');
+        if (redirectUrl != undefined){
+          this.router.navigate([redirectUrl]);
+          localStorage.removeItem('redirect_url');
+        }
       });
     });
   }
@@ -49,5 +52,13 @@ export class Auth0Service {
 
   loggedIn() {
     return tokenNotExpired('id_token');
+  }
+
+  public isAdmin() {
+    let userProfile = JSON.parse(this.globalService.profile);
+    console.log(userProfile);
+    return userProfile && userProfile.app_metadata
+      && userProfile.app_metadata.roles
+      && userProfile.app_metadata.roles.indexOf('admin') > -1;
   }
 }
