@@ -16,7 +16,7 @@ client/tmp
 .settings/
 
 # IDE - VSCode
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -32,10 +32,13 @@ testem.log
 /typings
 
 # e2e
+/client/e2e/*.map
 /client/e2e/*.js
+# app
 /client/src/app/**/*.js
 /client/src/app/**/*.map
-/e2e/*.map
+/client/src/app/**/**/*.js
+/client/src/app/**/**/*.map
 
 #System Files
 .DS_Store

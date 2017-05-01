@@ -16,13 +16,26 @@ import { HomeComponent } from './components/home/home.component';
 import { ProjectComponent } from './components/project/project.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GlobalProfileService } from "app/services/global.service";
+import { ProfileComponent } from './components/profile/profile.component';
+
+export function authFactory() {
+  return provideAuth({
+      headerName: 'Authorization',
+      headerPrefix: 'bearer',
+      tokenName: 'token',
+      tokenGetter: (() => localStorage.getItem('id_token')),
+      globalHeaders: [{ 'Content-Type': 'application/json' }],
+      noJwtError: true
+    })
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProjectComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule, CommonModule,
@@ -32,15 +45,12 @@ import { GlobalProfileService } from "app/services/global.service";
     FlashMessagesModule
   ],
   providers: [
-    Auth0Service, Auth0GuardService, AuthHttp, UserService, GlobalProfileService,
-    provideAuth({
-      headerName: 'Authorization',
-      headerPrefix: 'bearer',
-      tokenName: 'token',
-      tokenGetter: (() => localStorage.getItem('id_token')),
-      globalHeaders: [{ 'Content-Type': 'application/json' }],
-      noJwtError: true
-    })
+    Auth0Service, Auth0GuardService, AuthHttp, 
+    UserService, GlobalProfileService,
+    {
+      provide: AuthHttp,
+      useFactory:  authFactory
+    }
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
