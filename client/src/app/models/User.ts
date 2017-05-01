@@ -67,4 +67,6 @@ export class User {
       category: string;
     }]
   }];
+
+  constructor() {}
 }

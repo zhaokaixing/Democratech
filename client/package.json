@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angular/router": "^3.3.1",
     "angular-in-memory-web-api": "^0.3.1",
-    "angular2-flash-messages": "^1.0.2",
+    "angular2-flash-messages": "^1.0.1",
     "angular2-google-maps": "^0.17.0",
     "angular2-jwt": "^0.2.3",
     "auth0-lock": "^10.15.1",

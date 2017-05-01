@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Citizen } from "app/models/Citizen";
-import { Organisation } from "app/models/Organisation";
-import { Country } from "app/models/Country";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { DepartmentService } from "app/services/department.service";
-import { CityService } from "app/services/city.service";
 import { Router } from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
 import { FlashMessagesService } from "angular2-flash-messages";
+import { CityService } from "app/services/city.service";
+import { DepartmentService } from "app/services/department.service";
 import { UserService } from "app/services/user.service";
+
 import { User } from "app/models/User";
+import { Country } from "app/models/Country";
 
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [ DepartmentService, CityService, UserService, FormBuilder ]
+  providers: [ DepartmentService, CityService, FormBuilder ]
 })
 
 export class RegisterComponent implements OnInit {

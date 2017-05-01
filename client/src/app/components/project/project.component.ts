@@ -17,7 +17,7 @@ import { Project } from "app/models/Project";
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
-  providers: [ProjectService,CommentService,OpinionService]
+  providers: [ProjectService, CommentService, OpinionService]
 })
 export class ProjectComponent implements OnInit {
     messageToSend:string;

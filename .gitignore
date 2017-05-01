@@ -33,7 +33,8 @@ testem.log
 
 # e2e
 /client/e2e/*.js
-/client/src/app/*.js
+/client/src/app/**/*.js
+/client/src/app/**/*.map
 /e2e/*.map
 
 #System Files

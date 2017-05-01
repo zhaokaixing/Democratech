@@ -1,9 +1,9 @@
-import {Citizen} from './Citizen';
-import {Organisation} from './Organisation';
 /**
  * Created by quentinC on 20/02/2017.
  */
-export class Project{
+import { User } from "app/models/User";
+
+export class Project {
     readonly _id: string;
     title : string;
     plusMark?: number;
@@ -30,7 +30,7 @@ export class Project{
         attributionDate : Date;
         signDate : Date;
         startDate : Date;
-        authority : Organisation;
+        authority : User;
         lots : {
             name : string;
             number : number;

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Config, BaseUrl } from '../config/auth.config';
 import Auth0Lock from 'auth0-lock';
+import { GlobalProfileService } from "app/services/global.service";
 
 @Injectable()
 export class Auth0Service {
@@ -13,7 +14,7 @@ export class Auth0Service {
           signupLink: BaseUrl.client + '/inscription'
       });
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private globalService: GlobalProfileService) {
     this.lock.on('authenticated', (authResult: any) => {
       console.log('auth result:');
       console.log(authResult);
@@ -26,7 +27,8 @@ export class Auth0Service {
         console.log('profile:');
         console.log(profile);
 
-        localStorage.setItem('profile', JSON.stringify(profile));
+        globalService.profile = JSON.stringify(profile);
+        // localStorage.setItem('profile', JSON.stringify(profile));
       });
     });
   }
