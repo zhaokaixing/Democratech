@@ -22,13 +22,14 @@ $ npm install -g nodemon
 ```
 
 ## lancement de l'application
+* En ligne de commande :
 ```bash
-## ouvir un terminale à la racine du projet
-$ npm start
-## le serveur se lance... (disponible à [https://localhost:3000/](https://localhost:3000/))
+## ouvir un terminale à la racine du projet et lancer le server
+$ cd server && npm start
+## le serveur se lance...
+
 ## ouvrir un autre terminale à la racine du projet
-$ cd client
-$ npm start
+$ cd client && npm start
 ## angular se lance...
 ```
 
@@ -39,7 +40,7 @@ $ npm start
   * dans la fenètre qui s'affiche ajouter **start** dans le champ **script**
   * cliquer sur ok
 
-* sélectionner un lanceur & cliquer sur la flèche (start) pour démarrer le serveur et le client 
+* sélectionner un lanceur & cliquer sur la flèche (start) pour démarrer le serveur et le client (ou utiliser les lignes de commandes)
   * adresse du client (site democratech): [http://localhost:4200](http://localhost:4200)
   * adresse du serveur (api): [http://localhost:3000/api/API_OBJECT](http://localhost:3000/api/)
 
