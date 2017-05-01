@@ -10,14 +10,21 @@ let form = require('../../tools/form-validation');
 router.get('/users', (req, res) => {
     db.users.find((err, users) => {
         if (err) res.send(err);
-        res.jsonp(users);
+        res.json(users);
     })
 });
 
 router.get('/user/:id', (req, res) => {
     db.users.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, user) => {
         if (err) res.send(err);
-        res.jsonp(user)
+        res.json(user)
+    })
+});
+
+router.get('/user/:email', (req, res) => {
+    db.users.findOne({ mail: req.params.email }, (err, user) => {
+        if (err) res.send(err);
+        res.json(user)
     })
 });
 
@@ -42,7 +49,7 @@ router.post('/user', (req, res) => {
 router.delete('/user/:id', (req, res) => {
     db.users.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, user) {
         if (err) res.send(err);
-        res.jsonp(user)
+        res.json(user)
     })
 });
 
@@ -52,7 +59,7 @@ router.put('/user/:id', (req, res) => {
 
     db.users.update({_id: mongojs.ObjectId(req.params.id)}, update, {}, (err, user) => {
         if (err) res.send(err);
-        res.jsonp(user);
+        res.json(user);
     });
 
 })

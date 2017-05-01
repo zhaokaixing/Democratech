@@ -17,7 +17,7 @@ router.get('/citizens', (req, res) => {
 router.get('/citizen/:id', (req, res) => {
     db.citizens.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, citizen) => {
         if (err) res.send(err);
-        res.jsonp(citizen)
+        res.json(citizen)
     })
 });
 
@@ -32,7 +32,7 @@ router.post('/citizen', (req, res) => {
             citizen.password = hash;
             db.citizens.save(citizen, (err, citizen) => {
                 if (err) res.send(err);
-                res.jsonp(citizen)
+                res.json(citizen)
             })
         })
     }
@@ -42,7 +42,7 @@ router.post('/citizen', (req, res) => {
 router.delete('/citizen/:id', (req, res) => {
     db.citizens.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, citizen) {
         if (err) res.send(err);
-        res.jsonp(citizen)
+        res.json(citizen)
     })
 });
 
@@ -52,7 +52,7 @@ router.put('/citizen/:id', (req, res) => {
 
     db.citizens.update({_id: mongojs.ObjectId(req.params.id)}, update, {}, (err, citizen) => {
         if (err) res.send(err);
-        res.jsonp(citizen);
+        res.json(citizen);
     });
 
 })

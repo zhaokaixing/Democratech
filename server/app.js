@@ -1,6 +1,5 @@
 const express     = require('express');
-const http      = require('http');
-const cors        = require('cors');
+const http        = require('http');
 const path        = require('path');
 const bodyParser  = require('body-parser');
 const security    = require('./tools/security');
@@ -8,7 +7,7 @@ const security    = require('./tools/security');
 
 const port = 3000;
 
-var index = require('./routes/index');
+// define routes path
 let organisations = require('./routes/API/organisations');
 let departments = require('./routes/API/departments');
 let users = require('./routes/API/users');
@@ -17,21 +16,12 @@ let citizens = require('./routes/API/citizens');
 let project = require('./routes/API/projects');
 let comment = require('./routes/API/comments');
 let opinion=require('./routes/API/opinion');
+
 let app = express();
-
-// View engine
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-// app.engine('html', require('ejs').renderFile);
-
-// Set static folders
-// app.use(express.static(path.join(__dirname, '../client')));
-// app.use(express.static(path.join(__dirname, 'views')));
 
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-// app.use(cors);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -55,7 +45,3 @@ app.use('/api',opinion);
 app.listen(port, function(){
   console.log('server start on port '+port);
 })
-
-// app.set('port', port);
-// const server = http.createServer(app);
-// server.listen(port, () => console.log(`API running on localhost:${port}`));

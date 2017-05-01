@@ -18,7 +18,7 @@ router.get('/projects', function(req, res, next) {
             if(err){
                 res.send(err);
             }
-            res.jsonp(docs);
+            res.json(docs);
             db2.close();
         });
     });
@@ -33,7 +33,7 @@ router.get('/project/:id', function(req, res, next) {
             if(err){
                 res.send(err);
             }
-            res.jsonp(doc);
+            res.json(doc);
             db2.close();
         });
     });
@@ -48,7 +48,7 @@ router.get('/projects/:city', function(req, res, next) {
                 console.log(err.message);
                 res.send(err);
             }
-            res.jsonp(docs);
+            res.json(docs);
             db2.close();
         });
     });
@@ -62,7 +62,7 @@ router.post('/project', (req, res) => {
         if (form.isValidProject(project)) {
             collection.save(project,(err, project) => {
                 if (err) res.send(err);
-                res.jsonp(project)
+                res.json(project)
             })
         }
     });
@@ -72,7 +72,7 @@ router.post('/project', (req, res) => {
 router.delete('/project/:id', (req, res) => {
     db.project.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, project) {
         if (err) res.send(err);
-        res.jsonp(project)
+        res.json(project)
     })
 });
 

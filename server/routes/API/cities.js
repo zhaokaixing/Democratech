@@ -22,7 +22,7 @@ router.get('/cities', function(req, res, next) {
             if(err){
                 res.send(err);
             }
-            res.jsonp(docs);
+            res.json(docs);
             console.log(docs.length);
             db2.close();
         });
@@ -54,7 +54,7 @@ router.get('/city/:id', function(req, res, next) {
             if(err){
                 res.send(err);
             }
-            res.jsonp(doc);
+            res.json(doc);
             db2.close();
         });
     });
@@ -75,19 +75,19 @@ var MongoClient = require('mongodb').MongoClient,
 
 router.get('/cities/:dep', function(req, res, next) {
     MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
-
         var collection = db2.collection('cities');
         collection.find({'department' : parseInt(req.params.dep.valueOf())}).toArray(function(err, docs){
             if(err){
                 console.log(err.message);
                 res.send(err);
             }
-            res.jsonp(docs);
+            res.json(docs);
             console.log("Fini");
             db2.close();
         });
     });
 });
+
 /*
 //get all city with department number
 router.get('/cities/:dep',function(req, res, next){
