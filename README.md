@@ -17,7 +17,7 @@ $ npm start
 * cloner le projet et installer les dépendances :
 ```bash
 $ git clone https://github.com/flwrnt/democratech.git
-$ cd /sous/repertoire/democratech
+$ cd democratech/server
 $ npm install
 $ cd client
 $ npm install
@@ -29,12 +29,15 @@ $ npm install -g nodemon
 ```
 
 * dans Intellij : 
+  * Remarque: à faire pour le client et le serveur
   * liste déroulante à coté de la flèche pour lancer un projet (grisée normalement) > Edit configuration
   * bouton plus en haut à gauche (add configuration) > sélectionner npm dans la liste déroulante
   * dans la fenètre qui s'affiche ajouter **start** dans le champ **script**
   * cliquer sur ok
 
-* cliquer sur la flèche (start) pour lancer le serveur (disponible à l'adresse [http://localhost:3000](http://localhost:3000))
+* sélectionner un lanceur & cliquer sur la flèche (start) pour démarrer le serveur et le client 
+  * adresse du client (site democratech): [http://localhost:4200](http://localhost:4200)
+  * adresse du serveur (api): [http://localhost:3000/api/API_OBJECT](http://localhost:3000/api/)
 
 ## gestion des branches
 pour comprendre comment sont et seront gérer les branches, je vous invite à voir ce petit tutoriel de votre développeur préféré, j'ai nommé Grafikart : [https://www.grafikart.fr/formations/git/git-flow](https://www.grafikart.fr/formations/git/git-flow)
