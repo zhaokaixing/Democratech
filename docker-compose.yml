@@ -5,7 +5,7 @@ services:
   angular: # name of the first service
     build: client # specify the directory of the Dockerfile
     ports:
-      - "4200:4200" # specify port forewarding
+      - "2400:2400" # specify port forewarding
 
   express: #name of the second service
     build: server # specify the directory of the Dockerfile
