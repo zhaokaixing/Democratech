@@ -21,11 +21,11 @@ router.get('/user/:id', (req, res) => {
     })
 });
 
-router.get('/user/:email', (req, res) => {
-    db.users.findOne({ mail: req.params.email }, (err, user) => {
-        if (err) res.send(err);
-        res.json(user)
-    })
+router.get('/user/:key/:value', (req, res) => {
+  db.users.findOne({ [req.params.key]: req.params.value }, (err, user) => {
+    if (err) res.send(err);
+    res.json(user)
+  })
 });
 
 router.post('/user', (req, res) => {

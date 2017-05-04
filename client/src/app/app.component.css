@@ -54,12 +54,10 @@
   border-style:solid;
   margin-left:15px;
   margin-right:15px;
-
-
-
 }
+
 .nav-sidebar > li > a {
-//padding-right: 5px;
+  padding-right: 5px;
   padding-left: 10px;
 }
 .nav-sidebar > .active > a,
