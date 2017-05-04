@@ -3,7 +3,7 @@
 <div class="row jumbotron masthead" id="firstRow" style="margin-top: 30px">
   <img class="col-md-2 col-sm-6" src="{{user.image}}" alt="you">
   <div class="col-md-10 col-sm-12">
-    <h2>{{user.name}} {{user.lastName}} <small class="text-right">({{user.mail}})</small></h2> 
+    <h2>{{user.name}} {{user.lastName}} <small class="text-right">({{user.mail}})</small></h2>
     <p class="text-justify">{{user.description}}</p>
   </div>
 
@@ -58,9 +58,9 @@
             Modification de vos informations personelles
         </h4>
       </div>
-      
+
       <!-- Modal Body -->
-      <div class="modal-body">         
+      <div class="modal-body">
         <form role="form">
           <div class="form-group">
             <label *ngIf="user.isPhysic" for="name">Prénom</label>
@@ -82,7 +82,7 @@
           <p>
             <button type="submit" class="btn btn-default">Modifier</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-          </p>                
+          </p>
         </form>
       </div>
     </div>
@@ -104,9 +104,9 @@
             Modification de votre adresse
         </h4>
       </div>
-      
+
       <!-- Modal Body -->
-      <div class="modal-body">         
+      <div class="modal-body">
         <form role="form">
           <div class="form-group">
             <label for="country">Pays</label>
@@ -117,7 +117,7 @@
 
             <select class="form-control" id="department">
               <option value="">-- sélectionnez un département --</option>
-              <option *ngFor="let department of departments" 
+              <option *ngFor="let department of departments"
                 [selected]="department.name == user.address?.department"
                 [value]="department.name">
                 {{department.zip_code}} - {{department.name}}
@@ -136,7 +136,7 @@
           <p>
             <button type="submit" class="btn btn-default">Modifier</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-          </p>                
+          </p>
         </form>
       </div>
     </div>
@@ -158,9 +158,9 @@
             Modification de votre mot de passe
         </h4>
       </div>
-      
+
       <!-- Modal Body -->
-      <div class="modal-body">         
+      <div class="modal-body">
         <form role="form">
           <div class="form-group">
             <label for="old-password">Ancien mot de passe</label>
@@ -177,7 +177,7 @@
           <p>
             <button type="submit" class="btn btn-default">Modifier</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-          </p>                
+          </p>
         </form>
       </div>
     </div>
