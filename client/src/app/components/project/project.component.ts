@@ -29,8 +29,8 @@ export class ProjectComponent implements OnInit {
 
     constructor(private opinionService: OpinionService,
                 private projectService: ProjectService,
-                private commentService:CommentService, 
-                private router: Router, 
+                private commentService:CommentService,
+                private router: Router,
                 private route: ActivatedRoute,
                 private authService: Auth0Service) {}
 
@@ -42,7 +42,7 @@ export class ProjectComponent implements OnInit {
         })
         .subscribe(project => {
                 this.project = project;
-                
+
                 var progressBar = document.getElementById("progress");
                 progressBar.style.width=((this.project.progress*100).toString())+"%";
 
@@ -55,7 +55,7 @@ export class ProjectComponent implements OnInit {
     getUserInfo() {
       this.profile = JSON.parse(localStorage.getItem('profile'));
       if (this.profile)
-        this.userId = this.profile['identities'][0]['user_id'].replace('auth0|', '');
+        this.userId = this.profile['user_id'].replace('auth0|', '');
     }
 
     getOpinion(idProject: string) {
@@ -65,7 +65,7 @@ export class ProjectComponent implements OnInit {
                 this.updateVoteStyle(res ? res.opinion : 2)
                 this.getVotesCount(this.project);
             })
-        } 
+        }
     }
     getComments(idProject: string):void{
         this.commentService
@@ -112,7 +112,7 @@ export class ProjectComponent implements OnInit {
         this.messageToSend="";
         this.getComments(this.project._id);
     }
-    
+
 
     vote(value:number):void{
         if (!this.opinion) {
