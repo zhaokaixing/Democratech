@@ -9,6 +9,9 @@ import { ProjectComponent } from "app/components/project/project.component";
 import { RegisterComponent } from "app/components/register/register.component";
 import { ProfileComponent } from "app/components/profile/profile.component";
 import { HomeAdminComponent } from "app/components/admin/home/home-admin.component";
+import { UsersAdminComponent } from "app/components/admin/users/users-admin.component";
+import { ProjectsAdminComponent } from "app/components/admin/projects/projects-admin.component";
+import { UserEditComponent } from "app/components/admin/users/user-edit/user-edit.component";
 
 const routes: Routes = [
     { path: '',  component: HomeComponent, pathMatch: 'full' },
@@ -18,6 +21,9 @@ const routes: Routes = [
     { path: '#registerOrganisation', component: RegisterComponent },
     { path: 'projet/:id', component: ProjectComponent},
     { path: 'admin', component: HomeAdminComponent, canActivate: [ AuthAdminGuardService ]},
+    { path: 'admin/utilisateurs', component: UsersAdminComponent, canActivate: [ AuthAdminGuardService ]},
+    { path: 'admin/utilisateur/:id', component: UserEditComponent, canActivate: [ AuthAdminGuardService ]},
+    { path: 'admin/projets', component: ProjectsAdminComponent, canActivate: [ AuthAdminGuardService ]},
     { path: '**', redirectTo: '' }
 ];
 

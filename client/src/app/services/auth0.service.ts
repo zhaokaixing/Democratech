@@ -66,7 +66,6 @@ export class Auth0Service {
 
   public isAdmin() {
     let userProfile = JSON.parse(this.globalService.profile);
-    console.log(userProfile);
     return userProfile && userProfile.app_metadata
       && userProfile.app_metadata.roles
       && userProfile.app_metadata.roles.indexOf('admin') > -1;

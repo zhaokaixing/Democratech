@@ -6,14 +6,12 @@ import { User } from "app/models/User";
 export class Project {
     readonly _id: string;
     title : string;
-    plusMark?: number;
-    minusMark?: number;
+    rate: number;
     progress : number;
     latitude : number;
     longitude : number;
     image?: string;
-
-   address : {
+    address : {
         streetNumber: number;
         streetName : string;
         city: string;
@@ -36,4 +34,8 @@ export class Project {
             number : number;
         }
     }];
+    owner: {
+        name: string;
+        id: string;
+    }
 }
