@@ -21,6 +21,12 @@ export class UserService {
             .catch(err => this.handleError(err));
     }
 
+    getWithKey(key : string , value : string){
+        return this.http.get(BaseUrl.API + 'api/user/'+key+'/'+value)
+          .map(res => res.json())
+          .catch(err => this.handleError(err));
+    }
+
     getOne(id: string): Observable<User> {
         return this.http.get(BaseUrl.API + 'api/user/'+id)
             .map(res => res.json())

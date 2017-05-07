@@ -28,14 +28,35 @@ export class Auth0Service {
         console.log(profile);
 
         globalService.profile = JSON.stringify(profile);
-        console.log(profile['user_id']);
-        userService.getOne(profile['identities'][0]['user_id']).subscribe(
-          res => {console.log('trouve')},
-          err => {
-            console.log('non trouve');
-            this.router.navigate(['#registerCitizen']);
-          }
-        );
+        console.log(profile['identities'][0]['user_id']);
+        if(profile['identities'][0]['isSocial'])
+        {
+          userService.getWithKey("isSocial",profile['identities'][0]['user_id']).subscribe(
+            res => {
+              if(res == null){
+                console.log('Social not found');
+                this.router.navigate(['#registerCitizen']);
+              }
+              else
+                console.log('Social found')
+            },
+            err => {
+              console.log('Social error');
+              this.router.navigate(['#registerCitizen']);
+            }
+          );
+        }
+        else {
+          userService.getOne(profile['identities'][0]['user_id']).subscribe(
+            res => {
+              console.log('trouve')
+            },
+            err => {
+              console.log('non trouve');
+              this.router.navigate(['#registerCitizen']);
+            }
+          );
+        }
 
         var redirectUrl: string = localStorage.getItem('redirect_url');
         if (redirectUrl != undefined){

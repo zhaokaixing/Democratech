@@ -9,18 +9,20 @@ import { UserService } from "app/services/user.service";
 
 import { User } from "app/models/User";
 import { Country } from "app/models/Country";
+import {GlobalProfileService} from "../../services/global.service";
 
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [ DepartmentService, CityService, FormBuilder ]
+  providers: [ DepartmentService, CityService, FormBuilder]
 })
 
 export class RegisterComponent implements OnInit {
 
-  country: Country = new Country('France');
+  country: Country = new Country('France')
+  registerProfile: {}
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
 
@@ -29,17 +31,19 @@ export class RegisterComponent implements OnInit {
               private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
+              private globalService : GlobalProfileService,
               private flashMessagesService: FlashMessagesService) {
 
+    this.registerProfile = JSON.parse(globalService.profile);
     this.registerUserForm = formBuilder.group({
 
-      'lastName': [null, [Validators.required,
+      'lastName': [this.registerProfile ? this.registerProfile["family_name"] : null, [Validators.required,
         Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'name': [null, [Validators.required,
+      'name': [this.registerProfile ? this.registerProfile["given_name"] : null, [Validators.required,
        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'email': [null, Validators.required],
+      'email': [this.registerProfile ? this.registerProfile["email"] : null, Validators.required],
 
       'password': [null, [Validators.required,
         Validators.minLength(6),
@@ -124,7 +128,7 @@ export class RegisterComponent implements OnInit {
       'name': [null, [Validators.required,
           Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'mail': [null, Validators.required],
+      'mail': [this.registerProfile ? this.registerProfile["email"] : null, Validators.required],
 
       'password': [null, [Validators.required,
           Validators.minLength(6),
@@ -166,6 +170,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerOrganisationForm.status == "VALID") {
       let inputs = this.registerOrganisationForm.value
       newUser = {
+        _id: localStorage.getItem('profile')['identities'][0]['user_id'],
         isPhysic: false,
         name: inputs.name,
         mail: inputs.email,
@@ -186,6 +191,7 @@ export class RegisterComponent implements OnInit {
       console.log(localStorage.getItem('profile')['identities'][0]['user_id']);
       let params = this.registerUserForm.value
       newUser = {
+        _id: localStorage.getItem('profile')['identities'][0]['user_id'],
         isPhysic: true,
         name: params.name,
         lastName: params.lastName,
