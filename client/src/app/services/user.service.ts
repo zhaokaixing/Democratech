@@ -12,7 +12,6 @@ import { User } from "app/models/User";
 export class UserService {
 
   constructor(private http: Http) {
-        console.log('User Service Initialized...');
     }
 
     getAll(): Observable<User[]>  {

@@ -29,10 +29,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects;
-      console.log(projects);
     });
   }
   selectProject(project: Project):void {
-    this.router.navigate(['/projet', project._id]).then(res => console.log(res));
+    this.router.navigate(['/projet', project._id]);
   }
 }

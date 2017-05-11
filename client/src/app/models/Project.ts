@@ -11,6 +11,7 @@ export class Project {
     progress : number;
     latitude : number;
     longitude : number;
+    offers?:string;
     image?: string;
 
    address : {

@@ -4,14 +4,17 @@ img
     border-radius: 50%;
     height:250px;
     max-width:300px;
+    margin-bottom:20px;
 }
-.btn-info{
+.btn-lg{
     background-color: rgba(45,64,89,100);
     border-color:rgba(45,64,89,100);;
     margin-top:20px;
     margin-bottom: 20px;
+    color: white;
 }
 .sebm-google-map-container {
+
     height: 350px;
 }
 
@@ -46,3 +49,6 @@ article
     padding-left: 10px;
 }
 
+#info{
+  font-size: 1.5em;
+}
