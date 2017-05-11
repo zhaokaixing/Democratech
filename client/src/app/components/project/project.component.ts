@@ -65,7 +65,7 @@ export class ProjectComponent implements OnInit {
     getUserInfo() {
       this.profile = JSON.parse(localStorage.getItem('profile'));
       if (this.profile)
-        this.userId = this.profile['identities'][0]['user_id'].replace('auth0|', '');
+        this.userId = this.profile['user_id'].replace('auth0|', '');
     }
 
     getOpinion(idProject: string) {

@@ -4,6 +4,8 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { Config, BaseUrl } from '../config/auth.config';
 import Auth0Lock from 'auth0-lock';
 import { GlobalProfileService } from "app/services/global.service";
+import {UserService} from "./user.service";
+import {register} from "ts-node/dist";
 
 @Injectable()
 export class Auth0Service {
@@ -14,18 +16,26 @@ export class Auth0Service {
           signupLink: BaseUrl.client + '/inscription'
       });
 
-  constructor(private router: Router, private globalService: GlobalProfileService) {
-    this.lock.on('authenticated', (authResult: any) => {      
+  constructor(private router: Router, private globalService: GlobalProfileService, private userService : UserService) {
+    this.lock.on('authenticated', (authResult: any) => {
 
       localStorage.setItem('id_token', authResult.idToken);
-      
+
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
         if (error) console.log(error);
-        
+
         console.log('profile:');
         console.log(profile);
 
         globalService.profile = JSON.stringify(profile);
+        console.log(profile['user_id']);
+        userService.getOne(profile['identities'][0]['user_id']).subscribe(
+          res => {console.log('trouve')},
+          err => {
+            console.log('non trouve');
+            this.router.navigate(['#registerCitizen']);
+          }
+        );
 
         var redirectUrl: string = localStorage.getItem('redirect_url');
         if (redirectUrl != undefined){
@@ -56,7 +66,6 @@ export class Auth0Service {
 
   public isAdmin() {
     let userProfile = JSON.parse(this.globalService.profile);
-    console.log(userProfile);
     return userProfile && userProfile.app_metadata
       && userProfile.app_metadata.roles
       && userProfile.app_metadata.roles.indexOf('admin') > -1;

@@ -1,0 +1,30 @@
+
+<h1 class="page-header">Gestion des utilisateurs</h1>
+
+<table class=" table zebra-striped">
+  <thead>
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Ville</th>
+    <th>Type</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let user of users'>
+      <td>{{user.name}} {{user.lastName}}</td>
+      <td>{{user.mail}}</td>
+      <td>{{user.address?.city}}</td>
+      <td *ngIf="!user.isPhysic && user.isPublic">Organiation public</td>
+      <td *ngIf="!user.isPhysic && !user.isPublic">Organiation privée</td>
+      <td *ngIf="user.isPhysic">Citoyen</td>
+      <td>
+        <a class="text-primary" routerLink="/admin/utilisateur/{{user._id}}"><span class="glyphicon glyphicon-edit"></span></a> 
+        <a class="text-danger" mwlConfirm [title]="title" [message]="message" (confirm)="deleteUser()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+
+<h1 class="page-header">Gestion des projets</h1>
+
+<table class=" table zebra-striped">
+  <thead>
+  <tr>
+    <th>Titre</th>
+    <th>Organisation</th>
+    <th>Ville</th>
+    <th>Avis</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let project of projects'>
+      <td>{{project.title}}</td>
+      <td>{{project.owner?.name}}</td>
+      <td>{{project.address?.city}}</td>
+      <td>ToDo</td>
+      <td>
+        <a class="text-primary" routerLink="/admin/edition-projet"><span class="glyphicon glyphicon-edit"></span></a> 
+        <a class="text-danger" mwlConfirm [title]="title" [message]="message" (confirm)="deleteProject()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

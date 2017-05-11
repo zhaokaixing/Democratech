@@ -54,12 +54,10 @@
   border-style:solid;
   margin-left:15px;
   margin-right:15px;
-
-
-
 }
+
 .nav-sidebar > li > a {
-//padding-right: 5px;
+  padding-right: 5px;
   padding-left: 10px;
 }
 .nav-sidebar > .active > a,
@@ -89,7 +87,13 @@
 .navbar div ul li a{
   color:white;
 }
-
+.navbar div ul li ul li a{
+  color:black;
+}
+.navbar div ul li ul li a:hover{
+  background-color:rgba(45,64,89,100);
+  color:white;
+}
 .banner {
   margin-top: 50px;
 }

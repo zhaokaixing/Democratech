@@ -171,7 +171,7 @@ export class RegisterComponent implements OnInit {
         mail: inputs.email,
         password: inputs.password,
         authority: false,
-        isPublic: inputs.type,
+        isPublic: inputs.type == 'Public' ? true : false,
         address : {
           streetNumber: inputs.streetNumber,
           streetName : inputs.streetName,
@@ -183,6 +183,7 @@ export class RegisterComponent implements OnInit {
       }
     }
     else if (this.registerUserForm.status == "VALID") {
+      console.log(localStorage.getItem('profile')['identities'][0]['user_id']);
       let params = this.registerUserForm.value
       newUser = {
         isPhysic: true,

@@ -68,6 +68,17 @@ router.post('/project', (req, res) => {
     });
 });
 
+router.put('/project/:id', (req, res) => {
+    let project = req.body;
+    if (!project) res.status(400).json({'error': 'bad data'});
+    delete project._id;
+
+    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: project}, {}, (err, proj) => {
+        if (err) res.send(err);
+        res.json(proj);
+    });
+
+})
 
 router.delete('/project/:id', (req, res) => {
     db.project.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, project) {

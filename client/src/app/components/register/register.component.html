@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="birthDate" class="col-md-2">Date de naissance</label>
+                    <label for="birthDate" class="col-md-2">Date de naissance <span class="asterisque"> * </span></label>
                     <div class="col-md-10" id="birthDate">
                         <div class="col-md-4" [ngClass]="{'has-error':!registerUserForm.controls['day'].valid}">
                             <select class="form-control" id="day" [formControl]="registerUserForm.controls['day']">
