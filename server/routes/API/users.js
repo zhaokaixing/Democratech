@@ -54,26 +54,14 @@ router.delete('/user/:id', (req, res) => {
 });
 
 router.put('/user/:id', (req, res) => {
-    let update = updateUser(req.body);
-    if (!update) res.status(400).json({'error': 'bad data'});
+    let user = req.body;
+    if (!user) res.status(400).json({'error': 'bad data'});
+    delete user._id;
 
-    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: update}, {}, (err, user) => {
+    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: user}, {}, (err, update) => {
         if (err) res.send(err);
-        res.json(user);
+        res.json(update);
     });
-
 })
-
-let updateUser = (user) => {
-    upCit = {}
-
-    if (user.name) upCit.name = user.name;
-    if (user.lastName) upCit.lastName = user.lastName;
-    if (user.mail) upCit.mail = user.mail;
-    if (user.password) upCit.password = user.password;
-    if (user.description) upCit.description = user.description;
-
-    return (!upCit ? false : upCit);
-}
 
 module.exports = router;

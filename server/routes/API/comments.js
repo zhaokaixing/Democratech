@@ -26,4 +26,11 @@ router.post('/comment', (req, res, next) => {
     });
 });
 
+router.delete('/comment/:id', (req, res) => {
+    db.users.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, result) {
+        if (err) res.send(err);
+        res.json(result)
+    })
+});
+
 module.exports = router

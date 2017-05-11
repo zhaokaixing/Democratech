@@ -6,18 +6,19 @@
                 <br>
 
                 <div *ngIf="user.isPhysic" class="form-group" [ngClass]="{'has-error':!editUserForm.controls['lastName'].valid}">
-                    <label for="lastName" class="col-sm-2">Nom</label>
-                    <div class="col-sm-10">
+                    <label for="lastName" class="col-md-2">Nom</label>
+                    <div class="col-md-10">
                         <input type="text" class="form-control" name="lastName" id="lastName"
-                          placeholder="Entrez votre nom" value="{{user.lastName}}" [formControl]="editUserForm.controls['lastName']">
+                          placeholder="Entrez votre nom" [formControl]="editUserForm.controls['lastName']">
                     </div>
                 </div>
 
                 <div class="form-group" [ngClass]="{'has-error':!editUserForm.controls['name'].valid}">
-                    <label for="name" class="col-sm-2">Prénom</label>
-                    <div class="col-sm-10">
+                    <label *ngIf="user.isPhysic" for="name" class="col-md-2">Prénom</label>
+                    <label *ngIf="!user.isPhysic" for="name" class="col-md-2">Nom</label>
+                    <div class="col-md-10">
                         <input type="text" class="form-control" name="name" id="name" 
-                        placeholder="Entrez votre prénom" value="{{user.name}}" [formControl]="editUserForm.controls['name']">
+                        placeholder="Entrez votre prénom" [formControl]="editUserForm.controls['name']">
                     </div>
                 </div>
 

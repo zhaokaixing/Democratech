@@ -171,7 +171,7 @@ export class RegisterComponent implements OnInit {
         mail: inputs.email,
         password: inputs.password,
         authority: false,
-        isPublic: inputs.type,
+        isPublic: inputs.type == 'Public' ? true : false,
         address : {
           streetNumber: inputs.streetNumber,
           streetName : inputs.streetName,

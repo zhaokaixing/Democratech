@@ -30,6 +30,8 @@ export class UserEditComponent implements OnInit {
     })
     .subscribe(user => {
       this.user = user;
+      console.log(this.user.birthDate.toString());
+
       this.updateForm();
     })
 
@@ -39,9 +41,8 @@ export class UserEditComponent implements OnInit {
   }
 
   updateForm() {
-    console.log(this.user);
     this.editUserForm = this.formBuilder.group({
-      name: [this.user.name],
+      name: [this.user.name, Validators.required],
       lastName: [this.user.lastName],
       mail: [this.user.mail, Validators.required],
 
@@ -61,17 +62,30 @@ export class UserEditComponent implements OnInit {
   }
 
   editUser($event) {
-    console.log("update")
     if (this.editUserForm.status == "VALID") {
       let inputs = this.editUserForm.value
       console.log(inputs)
       console.log(this.user);
 
-      this.user.lastName = inputs.lastName;
+      this.user.name = inputs.name;
+      this.user.address.country = inputs.country;
+      this.user.address.city = inputs.city;
+      this.user.address.department = inputs.department;
+      this.user.address.streetName = inputs.streetName;
+      this.user.address.streetNumber = inputs.streetNumber;
 
-      this.userService.update(this.user).subscribe(user => {
-        console.log(user);
-        // this.user = user;
+      if (this.user.isPhysic) {
+        this.user.lastName = inputs.lastName;
+        this.user.birthDate = new Date(inputs.year, inputs.month, inputs.day);
+      }
+      else {
+        this.user.isPublic = inputs.type == 'Public' ? true : false;
+      }
+
+      this.userService.update(this.user).subscribe(res => {
+        console.log('result:');
+        console.log(res);
+        //this.user = res;
         this.updateForm();
       })
     }
