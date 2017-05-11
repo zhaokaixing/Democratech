@@ -24,9 +24,9 @@ export class RegisterComponent implements OnInit {
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
 
-  constructor(private departmentService: DepartmentService, 
+  constructor(private departmentService: DepartmentService,
               private cityService: CityService,
-              private userService: UserService, 
+              private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
               private flashMessagesService: FlashMessagesService) {
@@ -211,6 +211,6 @@ export class RegisterComponent implements OnInit {
         // console.log('success');
       }
       else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
-    }) 
-  } 
+    })
+  }
 }

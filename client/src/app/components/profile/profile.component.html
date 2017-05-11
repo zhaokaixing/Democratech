@@ -45,7 +45,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="userInfoForm" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true">
+    aria-labelledby="myModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
@@ -61,26 +61,26 @@
 
       <!-- Modal Body -->
       <div class="modal-body">
-        <form role="form">
-          <div class="form-group">
+        <form role="form" [formGroup]="infoUserForm" (submit)="saveInfo($event)">
+          <div class="form-group" [ngClass]="{'has-error':!infoUserForm.controls['name'].valid}">
             <label *ngIf="user.isPhysic" for="name">Prénom</label>
             <label *ngIf="!user.isPhysic" for="name">Nom</label>
-            <input type="text" class="form-control" id="name" value="{{user.name}}"/>
+            <input type="text" class="form-control" id="name" [formControl]="infoUserForm.controls['name']"/>
           </div>
-          <div *ngIf="user.isPhysic" class="form-group">
+          <div *ngIf="user.isPhysic" class="form-group" [ngClass]="{'has-error':!infoUserForm.controls['lastName'].valid}">
             <label for="lastName">Nom</label>
-            <input type="text" class="form-control" id="lastName" value="{{user.lastName}}"/>
+            <input type="text" class="form-control" id="lastName" [formControl]="infoUserForm.controls['lastName']"/>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-error':!infoUserForm.controls['mail'].valid}">
             <label for="mail">Email</label>
-            <input type="email" class="form-control" id="mail" value="{{user.mail}}"/>
-          </div>
+            <input type="email" class="form-control" id="mail" [formControl]="infoUserForm.controls['mail']"/>
+      </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" rows="5" id="description">{{user.description}}</textarea>
+            <textarea class="form-control" rows="5" id="description" [formControl]="infoUserForm.controls['description']"></textarea>
           </div>
           <p>
-            <button type="submit" class="btn btn-default">Modifier</button>
+            <button type="submit" class="btn btn-default" [disabled]="!infoUserForm.valid" >Modifier</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
           </p>
         </form>
