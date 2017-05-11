@@ -31,7 +31,7 @@ export class Auth0Service {
         console.log(profile['identities'][0]['user_id']);
         if(profile['identities'][0]['isSocial'])
         {
-          userService.getWithKey("isSocial",profile['identities'][0]['user_id']).subscribe(
+          userService.getWithKey("socialId",profile['identities'][0]['user_id']).subscribe(
             res => {
               if(res == null){
                 console.log('Social not found');

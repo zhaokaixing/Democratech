@@ -170,7 +170,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerOrganisationForm.status == "VALID") {
       let inputs = this.registerOrganisationForm.value
       newUser = {
-        _id: localStorage.getItem('profile')['identities'][0]['user_id'],
+        socialId: localStorage.getItem('profile')['identities'][0]['user_id'],
         isPhysic: false,
         name: inputs.name,
         mail: inputs.email,
@@ -191,7 +191,7 @@ export class RegisterComponent implements OnInit {
       console.log(localStorage.getItem('profile')['identities'][0]['user_id']);
       let params = this.registerUserForm.value
       newUser = {
-        _id: localStorage.getItem('profile')['identities'][0]['user_id'],
+        socialId: localStorage.getItem('profile')['identities'][0]['user_id'],
         isPhysic: true,
         name: params.name,
         lastName: params.lastName,
