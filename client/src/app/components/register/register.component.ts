@@ -34,9 +34,10 @@ export class RegisterComponent implements OnInit {
               private globalService : GlobalProfileService,
               private flashMessagesService: FlashMessagesService) {
 
-    this.registerProfile = JSON.parse(globalService.profile);
-    this.registerUserForm = formBuilder.group({
+    this.registerProfile = JSON.parse(localStorage.getItem('profile'));
+    console.log(this.registerProfile)
 
+    this.registerUserForm = formBuilder.group({
       'lastName': [this.registerProfile ? this.registerProfile["family_name"] : null, [Validators.required,
         Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
@@ -170,7 +171,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerOrganisationForm.status == "VALID") {
       let inputs = this.registerOrganisationForm.value
       newUser = {
-        socialId: localStorage.getItem('profile')['identities'][0]['user_id'],
+        socialId: this.registerProfile['identities'][0]['user_id'],
         isPhysic: false,
         name: inputs.name,
         mail: inputs.email,
@@ -188,10 +189,9 @@ export class RegisterComponent implements OnInit {
       }
     }
     else if (this.registerUserForm.status == "VALID") {
-      console.log(localStorage.getItem('profile')['identities'][0]['user_id']);
       let params = this.registerUserForm.value
       newUser = {
-        socialId: localStorage.getItem('profile')['identities'][0]['user_id'],
+        socialId: this.registerProfile['identities'][0]['user_id'],
         isPhysic: true,
         name: params.name,
         lastName: params.lastName,
@@ -221,3 +221,4 @@ export class RegisterComponent implements OnInit {
     })
   }
 }
+

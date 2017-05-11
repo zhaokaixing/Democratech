@@ -24,29 +24,35 @@ export class Auth0Service {
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
         if (error) console.log(error);
 
-        console.log('profile:');
+        // let profile = JSON.stringify(profileStr);
         console.log(profile);
 
-        globalService.profile = JSON.stringify(profile);
-        console.log(profile['identities'][0]['user_id']);
         if(profile['identities'][0]['isSocial'])
         {
-          userService.getWithKey("socialId",profile['identities'][0]['user_id']).subscribe(
+          localStorage.setItem('profile', JSON.stringify(profile));
+          
+          console.log('its social');
+          console.log(profile['identities'][0]['user_id']);
+
+          userService.getWithKey('socialId', profile['identities'][0]['user_id']).subscribe(
             res => {
               if(res == null){
                 console.log('Social not found');
-                this.router.navigate(['#registerCitizen']);
+                localStorage.removeItem('id_token');
+
+                this.router.navigate(['inscription']);
               }
-              else
-                console.log('Social found')
+              else console.log('Social found')
             },
             err => {
               console.log('Social error');
+              localStorage.removeItem('profile');
               this.router.navigate(['#registerCitizen']);
             }
           );
         }
         else {
+          globalService.profile = JSON.stringify(profile);
           userService.getOne(profile['identities'][0]['user_id']).subscribe(
             res => {
               console.log('trouve')
