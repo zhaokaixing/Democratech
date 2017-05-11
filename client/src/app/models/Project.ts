@@ -6,7 +6,8 @@ import { User } from "app/models/User";
 export class Project {
     readonly _id: string;
     title : string;
-    rate: number;
+    plusMark: number;
+    minusMark: number;
     progress : number;
     latitude : number;
     longitude : number;

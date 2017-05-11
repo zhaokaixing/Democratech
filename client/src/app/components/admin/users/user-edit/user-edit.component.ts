@@ -39,11 +39,10 @@ export class UserEditComponent implements OnInit {
   }
 
   updateForm() {
+    console.log(this.user);
     this.editUserForm = this.formBuilder.group({
-      name: [this.user.name, [Validators.required,
-          Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-      lastName: [this.user.name],
-
+      name: [this.user.name],
+      lastName: [this.user.lastName],
       mail: [this.user.mail, Validators.required],
 
       day: [this.user.birthDate ? +this.user.birthDate.toString().substring(8,10) : ''],
@@ -52,19 +51,12 @@ export class UserEditComponent implements OnInit {
 
       type: [this.user.isPublic ? 'Public' : 'Private'],
 
-      country: [this.user.address ? this.user.address.country : '', [Validators.required]],
-
-      department: [this.user.address ? this.user.address.department : '', Validators.required],
-
-      city: [this.user.address ? this.user.address.city : '', Validators.required],
-
-      postalCode: [this.user.address ? this.user.address.postalCode : null, [Validators.required,
-          Validators.pattern('[0-9]{5}')]],
-
-      streetNumber: [this.user.address ? this.user.address.streetNumber : '', Validators.required],
-
-      streetName: [this.user.address ? this.user.address.streetName : '', [Validators.required,
-          Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
+      country: [this.user.address ? this.user.address.country : ''],
+      department: [this.user.address ? this.user.address.department : ''],
+      city: [this.user.address ? this.user.address.city : ''],
+      postalCode: [this.user.address ? this.user.address.postalCode : null],
+      streetNumber: [this.user.address ? this.user.address.streetNumber : ''],
+      streetName: [this.user.address ? this.user.address.streetName : ''],
     })
   }
 
@@ -73,13 +65,15 @@ export class UserEditComponent implements OnInit {
     if (this.editUserForm.status == "VALID") {
       let inputs = this.editUserForm.value
       console.log(inputs)
-
       console.log(this.user);
-      // this.userService.update(this.user).subscribe(user => {
-      //   console.log(user);
-      //   // this.user = user;
-      //   this.updateForm();
-      // })
+
+      this.user.lastName = inputs.lastName;
+
+      this.userService.update(this.user).subscribe(user => {
+        console.log(user);
+        // this.user = user;
+        this.updateForm();
+      })
     }
   }
 }

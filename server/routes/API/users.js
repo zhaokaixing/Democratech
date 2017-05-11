@@ -57,7 +57,7 @@ router.put('/user/:id', (req, res) => {
     let update = updateUser(req.body);
     if (!update) res.status(400).json({'error': 'bad data'});
 
-    db.users.update({_id: mongojs.ObjectId(req.params.id)}, update, {}, (err, user) => {
+    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: update}, {}, (err, user) => {
         if (err) res.send(err);
         res.json(user);
     });
@@ -68,6 +68,7 @@ let updateUser = (user) => {
     upCit = {}
 
     if (user.name) upCit.name = user.name;
+    if (user.lastName) upCit.lastName = user.lastName;
     if (user.mail) upCit.mail = user.mail;
     if (user.password) upCit.password = user.password;
     if (user.description) upCit.description = user.description;

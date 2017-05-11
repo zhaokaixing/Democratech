@@ -3,27 +3,26 @@
     <div class="row tab-content">
         <div role="tabpanel" class="tab-pane active">
             <form class="form-horizontal" id="register-form" [formGroup]="editUserForm" (submit)="editUser($event)" #crisisForm="ngForm">
-                <h6>Les champs accompagnés d'un astérisque sont requis.</h6>
                 <br>
 
                 <div *ngIf="user.isPhysic" class="form-group" [ngClass]="{'has-error':!editUserForm.controls['lastName'].valid}">
-                    <label for="lastName" class="col-sm-2">Nom <span class="asterisque"> * </span> </label>
+                    <label for="lastName" class="col-sm-2">Nom</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="lastName" id="lastName"
-                          placeholder="Entrez votre nom" [formControl]="editUserForm.controls['lastName']" value="{{user.lastName}}">
+                          placeholder="Entrez votre nom" value="{{user.lastName}}" [formControl]="editUserForm.controls['lastName']">
                     </div>
                 </div>
 
                 <div class="form-group" [ngClass]="{'has-error':!editUserForm.controls['name'].valid}">
-                    <label for="name" class="col-sm-2">Prénom <span class="asterisque"> * </span> </label>
+                    <label for="name" class="col-sm-2">Prénom</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom" 
-                          [formControl]="editUserForm.controls['name']" value="{{user.name}}">
+                        <input type="text" class="form-control" name="name" id="name" 
+                        placeholder="Entrez votre prénom" value="{{user.name}}" [formControl]="editUserForm.controls['name']">
                     </div>
                 </div>
 
                 <div *ngIf="user.isPhysic" class="form-group">
-                    <label for="birthDate" class="col-md-2">Date de naissance <span class="asterisque"> * </span></label>
+                    <label for="birthDate" class="col-md-2">Date de naissance</label>
                     <div class="col-md-10" id="birthDate">
                         <div class="col-md-4" [ngClass]="{'has-error':!editUserForm.controls['day'].valid}">
                             <select class="form-control" id="day" [formControl]="editUserForm.controls['day']">
