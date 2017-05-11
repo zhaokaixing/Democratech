@@ -20,6 +20,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileCitizenComponent } from './components/profile/profile-citizen/profile-citizen.component';
 import { ProfileOrganisationComponent } from './components/profile/profile-organisation/profile-organisation.component';
 import { HomeAdminComponent } from './components/admin/home/home-admin.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 
 export function authFactory() {
   return provideAuth({
@@ -42,14 +44,15 @@ export function authFactory() {
     ProfileCitizenComponent,
     ProfileOrganisationComponent,
     ProfileOrganisationComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
   ],
   imports: [
     BrowserModule, CommonModule,
     FormsModule, ReactiveFormsModule,
     HttpModule, JsonpModule,
     AppRoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCPFGAlVK4bEA8olgRQ11w319TRcRjhH4A'})
   ],
   providers: [
     Auth0Service, AuthUserGuardService, AuthAdminGuardService,

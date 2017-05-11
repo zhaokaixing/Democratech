@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import { OpinionService } from "app/services/opinion.service";
@@ -11,6 +11,10 @@ import 'rxjs/add/operator/switchMap';
 import { Opinion } from "app/models/Opinion";
 import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
+
+
+
+
 
 @Component({
   moduleId: module.id,
@@ -26,11 +30,12 @@ export class ProjectComponent implements OnInit {
     profile: any;
     userId: string;
     opinion: Opinion = null;
+    Info={};
 
     constructor(private opinionService: OpinionService,
                 private projectService: ProjectService,
-                private commentService:CommentService, 
-                private router: Router, 
+                private commentService:CommentService,
+                private router: Router,
                 private route: ActivatedRoute,
                 private authService: Auth0Service) {}
 
@@ -42,16 +47,21 @@ export class ProjectComponent implements OnInit {
         })
         .subscribe(project => {
                 this.project = project;
-                
+
                 var progressBar = document.getElementById("progress");
                 progressBar.style.width=((this.project.progress*100).toString())+"%";
 
                 this.getOpinion(project._id);
                 this.getComments(this.project._id);
                 this.getVotesCount(this.project);
+                var objTag = document.getElementById("pdf");
+                if (objTag != null)
+                {
+                    objTag.setAttribute('data', this.project.offers);
+                }
+                this.Info=this.project.tenders;
         });
     }
-
     getUserInfo() {
       this.profile = JSON.parse(localStorage.getItem('profile'));
       if (this.profile)
@@ -65,7 +75,7 @@ export class ProjectComponent implements OnInit {
                 this.updateVoteStyle(res ? res.opinion : 2)
                 this.getVotesCount(this.project);
             })
-        } 
+        }
     }
     getComments(idProject: string):void{
         this.commentService
@@ -78,14 +88,15 @@ export class ProjectComponent implements OnInit {
 
     updateVoteStyle(vote:number):void{
         if(vote==1){
+          console.log("Vote pour")
             var button = document.getElementById("like");
-            button.style.color='rgb(91,192,222)';
+            button.style.color='rgba(91,192,222,100)';
             button = document.getElementById("dislike");
             button.style.color='white';
         }
         else if(vote==0){
             var button = document.getElementById("dislike");
-            button.style.color='rgb(91,192,222)';
+            button.style.color='rgba(91,192,222,100)';
             button = document.getElementById("like");
             button.style.color='white';
         }
@@ -102,7 +113,7 @@ export class ProjectComponent implements OnInit {
         var name = this.profile['name'];
         let comment = {
           idProject: this.project._id,
-          date: new Date(),
+          date: Date.now(),
           content: this.messageToSend,
           name: name
         }
@@ -112,7 +123,7 @@ export class ProjectComponent implements OnInit {
         this.messageToSend="";
         this.getComments(this.project._id);
     }
-    
+
 
     vote(value:number):void{
         if (!this.opinion) {
