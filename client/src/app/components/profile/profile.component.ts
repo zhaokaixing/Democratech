@@ -90,21 +90,22 @@ export class ProfileComponent implements OnInit {
 
       console.log(this.user);
 
-      // var modalForm = document.getElementById("myModalLabel");
-      // modalForm.setAttribute('data-dismiss', )
-      // this.userService.update(this.user).subscribe(res =>{
-      //   //console.log(res);
-      //   if (res._id) {
-      //     this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
-      //     var jQuery : any;
-      //     jQuery("#myModalLabel").modal("hide");
-      //     this.router.navigate(['/profile']) ;
-      //     console.log('success');
-      //
-      //
-      //   }
-      //    else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
-      // })
+      this.userService.update(this.user).subscribe(res =>{
+        console.log('result:');
+        console.log(res);
+        if (res.ok) {
+          this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
+          
+          // this.router.navigate(['/profile']) ;
+
+          var modalForm = document.getElementById("myModalLabel");
+          // modalForm.setAttribute('data-dismiss', 'modal');
+          console.log('success');
+      
+      
+        }
+         else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
+      })
 
     }
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "app/services/user.service";
 import { User } from "app/models/User";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
@@ -18,6 +18,7 @@ export class UserEditComponent implements OnInit {
   public editUserForm: FormGroup;
 
   constructor(private route: ActivatedRoute, 
+              private router: Router, 
               private userService: UserService, 
               private formBuilder: FormBuilder, 
               private departmentService: DepartmentService) {
@@ -36,17 +37,21 @@ export class UserEditComponent implements OnInit {
     this.departmentService.getAll().subscribe(dpts => {
       this.country.departments = dpts;
     })
-  }
+  } 
 
   updateForm() {
+    if (this.user.birthDate) console.log(this.user.birthDate.toString().substring(8,10));
+    if (this.user.birthDate) console.log(this.user.birthDate.toString().substring(5,7));
+    if (this.user.birthDate) console.log(this.user.birthDate.toString().substring(0,4));
+
     this.editUserForm = this.formBuilder.group({
       name: [this.user.name, Validators.required],
       lastName: [this.user.lastName],
       mail: [this.user.mail, Validators.required],
 
-      day: [this.user.birthDate ? +this.user.birthDate.toString().substring(8,10) : ''],
-      month: [this.user.birthDate ? +this.user.birthDate.toString().substring(5,7) : ''],
-      year: [this.user.birthDate ? +this.user.birthDate.toString().substring(0,4) : ''],
+      day: [this.user.birthDate ? this.user.birthDate.toString().substring(8,10) : ''],
+      month: [this.user.birthDate ? this.user.birthDate.toString().substring(6,8) : ''],
+      year: [this.user.birthDate ? this.user.birthDate.toString().substring(0,4) : ''],
 
       type: [this.user.isPublic ? 'Public' : 'Private'],
 
@@ -62,8 +67,6 @@ export class UserEditComponent implements OnInit {
   editUser($event) {
     if (this.editUserForm.status == "VALID") {
       let inputs = this.editUserForm.value
-      console.log(inputs)
-      console.log(this.user);
 
       this.user.name = inputs.name;
       this.user.address.country = inputs.country;
@@ -83,8 +86,12 @@ export class UserEditComponent implements OnInit {
       this.userService.update(this.user).subscribe(res => {
         console.log('result:');
         console.log(res);
-        //this.user = res;
-        this.updateForm();
+
+        this.userService.getOne(this.user._id).subscribe(user => {
+          this.user = user
+          console.log(user);
+          this.updateForm();
+        });
       })
     }
     else console.log('form not valid')
