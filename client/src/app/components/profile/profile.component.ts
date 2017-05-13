@@ -7,7 +7,7 @@ import { ProfileCitizenComponent } from "app/components/profile/profile-citizen/
 import { ProfileOrganisationComponent } from "app/components/profile/profile-organisation/profile-organisation.component";
 import { DepartmentService } from "app/services/department.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import {userInfo} from "os";
+import { userInfo } from "os";
 
 @Component({
   selector: 'app-profile',
@@ -21,15 +21,13 @@ export class ProfileComponent implements OnInit {
   infoUserForm : FormGroup;
   departments = [{}];
 
-
   constructor(private userService: UserService, private departmentService: DepartmentService,
               private formBuilder: FormBuilder, private flashMessagesService: FlashMessagesService,
               private router : Router) {
 
     this.initializeFormInfo();
-
   }
-
+  
   ngOnInit() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
@@ -47,25 +45,20 @@ export class ProfileComponent implements OnInit {
 
     if(this.user.isPhysic){
       this.infoUserForm = this.formBuilder.group({
-
         lastName: [this.user.lastName ? this.user.lastName : '', [Validators.required,
           Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
         name: [this.user.name, [Validators.required,
           Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
+        date: [this.user.birthDate ? this.user.birthDate.toString().substring(0,10): ''],
         mail: [this.user.mail , Validators.required],
-
         description:[this.user.description]
       })
-    }else{
+    }
+    else {
       this.infoUserForm = this.formBuilder.group({
-
         name: [this.user.name, [Validators.required,
           Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
         mail: [this.user.mail , Validators.required],
-
         description:[this.user.description]
       })
     }
@@ -85,6 +78,7 @@ export class ProfileComponent implements OnInit {
       this.user.name = params.name;
       if(this.user.isPhysic){
         this.user.lastName = params.lastName;
+        this.user.birthDate = new Date(params.date);
       }
       this.user.description = params.description;
 
@@ -96,10 +90,8 @@ export class ProfileComponent implements OnInit {
         if (res.ok) {
           this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
           
-          // this.router.navigate(['/profile']) ;
+          this.router.navigate(['/profile']) ;
 
-          var modalForm = document.getElementById("myModalLabel");
-          // modalForm.setAttribute('data-dismiss', 'modal');
           console.log('success');
       
       

@@ -74,7 +74,11 @@
           <div class="form-group" [ngClass]="{'has-error':!infoUserForm.controls['mail'].valid}">
             <label for="mail">Email</label>
             <input type="email" class="form-control" id="mail" [formControl]="infoUserForm.controls['mail']"/>
-      </div>
+          </div>
+          <div *ngIf="user.isPhysic" class="form-group" [ngClass]="{'has-error':!infoUserForm.controls['date'].valid}">
+            <label for="date">Date de naissance</label>
+            <input type="date" class="form-control" name="date" id="date" [formControl]="infoUserForm.controls['date']">
+          </div>
           <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" rows="5" id="description" [formControl]="infoUserForm.controls['description']"></textarea>
