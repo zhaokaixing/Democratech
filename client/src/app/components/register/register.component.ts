@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, group} from '@angular/core';
 import { Router } from "@angular/router";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 
 import { FlashMessagesService } from "angular2-flash-messages";
 import { CityService } from "app/services/city.service";
@@ -19,7 +19,6 @@ import { Country } from "app/models/Country";
 })
 
 export class RegisterComponent implements OnInit {
-
   country: Country = new Country('France');
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
@@ -34,22 +33,27 @@ export class RegisterComponent implements OnInit {
     this.registerUserForm = formBuilder.group({
 
       'lastName': [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
       'name': [null, [Validators.required,
-       Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
       'email': [null, Validators.required],
 
+      /*matchingPassword: formBuilder.group({
+        password: ['', Validators.required],
+        passwordConfirmation: ['', Validators.required]
+      }, {validator: this.areEqual}),*/
+
       'password': [null, [Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(12),
+        Validators.maxLength(15),
         //To improve
         Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
       'passwordConfirmation' : [null, [Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(12),
+        Validators.maxLength(15),
         Validators.pattern('[a-zA-Z]+[0-9]+')
       ]],
 
@@ -57,21 +61,21 @@ export class RegisterComponent implements OnInit {
       'month' : ['', Validators.required],
       'year' : ['', Validators.required],
 
-      'country' : ['', Validators.required],
+      'country' : [''],
 
-      'department' : ['', Validators.required],
+      'department' : [''],
 
-      'city' : [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
+      'city' : [null,
+        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'postalCode' : [null, [Validators.required,
-        Validators.pattern('[0-9]{5}')]],
+      'postalCode' : [null,[Validators.pattern('[0-9]{5}')]],
 
-      'streetNumber' : [null, Validators.required],
+      'streetNumber' : [null],
 
-      'streetName' : [null, [Validators.required,
-        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
+      'streetName' : [null,
+        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]')]],
     })
+
 
     /**
      * ****************************************************************************
@@ -122,36 +126,36 @@ export class RegisterComponent implements OnInit {
 
     this.registerOrganisationForm = formBuilder.group({
       'name': [null, [Validators.required,
-          Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
+        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'mail': [null, Validators.required],
+      'email': [null, Validators.required],
 
       'password': [null, [Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(12),
-          //To improve
-          Validators.pattern('[a-zA-Z]+[0-9]+')]],
+        Validators.minLength(6),
+        Validators.maxLength(12),
+        //To improve
+        Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
       'passwordConfirmation' : [null, [Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(12),
-          Validators.pattern('[a-zA-Z]+[0-9]+')]],
+        Validators.minLength(6),
+        Validators.maxLength(12),
+        Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
       'type': ['Public'],
 
-      'country' : ['', [Validators.required]],
+      'country' : [''],
 
-      'department' : ['', Validators.required],
+      'department' : [''],
 
-      'city' : [null, Validators.required],
+      'city' : [null],
 
-      'postalCode' : [null, [Validators.required,
-          Validators.pattern('[0-9]{5}')]],
+      'postalCode' : [null,
+        [Validators.pattern('[0-9]{5}')]],
 
-      'streetNumber' : [null, Validators.required],
+      'streetNumber' : [null],
 
-      'streetName' : [null, [Validators.required,
-          Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
+      'streetName' : [null,
+        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
     })
   }
 

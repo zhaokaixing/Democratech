@@ -4,7 +4,7 @@ let isValidAddress = (address) => {
 }
 
 let isValidBasic = (user) => {
-    return !(!user.mail || !user.password || !user.address || !isValidAddress(user.address));
+    return !(!user.mail || !user.password || !user.address);
 };
 
 let isValidCitizen = (citizen) => {
@@ -14,10 +14,10 @@ let isValidCitizen = (citizen) => {
 let isValidOrganisation = (organisation) => {
     if (!isValidBasic(organisation) || !organisation.name || !(organisation.isPublic + '')) {
         return false
-    } 
+    }
     // else if (!organisation.isPublic && !organisation.SIRET){
     //     return false
-    // } 
+    // }
     return true
 }
 
@@ -26,7 +26,7 @@ exports.isValidCitizen;
 
 exports.isValidUser = (user) => {
     return user.isPhysic ? isValidCitizen(user) : isValidOrganisation(user);
-} 
+}
 
 exports.isValidProject = (project) => {
     return (!isValidBasic(project) || !project.title || !project.latitude || !project.longitude||!project.address)
