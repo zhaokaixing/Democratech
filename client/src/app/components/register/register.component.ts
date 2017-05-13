@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
       'name': [null, [Validators.required,
         Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'email': [null, Validators.required],
+      email: [null, Validators.required],
 
       /*matchingPassword: formBuilder.group({
         password: ['', Validators.required],
@@ -51,15 +51,13 @@ export class RegisterComponent implements OnInit {
         //To improve
         Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
-      'passwordConfirmation' : [null, [Validators.required,
+      passwordConfirmation : [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(15),
         Validators.pattern('[a-zA-Z]+[0-9]+')
       ]],
 
-      'day' : ['', Validators.required],
-      'month' : ['', Validators.required],
-      'year' : ['', Validators.required],
+      date: [null],
 
       'country' : [''],
 
@@ -75,54 +73,6 @@ export class RegisterComponent implements OnInit {
       'streetName' : [null,
         [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]')]],
     })
-
-
-    /**
-     * ****************************************************************************
-     * pre-fill citizen form
-     * ****************************************************************************
-     */
-    // this.registerUserForm = formBuilder.group({
-
-    //   'lastName': ['Doe', [Validators.required,
-    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
-    //   'name': ['John', [Validators.required,
-    //    Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
-
-    //   'email': ['jd@mail.fr', Validators.required],
-
-    //   'password': ['Azerty1', [Validators.required,
-    //     Validators.minLength(6),
-    //     Validators.maxLength(12),
-    //     //To improve
-    //     Validators.pattern('[a-zA-Z]+[0-9]+')]],
-
-    //   'passwordConfirmation' : ['Azerty1', [Validators.required,
-    //     Validators.minLength(6),
-    //     Validators.maxLength(12),
-    //     Validators.pattern('[a-zA-Z]+[0-9]+')
-    //   ]],
-
-    //   'day' : ['1', Validators.required],
-    //   'month' : ['1', Validators.required],
-    //   'year' : ['1991', Validators.required],
-
-    //   'country' : ['France', Validators.required],
-
-    //   'department' : ['1', Validators.required],
-
-    //   'city' : ['test', [Validators.required,
-    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
-
-    //   'postalCode' : [45000, [Validators.required,
-    //     Validators.pattern('[0-9]{5}')]],
-
-    //   'streetNumber' : [1, Validators.required],
-
-    //   'streetName' : ['rue du test', [Validators.required,
-    //     Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*-* *[a-zA-Z]*')]],
-    // })
 
     this.registerOrganisationForm = formBuilder.group({
       'name': [null, [Validators.required,
@@ -187,7 +137,6 @@ export class RegisterComponent implements OnInit {
       }
     }
     else if (this.registerUserForm.status == "VALID") {
-      console.log(localStorage.getItem('profile')['identities'][0]['user_id']);
       let params = this.registerUserForm.value
       newUser = {
         isPhysic: true,
@@ -195,7 +144,7 @@ export class RegisterComponent implements OnInit {
         lastName: params.lastName,
         mail: params.email,
         password: params.password,
-        birthDate: new Date(params.year, params.month, params.day),
+        birthDate: new Date(params.date),
         address : {
           streetNumber: params.streetNumber,
           streetName : params.streetName,
