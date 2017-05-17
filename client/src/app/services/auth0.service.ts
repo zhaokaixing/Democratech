@@ -13,7 +13,7 @@ export class Auth0Service {
   lock = new Auth0Lock(Config.clientID, Config.domain,{
           auth: {redirectUrl: Config.callbackURL, responseType: 'token'},
           language: 'fr',
-          signupLink: BaseUrl.client + '/inscription'
+          allowSignUp: false
       });
 
   constructor(private router: Router, private globalService: GlobalProfileService, private userService : UserService) {
