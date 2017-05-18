@@ -24,18 +24,51 @@ export class Auth0Service {
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
         if (error) console.log(error);
 
-        console.log('profile:');
+        // let profile = JSON.stringify(profileStr);
         console.log(profile);
 
-        globalService.profile = JSON.stringify(profile);
-        console.log(profile['user_id']);
-        userService.getOne(profile['identities'][0]['user_id']).subscribe(
-          res => {console.log('trouve')},
-          err => {
-            console.log('non trouve');
-            this.router.navigate(['#registerCitizen']);
-          }
-        );
+        if(profile['identities'][0]['isSocial'])
+        {
+          localStorage.setItem('profile', JSON.stringify(profile));
+
+          console.log('its social  user_id : ');
+          console.log(profile['identities'][0]['user_id']);
+
+          userService.getWithKey('socialId', profile['identities'][0]['user_id']).subscribe(
+            res => {
+              if(res == null){
+                console.log('Social not found');
+                localStorage.removeItem('id_token');
+
+                this.router.navigate(['inscription']);
+              }
+              else {
+                console.log('Social found');
+
+                profile['identities'][0]['user_id'] = res._id;
+                console.log(profile);
+                globalService.profile = JSON.stringify(profile);
+              }
+            },
+            err => {
+              console.log('Social error');
+              localStorage.removeItem('profile');
+              this.router.navigate(['#registerCitizen']);
+            }
+          );
+        }
+        else {
+          globalService.profile = JSON.stringify(profile);
+          userService.getOne(profile['identities'][0]['user_id']).subscribe(
+            res => {
+              console.log('trouve')
+            },
+            err => {
+              console.log('non trouve');
+              this.router.navigate(['#registerCitizen']);
+            }
+          );
+        }
 
         var redirectUrl: string = localStorage.getItem('redirect_url');
         if (redirectUrl != undefined){

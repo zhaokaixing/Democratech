@@ -9,17 +9,19 @@ import { UserService } from "app/services/user.service";
 
 import { User } from "app/models/User";
 import { Country } from "app/models/Country";
+import {GlobalProfileService} from "../../services/global.service";
 
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [ DepartmentService, CityService, FormBuilder ]
+  providers: [ DepartmentService, CityService, FormBuilder]
 })
 
 export class RegisterComponent implements OnInit {
-  country: Country = new Country('France');
+  country: Country = new Country('France')
+  registerProfile: {}
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
 
@@ -28,17 +30,20 @@ export class RegisterComponent implements OnInit {
               private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
+              private globalService : GlobalProfileService,
               private flashMessagesService: FlashMessagesService) {
 
+    this.registerProfile = JSON.parse(localStorage.getItem('profile'));
+    console.log(this.registerProfile)
+
     this.registerUserForm = formBuilder.group({
+      'lastName': [this.registerProfile ? this.registerProfile["family_name"] : null, [Validators.required,
+        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'lastName': [null, [Validators.required,
-        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
+      'name': [this.registerProfile ? this.registerProfile["given_name"] : null, [Validators.required,
+       Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'name': [null, [Validators.required,
-        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
-
-      email: [null, Validators.required],
+      'mail': [this.registerProfile ? this.registerProfile["email"] : null, Validators.required],
 
       /*matchingPassword: formBuilder.group({
         password: ['', Validators.required],
@@ -78,7 +83,7 @@ export class RegisterComponent implements OnInit {
       'name': [null, [Validators.required,
         Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'email': [null, Validators.required],
+      'mail': [this.registerProfile ? this.registerProfile["email"] : null, Validators.required],
 
       'password': [null, [Validators.required,
         Validators.minLength(6),
@@ -120,6 +125,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerOrganisationForm.status == "VALID") {
       let inputs = this.registerOrganisationForm.value
       newUser = {
+        socialId: this.registerProfile['identities'][0]['user_id'],
         isPhysic: false,
         name: inputs.name,
         mail: inputs.email,
@@ -139,6 +145,7 @@ export class RegisterComponent implements OnInit {
     else if (this.registerUserForm.status == "VALID") {
       let params = this.registerUserForm.value
       newUser = {
+        socialId: this.registerProfile['identities'][0]['user_id'],
         isPhysic: true,
         name: params.name,
         lastName: params.lastName,
@@ -168,3 +175,4 @@ export class RegisterComponent implements OnInit {
     })
   }
 }
+
