@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   getUser(profileStr: any) {
     let profile = JSON.parse(profileStr);
     if (profile) { 
-      let userId = profile['identities'][0]['user_id'].replace('auth0|', '') ;
+      let userId = profile['identities'][0]['user_id'];
       if (userId) {
         this.userService.getOne(userId).subscribe(res => {
           this.user = res;

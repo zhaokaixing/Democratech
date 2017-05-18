@@ -26,6 +26,20 @@ export class UserService {
             .catch(err => this.handleError(err));
     }
 
+    userExist(mail: string): boolean {
+        let result = false;
+        this.http.get(BaseUrl.API + 'api/user/mail/'+mail)
+            .map(res => res.json())
+            .catch(err => this.handleError(err)).subscribe(usr => {
+                if (usr.mail && usr.mail == mail) {
+                    result = true;
+                }
+                else result = false;
+            });
+            
+        return result;
+    }
+
     add(user: User): Observable<User> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

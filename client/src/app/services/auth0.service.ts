@@ -33,7 +33,7 @@ export class Auth0Service {
           res => {console.log('trouve')},
           err => {
             console.log('non trouve');
-            this.router.navigate(['#registerCitizen']);
+            this.router.navigate(['inscription']);
           }
         );
 

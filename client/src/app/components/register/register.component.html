@@ -12,7 +12,7 @@
                 <h6>Les champs accompagnés d'un astérisque sont requis.</h6>
                 <br>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['lastName'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['lastName'].valid && firstSubmit}">
                     <label for="lastName" class="col-sm-2">Nom <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="lastName" id="lastName"
@@ -20,30 +20,34 @@
                     </div>
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['name'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['name'].valid && firstSubmit}">
                     <label for="name" class="col-sm-2">Prénom <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="name" id="name" placeholder="Entrez votre prénom" [formControl]="registerUserForm.controls['name']">
                     </div>
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['email'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['email'].valid && firstSubmit}">
                     <label for="email" class="col-sm-2">Adresse Email <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email" [formControl]="registerUserForm.controls['email']">
                     </div>
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['password'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['password'].valid && firstSubmit}">
                     <label for="password" class="col-sm-2">Mot de passe <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
+                        <em class="text-danger" *ngIf="registerUserForm.controls['password'].hasError('minlength')">
+                            Le mot de passe doit comporter au moins 6 caractères, dont une miniscule, une majuscule et un chiffre
+                        </em>
                         <input type="password" class="form-control" name="password" id="password"  placeholder="Entrez votre mot de passe" [formControl]="registerUserForm.controls['password']">
                     </div>
                 </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['passwordConfirmation'].valid}">
+                <div class="form-group" [ngClass]="{'has-error':!registerUserForm.controls['passwordConfirmation'].valid && firstSubmit}">
                     <label for="passwordConfirmation" class="col-sm-2">Confirmation du mot de passe <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
+                        <em class="text-danger" *ngIf="firstSubmit">Les mots de passe doivent être identiques</em>
                         <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirmez votre mot de passe" [formControl]="registerUserForm.controls['passwordConfirmation']">
                     </div>
                 </div>
@@ -138,6 +142,7 @@
                 <div class="form-group" [ngClass]="{'has-error':!registerOrganisationForm.controls['password'].valid}">
                     <label for="password" class="col-sm-2">Mot de passe <span class="asterisque"> * </span> </label>
                     <div class="col-sm-10">
+                        <em *ngIf="!registerOrganisationForm.controls['password'].valid && firstSubmit">Le mot de passe doit comporter au moins 6 caractères</em>
                         <input type="password" class="form-control" name="password" id="password"
                             placeholder="Entrez votre mot de passe" [formControl]="registerOrganisationForm.controls['password']">
                     </div>

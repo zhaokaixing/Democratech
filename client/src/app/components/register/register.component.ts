@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   country: Country = new Country('France');
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
+  firstSubmit: boolean;
 
   constructor(private departmentService: DepartmentService,
               private cityService: CityService,
@@ -30,12 +31,13 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private flashMessagesService: FlashMessagesService) {
 
+    this.firstSubmit = false;
     this.registerUserForm = formBuilder.group({
 
-      'lastName': [null, [Validators.required,
+      lastName: [null, [Validators.required,
         Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'name': [null, [Validators.required,
+      name: [null, [Validators.required,
         Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
       email: [null, Validators.required],
@@ -45,32 +47,32 @@ export class RegisterComponent implements OnInit {
         passwordConfirmation: ['', Validators.required]
       }, {validator: this.areEqual}),*/
 
-      'password': [null, [Validators.required,
+      password: [null, [Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(15),
+        Validators.maxLength(255),
         //To improve
         Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
       passwordConfirmation : [null, [Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(15),
+        Validators.maxLength(255),
         Validators.pattern('[a-zA-Z]+[0-9]+')
       ]],
 
       date: [null],
 
-      'country' : [''],
+      country : [''],
 
-      'department' : [''],
+      department : [''],
 
-      'city' : [null,
+      city : [null,
         [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'postalCode' : [null,[Validators.pattern('[0-9]{5}')]],
+      postalCode : [null,[Validators.pattern('[0-9]{5}')]],
 
-      'streetNumber' : [null],
+      streetNumber : [null],
 
-      'streetName' : [null,
+      streetName : [null,
         [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]')]],
     })
 
@@ -116,6 +118,8 @@ export class RegisterComponent implements OnInit {
   // todo: add SIRET number ?
   doRegister($event: any) {
     $event.preventDefault();
+    this.firstSubmit = true;
+
     var newUser: User;
     if (this.registerOrganisationForm.status == "VALID") {
       let inputs = this.registerOrganisationForm.value
@@ -138,6 +142,8 @@ export class RegisterComponent implements OnInit {
     }
     else if (this.registerUserForm.status == "VALID") {
       let params = this.registerUserForm.value
+      let userExist = this.userService.userExist(params.mail);
+      console.log('user exist: ' + userExist);
       newUser = {
         isPhysic: true,
         name: params.name,
@@ -157,14 +163,14 @@ export class RegisterComponent implements OnInit {
     }
     console.log(newUser);
 
-    this.userService.add(newUser).subscribe(res =>{
-      console.log(res)
-      if (res._id) {
-        this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
-        this.router.navigate(['/'])
-        // console.log('success');
-      }
-      else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
-    })
+    // this.userService.add(newUser).subscribe(res =>{
+    //   console.log(res)
+    //   if (res._id) {
+    //     this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
+    //     this.router.navigate(['/'])
+    //     // console.log('success');
+    //   }
+    //   else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
+    // })
   }
 }
