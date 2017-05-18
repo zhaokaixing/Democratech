@@ -30,8 +30,8 @@ export class Auth0Service {
         if(profile['identities'][0]['isSocial'])
         {
           localStorage.setItem('profile', JSON.stringify(profile));
-          
-          console.log('its social');
+
+          console.log('its social  user_id : ');
           console.log(profile['identities'][0]['user_id']);
 
           userService.getWithKey('socialId', profile['identities'][0]['user_id']).subscribe(
@@ -42,7 +42,13 @@ export class Auth0Service {
 
                 this.router.navigate(['inscription']);
               }
-              else console.log('Social found')
+              else {
+                console.log('Social found');
+
+                profile['identities'][0]['user_id'] = res._id;
+                console.log(profile);
+                globalService.profile = JSON.stringify(profile);
+              }
             },
             err => {
               console.log('Social error');
