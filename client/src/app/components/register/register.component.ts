@@ -20,7 +20,6 @@ import {GlobalProfileService} from "../../services/global.service";
 })
 
 export class RegisterComponent implements OnInit {
-
   country: Country = new Country('France')
   registerProfile: {}
   registerUserForm : FormGroup;
@@ -44,7 +43,7 @@ export class RegisterComponent implements OnInit {
       'name': [this.registerProfile ? this.registerProfile["given_name"] : null, [Validators.required,
        Validators.pattern('[a-zA-Z]*-* *[a-zA-Z]*')]],
 
-      'email': [this.registerProfile ? this.registerProfile["email"] : null, Validators.required],
+      'mail': [this.registerProfile ? this.registerProfile["email"] : null, Validators.required],
 
       /*matchingPassword: formBuilder.group({
         password: ['', Validators.required],
