@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: Auth0Service, private userService: UserService, private globalService: GlobalProfileService) {}
 
   ngOnInit(): void {
-    this.getUser(localStorage.getItem('profile'));
+    this.getUser(this.globalService.profile);
     this.globalService._profile.subscribe(res => {
       this.getUser(res as string);
     })
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   getUser(profileStr: any) {
     let profile = JSON.parse(profileStr);
     if (profile) { 
-      let userId = profile['identities'][0]['user_id'].replace('auth0|', '') ;
+      let userId = profile['identities'][0]['user_id'];
       if (userId) {
         this.userService.getOne(userId).subscribe(res => {
           this.user = res;

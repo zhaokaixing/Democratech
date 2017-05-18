@@ -4,7 +4,8 @@
 import {Project} from "./Project";
 
 export class User {
-  readonly _id?: string;
+  _id?: string;
+  socialId?: string;
   isPhysic?: boolean;
   mail: string;
   password: string;
