@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
   infoUserForm : FormGroup;
   passwordFormGroup : FormGroup;
+  addressFormGroup : FormGroup;
   departments = [{}];
 
   constructor(private userService: UserService, private departmentService: DepartmentService,
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit {
 
     this.initializeFormInfo();
     this.initializePasswordForm();
+    this.initializeAddressForm();
   }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class ProfileComponent implements OnInit {
         this.user.image = this.user.image ? this.user.image : profile['picture'];
         this.initializeFormInfo();
         this.initializePasswordForm();
+        this.initializeAddressForm();
         console.log(this.user);
       });
   }
@@ -86,6 +89,24 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+
+  initializeAddressForm(){
+    this.addressFormGroup = this.formBuilder.group({
+      country : [''],
+
+      department : [''],
+
+      city : [null],
+
+      postalCode : [null,
+        [Validators.pattern('[0-9]{5}')]],
+
+      streetNumber : [null],
+
+      streetName : [null,
+        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
+    })
+  }
   getDepartments() {
     this.departmentService.getAll().subscribe(dpts => {
       this.departments = dpts;
@@ -122,6 +143,9 @@ export class ProfileComponent implements OnInit {
   }
 
   changePassword($event: any) {
+    if (this.infoUserForm.status == "VALID") {
+      let params = this.passwordFormGroup.value;
 
+    }
   }
 }

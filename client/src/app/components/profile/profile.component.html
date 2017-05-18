@@ -111,15 +111,18 @@
 
       <!-- Modal Body -->
       <div class="modal-body">
-        <form role="form">
-          <div class="form-group">
+        <form role="form" [formGroup]="addressFormGroup" (submit)="saveAddress($event)">
+          <div class="form-group" [ngClass]="{'has-error':!addressFormGroup.controls['country'].valid}">
             <label for="country">Pays</label>
-            <input type="text" class="form-control" id="country" value="{{user.address?.country}}"/>
+            <select class="form-control" id="country" [formControl]="addressFormGroup.controls['country']">
+              <option value="">-- sélectionnez un département --</option>
+              <option value='France'>France</option>
+            </select>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-error':!addressFormGroup.controls['department'].valid}">
             <label for="department" class="col-sm-2">Département</label>
 
-            <select class="form-control" id="department">
+            <select class="form-control" id="department" [formControl]="addressFormGroup.controls['department']">
               <option value="">-- sélectionnez un département --</option>
               <option *ngFor="let department of departments"
                 [selected]="department.name == user.address?.department"
@@ -129,13 +132,21 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-error':!addressFormGroup.controls['postalCode'].valid}">
             <label for="postalCode">Code postal</label>
-            <input type="text" class="form-control" id="postalCode" value="{{user.address?.postalCode}}"/>
+            <input type="text" class="form-control" id="postalCode" [formControl]="addressFormGroup.controls['postalCode']"/>
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-error':!addressFormGroup.controls['city'].valid}">
             <label for="city">Ville</label>
-            <input type="text" class="form-control" id="city" value="{{user.address?.city}}"/>
+            <input type="text" class="form-control" id="city" [formControl]="addressFormGroup.controls['city']"/>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!addressFormGroup.controls['streetNumber'].valid}">
+            <label for="streetNumber">Numéro de rue</label>
+            <input type="text" class="form-control" id="streetNumber" [formControl]="addressFormGroup.controls['streetNumber']"/>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!addressFormGroup.controls['streetName'].valid}">
+            <label for="city">Rue</label>
+            <input type="text" class="form-control" id="streetName" [formControl]="addressFormGroup.controls['streetName']"/>
           </div>
           <p>
             <button type="submit" class="btn btn-default" >Modifier</button>
