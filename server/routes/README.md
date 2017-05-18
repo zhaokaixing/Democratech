@@ -34,9 +34,9 @@ _________________________________________________
     * url: users
     * method: GET
 #### Obtenir un utilisateur : 
-    * url: user/:userId | user/:email
+    * url: user/:userId | user/:email | user/:key/:value
     * method: GET
-    * params: { userId: string } | { email: string }
+    * params: { userId: string } | { email: string } | { key: string , value: string }
 #### Ajouter un utilisateur :
     * url: user
     * method: POST
@@ -66,7 +66,7 @@ _________________________________________________
     * method: POST
     * body: Project*
     * content-type: application/json
-#### Mettre à jour un projet (ToDo) :
+#### Mettre à jour un projet :
     * url: project/:projectId
     * method: PUT
     * params: { projectId: string }
@@ -76,7 +76,54 @@ _________________________________________________
     * url: project/:projectId
     * method: DELETE
     * params: { projectId: string }
-_________________________________________________
+_____________
+## API commentaires <a id=commApi></a>
+#### Obtenir tous les commentaires en rapport avec un projet : 
+    * url: comments/:projectId
+    * method: GET
+    * params: { projectId: string} 
+
+#### Ajouter un commentaire :
+    * url: comment
+    * method: POST
+    * body: Comment*
+    * content-type: application/json
+      
+#### Supprimer un commentaire :
+    * url: comment/:commentId
+    * method: DELETE
+    * params: { commentId : string }
+_____________________
+## API opinions <a id=opsApi></a>
+#### Obtenir le nombre de vote pour un projet : 
+    * url: opinion/count/:projectId/:vote
+    * method: GET
+    * params: { projectId: string , vote: number } 
+    vote = 0 => Contre, vote = 1 => Pour
+        
+#### Obtenir l'opinion d'un utilisateur par rapport à un projet: 
+    * url: opinion/:projectId/:userId
+    * method: GET
+    * params: { projectId: string , userId: string }
+    
+#### Ajouter une opinion :
+    * url: opinion
+    * method: POST
+    * body: Opinion*
+    * content-type: application/json
+    
+#### Mettre à jour une opinion :
+    * url: opinion/:opinionId
+    * method: PUT
+    * params: { opinionId: string }
+    * body: Opinion*
+    * content-type: application/json 
+       
+#### Supprimer une opinion :
+    * url: opinion/:opinionId
+    * method: DELETE
+    * params: { opinionId: string }
+_______________
 ## ToDo <a id=todo></a>
     * mise à jour projet
     * sécuriser avec jwt
