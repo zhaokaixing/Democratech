@@ -8,6 +8,7 @@ import { ProfileOrganisationComponent } from "app/components/profile/profile-org
 import { DepartmentService } from "app/services/department.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { userInfo } from "os";
+import {$} from "protractor";
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
   infoUserForm : FormGroup;
+  passwordFormGroup : FormGroup;
   departments = [{}];
 
   constructor(private userService: UserService, private departmentService: DepartmentService,
@@ -26,8 +28,9 @@ export class ProfileComponent implements OnInit {
               private router : Router) {
 
     this.initializeFormInfo();
+    this.initializePasswordForm();
   }
-  
+
   ngOnInit() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
@@ -37,6 +40,7 @@ export class ProfileComponent implements OnInit {
         this.user = usr ? usr : this.user;
         this.user.image = this.user.image ? this.user.image : profile['picture'];
         this.initializeFormInfo();
+        this.initializePasswordForm();
         console.log(this.user);
       });
   }
@@ -64,6 +68,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  initializePasswordForm(){
+    this.passwordFormGroup = this.formBuilder.group({
+
+      oldPassword: [null],
+
+      password: [null, [Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(12),
+        //To improve
+        Validators.pattern('[a-zA-Z]+[0-9]+')]],
+
+      passwordConf: [null, [Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(12),
+        Validators.pattern('[a-zA-Z]+[0-9]+')]]
+    })
+  }
+
   getDepartments() {
     this.departmentService.getAll().subscribe(dpts => {
       this.departments = dpts;
@@ -89,16 +111,17 @@ export class ProfileComponent implements OnInit {
         console.log(res);
         if (res.ok) {
           this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
-          
           this.router.navigate(['/profile']) ;
-
           console.log('success');
-      
-      
+
+
         }
          else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
       })
-
     }
+  }
+
+  changePassword($event: any) {
+
   }
 }
