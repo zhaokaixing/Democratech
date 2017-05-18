@@ -26,18 +26,19 @@ export class UserService {
             .catch(err => this.handleError(err));
     }
 
-    userExist(mail: string): boolean {
-        let result = false;
-        this.http.get(BaseUrl.API + 'api/user/mail/'+mail)
+    getOneFromField(field: string, value: string): Observable<User> {
+        return this.http.get(BaseUrl.API + 'api/user/'+field+'/'+value)
             .map(res => res.json())
-            .catch(err => this.handleError(err)).subscribe(usr => {
-                if (usr.mail && usr.mail == mail) {
-                    result = true;
-                }
-                else result = false;
-            });
-            
-        return result;
+            .catch(err => this.handleError(err));
+    }
+
+    userExist(mail: string, callback: (data: boolean) => void): void {
+        let user = this.getOneFromField('mail', mail);
+        user.subscribe(usr => {
+            console.log(usr)
+            if (usr) callback(true);
+            else callback(false);
+        });
     }
 
     add(user: User): Observable<User> {

@@ -64,4 +64,15 @@ router.put('/user/:id', (req, res) => {
     });
 })
 
+router.put('/user/:id', (req, res) => {
+    let user = req.body;
+    if (!user) res.status(400).json({'error': 'bad data'});
+    delete user._id;
+
+    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: user}, {}, (err, update) => {
+        if (err) res.send(err);
+        res.json(update);
+    });
+})
+
 module.exports = router;

@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       name: [null, [Validators.required,
         Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      email: [null, Validators.required],
+      mail: [null, Validators.required],
 
       /*matchingPassword: formBuilder.group({
         password: ['', Validators.required],
@@ -77,36 +77,36 @@ export class RegisterComponent implements OnInit {
     })
 
     this.registerOrganisationForm = formBuilder.group({
-      'name': [null, [Validators.required,
+      name: [null, [Validators.required,
         Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
 
-      'email': [null, Validators.required],
+      mail: [null, Validators.required],
 
-      'password': [null, [Validators.required,
+      password: [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12),
         //To improve
         Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
-      'passwordConfirmation' : [null, [Validators.required,
+      passwordConfirmation : [null, [Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12),
         Validators.pattern('[a-zA-Z]+[0-9]+')]],
 
-      'type': ['Public'],
+      type: ['Public'],
 
-      'country' : [''],
+      country: [''],
 
-      'department' : [''],
+      department: [''],
 
-      'city' : [null],
+      city: [null],
 
-      'postalCode' : [null,
+      postalCode: [null,
         [Validators.pattern('[0-9]{5}')]],
 
-      'streetNumber' : [null],
+      streetNumber: [null],
 
-      'streetName' : [null,
+      streetName: [null,
         [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
     })
   }
@@ -142,8 +142,11 @@ export class RegisterComponent implements OnInit {
     }
     else if (this.registerUserForm.status == "VALID") {
       let params = this.registerUserForm.value
-      let userExist = this.userService.userExist(params.mail);
-      console.log('user exist: ' + userExist);
+      console.log(params.mail);
+      this.userService.userExist(params.mail, res => {
+        console.log('user exist: ' + res);
+      })
+
       newUser = {
         isPhysic: true,
         name: params.name,
