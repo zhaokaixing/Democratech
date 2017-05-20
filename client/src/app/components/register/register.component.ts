@@ -1,14 +1,16 @@
 import {Component, OnInit, group} from '@angular/core';
 import { Router } from "@angular/router";
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from "@angular/forms";
 
 import { FlashMessagesService } from "angular2-flash-messages";
 import { CityService } from "app/services/city.service";
 import { DepartmentService } from "app/services/department.service";
 import { UserService } from "app/services/user.service";
+import { passwordMatcher } from "./passwordMatcher";
 
 import { User } from "app/models/User";
 import { Country } from "app/models/Country";
+import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 
 @Component({
   moduleId: module.id,
@@ -22,9 +24,15 @@ export class RegisterComponent implements OnInit {
   country: Country = new Country('France');
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
+  name: FormControl;
+  lastName: FormControl;
+  password: FormControl;
+  mail: FormControl;
   firstSubmit: boolean;
 
-  constructor(private departmentService: DepartmentService,
+
+  constructor(private departmentService: DepartmentService, 
+              private windowRef: WindowRef,
               private cityService: CityService,
               private userService: UserService,
               private formBuilder: FormBuilder,
@@ -32,80 +40,47 @@ export class RegisterComponent implements OnInit {
               private flashMessagesService: FlashMessagesService) {
 
     this.firstSubmit = false;
+
+    this.name = new FormControl('', Validators.required);
+    this.lastName = new FormControl('', Validators.required);
+    this.mail = new FormControl('', Validators.required);
+
     this.registerUserForm = formBuilder.group({
 
-      lastName: [null, [Validators.required,
-        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
-
-      name: [null, [Validators.required,
-        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
-
-      mail: [null, Validators.required],
-
-      /*matchingPassword: formBuilder.group({
-        password: ['', Validators.required],
-        passwordConfirmation: ['', Validators.required]
-      }, {validator: this.areEqual}),*/
-
-      password: [null, [Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(255),
-        //To improve
-        Validators.pattern('[a-zA-Z]+[0-9]+')]],
-
-      passwordConfirmation : [null, [Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(255),
-        Validators.pattern('[a-zA-Z]+[0-9]+')
-      ]],
-
+      lastName: this.lastName,
+      name: this.name,
+      mail: this.mail,
+      passwords: formBuilder.group({
+          password: ['', [Validators.required, Validators.minLength(6)]],
+          confirmation: ['',Validators.required]
+      }, { validator: passwordMatcher }),
       date: [null],
 
       country : [''],
-
       department : [''],
-
       city : [null,
         [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
-
-      postalCode : [null,[Validators.pattern('[0-9]{5}')]],
-
+      postalCode: [null],
       streetNumber : [null],
-
       streetName : [null,
-        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]')]],
+        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
     })
 
     this.registerOrganisationForm = formBuilder.group({
-      name: [null, [Validators.required,
-        Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
-
+      name: [null, Validators.required],
       mail: [null, Validators.required],
-
-      password: [null, [Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(12),
-        //To improve
-        Validators.pattern('[a-zA-Z]+[0-9]+')]],
-
-      passwordConfirmation : [null, [Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(12),
-        Validators.pattern('[a-zA-Z]+[0-9]+')]],
+      passwords: formBuilder.group({
+          password: ['', [Validators.required, Validators.minLength(6)]],
+          confirmation: ['',Validators.required]
+      }, { validator: passwordMatcher }),
 
       type: ['Public'],
 
       country: [''],
-
       department: [''],
-
       city: [null],
-
-      postalCode: [null,
-        [Validators.pattern('[0-9]{5}')]],
-
+      postalCode: [null],
       streetNumber: [null],
-
       streetName: [null,
         [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
     })
@@ -116,64 +91,67 @@ export class RegisterComponent implements OnInit {
       .subscribe(dpts => this.country.departments = dpts);
   }
   // todo: add SIRET number ?
-  doRegister($event: any) {
+  submit($event: any) {
     $event.preventDefault();
     this.firstSubmit = true;
 
     var newUser: User;
     if (this.registerOrganisationForm.status == "VALID") {
-      let inputs = this.registerOrganisationForm.value
-      newUser = {
-        isPhysic: false,
-        name: inputs.name,
-        mail: inputs.email,
-        password: inputs.password,
-        authority: false,
-        isPublic: inputs.type == 'Public' ? true : false,
-        address : {
-          streetNumber: inputs.streetNumber,
-          streetName : inputs.streetName,
-          city: inputs.city,
-          postalCode : inputs.postalCode,
-          department : inputs.department,
-          country : inputs.country
-        }
-      }
+      let params = this.registerOrganisationForm.value
+
+      this.register(params, false);
     }
     else if (this.registerUserForm.status == "VALID") {
       let params = this.registerUserForm.value
-      console.log(params.mail);
-      this.userService.userExist(params.mail, res => {
-        console.log('user exist: ' + res);
-      })
 
-      newUser = {
-        isPhysic: true,
-        name: params.name,
-        lastName: params.lastName,
-        mail: params.email,
-        password: params.password,
-        birthDate: new Date(params.date),
-        address : {
-          streetNumber: params.streetNumber,
-          streetName : params.streetName,
-          city: params.city,
-          postalCode : params.postalCode,
-          department : params.department,
-          country : params.country
-        }
-      }
+      this.register(params, true);
     }
     console.log(newUser);
-
-    // this.userService.add(newUser).subscribe(res =>{
-    //   console.log(res)
-    //   if (res._id) {
-    //     this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
-    //     this.router.navigate(['/'])
-    //     // console.log('success');
-    //   }
-    //   else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
-    // })
   }
+
+  private register(params: any, isPhysic: boolean) {
+    this.userService.userExist(params.mail, exist => {
+        var newUser: User;
+        if (!exist) {
+          newUser = {
+            isPhysic: isPhysic,
+            name: params.name,
+            mail: params.mail,
+            password: params.passwords.password,
+            address : {
+              streetNumber: params.streetNumber,
+              streetName : params.streetName,
+              city: params.city,
+              postalCode : params.postalCode,
+              department : params.department,
+              country : params.country
+            }
+          }
+          if (isPhysic) {
+            newUser.birthDate = new Date(params.date);
+            newUser.lastName = params.lastName
+          }
+          else {
+            newUser.authority = false;
+            newUser.isPublic = params.type == 'Public' ? true : false;
+          }
+          console.log(newUser)
+          
+          this.userService.add(newUser).subscribe(res =>{
+            console.log("result:")
+            console.log(res)
+            if (res._id) {
+              this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
+              this.router.navigate(['/'])
+              // console.log('success');
+            }
+            else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
+          })
+        }
+        else {
+          this.flashMessagesService.show('Vous êtes déjà enregistré !', { cssClass: 'alert-info', timeout: 5000 });
+        }
+      })
+      this.windowRef.getNativeWindow().scrollTo(0,0);
+    }
 }

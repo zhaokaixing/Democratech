@@ -8,6 +8,7 @@ import { ProfileOrganisationComponent } from "app/components/profile/profile-org
 import { DepartmentService } from "app/services/department.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { userInfo } from "os";
+import { Auth0Service } from "app/services/auth0.service";
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService, private departmentService: DepartmentService,
               private formBuilder: FormBuilder, private flashMessagesService: FlashMessagesService,
-              private router : Router) {
+              private router : Router, private authService: Auth0Service) {
 
     this.initializeFormInfo();
   }

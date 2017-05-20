@@ -30,17 +30,19 @@ router.get('/user/:key/:value', (req, res) => {
 
 router.post('/user', (req, res) => {
     var user = req.body;
-    // check data integrity
-    console.log(form.isValidUser(user));
-
+    console.log(user)
     if (form.isValidUser(user)) {
         security.cryptPassword(user.password, (err, hash) => {
             if (err) res.send(err);
-            user.password = hash;
-            db.users.save(user, (err, user) => {
-                if (err) res.send(err);
-                res.json(user)
-            })
+            else {
+                user.password = hash;
+                db.users.save(user, (err, user) => {
+                    console.log(err)
+                    console.log(user)
+                    if (err) res.send(err);
+                    else res.json(user)
+                })
+            }
         })
     }
     else res.json({"error": "bad data"})

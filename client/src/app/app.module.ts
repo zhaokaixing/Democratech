@@ -25,6 +25,7 @@ import { UsersAdminComponent } from './components/admin/users/users-admin.compon
 import { UserEditComponent } from './components/admin/users/user-edit/user-edit.component';
 import { ProjectsAdminComponent } from './components/admin/projects/projects-admin.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { ProjectEditComponent } from './components/admin/projects/project-edit/project-edit.component';
 
 
 export function authFactory() {
@@ -51,7 +52,8 @@ export function authFactory() {
     HomeAdminComponent,
     UsersAdminComponent,
     UserEditComponent,
-    ProjectsAdminComponent
+    ProjectsAdminComponent,
+    ProjectEditComponent
   ],
   imports: [
     BrowserModule, CommonModule,

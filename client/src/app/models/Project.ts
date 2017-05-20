@@ -22,6 +22,7 @@ export class Project {
         country : string;
     };
     tenders? : [{
+        _id: string;
         description : string;
         type : string;
         amount : number;
@@ -30,7 +31,10 @@ export class Project {
         attributionDate : Date;
         signDate : Date;
         startDate : Date;
-        authority : User;
+        authority: {
+            name: string;
+            _id?: string;
+        }
         lots : {
             name : string;
             number : number;

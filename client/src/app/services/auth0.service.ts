@@ -14,7 +14,7 @@ export class Auth0Service {
           auth: {redirectUrl: Config.callbackURL, responseType: 'token'},
           language: 'fr',
           allowSignUp: false
-      });
+  });
 
   constructor(private router: Router, private globalService: GlobalProfileService, private userService : UserService) {
     this.lock.on('authenticated', (authResult: any) => {
@@ -48,6 +48,17 @@ export class Auth0Service {
 
   login() {
     this.lock.show();
+  }
+
+  resetPassword(email: string) {
+    let lock = new Auth0Lock(Config.clientID, Config.domain,{
+      language: 'fr',
+      allowSignUp: false,
+      allowLogin: false,
+      initialScreen: "forgotPassword",
+      prefill: {email: email}
+    });
+    lock.show();
   }
 
   logout() {
