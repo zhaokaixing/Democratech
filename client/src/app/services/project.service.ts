@@ -55,6 +55,12 @@ export class ProjectService{
             .catch(this.handleError);
     }
 
+    deleteTender(idProject: String, idTender) {
+        return this.http.delete(BaseUrl.API + 'api/project/' + idProject+'/tender/'+idTender)
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
+
   private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     console.log(error);

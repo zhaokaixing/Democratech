@@ -32,6 +32,21 @@ export class UserService {
             .catch(err => this.handleError(err));
     }
 
+    getOneFromField(field: string, value: string): Observable<User> {
+        return this.http.get(BaseUrl.API + 'api/user/'+field+'/'+value)
+            .map(res => res.json())
+            .catch(err => this.handleError(err));
+    }
+
+    userExist(mail: string, callback: (data: boolean) => void): void {
+        let user = this.getOneFromField('mail', mail);
+        user.subscribe(usr => {
+            console.log(usr)
+            if (usr) callback(true);
+            else callback(false);
+        });
+    }
+
     add(user: User): Observable<User> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

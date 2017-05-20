@@ -6,6 +6,7 @@ let router = express.Router();
 
 let mongojs = require('mongojs');
 
+let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['projects']);
 
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
@@ -73,7 +74,7 @@ router.put('/project/:id', (req, res) => {
     if (!project) res.status(400).json({'error': 'bad data'});
     delete project._id;
 
-    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: project}, {}, (err, proj) => {
+    db.projects.update({_id: mongojs.ObjectId(req.params.id)}, {$set: project}, {}, (err, proj) => {
         if (err) res.send(err);
         res.json(proj);
     });
@@ -81,7 +82,14 @@ router.put('/project/:id', (req, res) => {
 })
 
 router.delete('/project/:id', (req, res) => {
-    db.project.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, project) {
+    db.projects.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, project) {
+        if (err) res.send(err);
+        res.json(project)
+    })
+});
+
+router.delete('/project/:idProject/tender/:idTender', (req, res) => {
+    db.projects.update({_id: mongojs.ObjectId(req.params.idProject)}, {$pull: {tenders: {_id: req.params.idTender}}}, function(err, project) {
         if (err) res.send(err);
         res.json(project)
     })

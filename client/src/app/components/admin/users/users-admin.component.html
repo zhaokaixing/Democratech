@@ -12,7 +12,7 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let user of users'>
+    <tr *ngFor='let user of users; let i=index'>
       <td>{{user.name}} {{user.lastName}}</td>
       <td>{{user.mail}}</td>
       <td>{{user.address?.city}}</td>
@@ -21,7 +21,7 @@
       <td *ngIf="user.isPhysic">Citoyen</td>
       <td>
         <a class="text-primary" routerLink="/admin/utilisateur/{{user._id}}"><span class="glyphicon glyphicon-edit"></span></a> 
-        <a class="text-danger" mwlConfirm [title]="title" [message]="message" (confirm)="deleteUser()">
+        <a class="text-danger" mwlConfirm [title]="title" [message]="message" (confirm)="deleteUser(i)">
           <span class="glyphicon glyphicon-remove"></span>
         </a>
       </td>

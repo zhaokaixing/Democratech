@@ -15,7 +15,7 @@
         <li><a routerLink="/" routerLinkActive="active">Accueil</a></li>
         <li><a routerLink="/profile" *ngIf="authService.loggedIn()">{{user.name}}</a></li>
 
-        <li *ngIf="authService.isAdmin()" class="dropdown">
+        <li *ngIf="authService.loggedIn() && authService.isAdmin()" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a routerLink="/admin" href="#">Menus</a></li>

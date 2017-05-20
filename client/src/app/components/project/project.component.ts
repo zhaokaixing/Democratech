@@ -59,7 +59,7 @@ export class ProjectComponent implements OnInit {
                 {
                     objTag.setAttribute('data', this.project.offers);
                 }
-                this.Info=this.project.tenders;
+                this.Info=this.project.tenders[this.project.tenders.length-1];
         });
     }
     getUserInfo() {

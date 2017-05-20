@@ -7,9 +7,6 @@ let router = express.Router();
 let mongojs = require('mongojs');
 let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['cities']);
 
-
-
-
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
 
