@@ -33,11 +33,13 @@ export class ProjectsAdminComponent implements OnInit {
     this.projectService.delete(this.projects[id]._id).subscribe(res => {
       console.log(res);
       if (res.ok) {
-        this.flashMessagesService.show('Utilisateur ' + this.projects[id].title + ' supprimé !', 
+        this.flashMessagesService.show('Projet ' + this.projects[id].title + ' supprimé !', 
           { cssClass: 'alert-success', timeout: 5000 });
         this.getProjects();
       }
-      else this.flashMessagesService.show('Erreur lors de la suppression de l\'utilisateur.', { cssClass: 'alert-success', timeout: 5000 });
+      else this.flashMessagesService.show('Erreur lors de la suppression du projet.', 
+            { cssClass: 'alert-danger', timeout: 5000 });
+
       this.windowRef.getNativeWindow().scrollTo(0,0);
     })
   }
