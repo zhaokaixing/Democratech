@@ -24,11 +24,11 @@ $ npm install -g nodemon
 ## lancement de l'application
 * En ligne de commande :
 ```bash
-## ouvir un terminale à la racine du projet et lancer le server
+## ouvir un terminale à la racine du projet et lancer le serveur
 $ cd server && npm start
 ## le serveur se lance...
 
-## ouvrir un autre terminale à la racine du projet
+## ouvrir un autre terminale à la racine du projet et lancer le client
 $ cd client && npm start
 ## angular se lance...
 ```
@@ -46,3 +46,13 @@ $ cd client && npm start
 
 ## gestion des branches
 pour comprendre comment sont et seront gérer les branches, je vous invite à voir ce petit tutoriel de votre développeur préféré, j'ai nommé Grafikart : [https://www.grafikart.fr/formations/git/git-flow](https://www.grafikart.fr/formations/git/git-flow)
+
+## docker
+  * installer docker & docker-compose  [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
+  * remplacer **nodemon** par **node** dans /server/package.json (on ne veut pas écouter les modifications)
+  * lancer les containers :
+  ```bash
+  ## ouvir un terminale à la racine du projet et lancer les serveurs
+  $ docker-compose up --build
+  ## construit les contrainers et les lances...
+  ```

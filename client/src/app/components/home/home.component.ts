@@ -10,6 +10,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { LoaderService } from 'app/services/loader.service';
+
 @Component({
   moduleId: module.id,
   selector: 'app-home',
@@ -19,7 +21,8 @@ import 'rxjs/add/operator/map';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private projectService: ProjectService,
+  constructor(private loaderService: LoaderService,
+              private projectService: ProjectService,
               private router: Router,
               private route: ActivatedRoute) {}
 
@@ -27,8 +30,11 @@ export class HomeComponent implements OnInit {
   result: any;
 
   ngOnInit() {
+    this.loaderService.display(true);
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects;
+      console.log(projects);
+      this.loaderService.display(false);
     });
   }
   selectProject(project: Project):void {

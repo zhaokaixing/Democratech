@@ -4,6 +4,7 @@ import { UserService } from "app/services/user.service";
 import { User } from "app/models/User";
 import { Observable } from "rxjs/Observable";
 import { GlobalProfileService } from "app/services/global.service";
+import { LoaderService } from 'app/services/loader.service';
 
 @Component({
   moduleId: module.id,
@@ -12,14 +13,22 @@ import { GlobalProfileService } from "app/services/global.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  showLoader: boolean;
   title = 'Democratech';
   user = new User();
   role: any;
 
-  constructor(private authService: Auth0Service, private userService: UserService, private globalService: GlobalProfileService) {}
+
+  constructor(private loaderService: LoaderService,
+              private authService: Auth0Service, 
+              private userService: UserService, 
+              private globalService: GlobalProfileService) {}
 
   ngOnInit(): void {
-    this.getUser(this.globalService.profile);
+    this.loaderService.status.subscribe((val: boolean) => {
+      this.showLoader = val;
+    });
+    this.getUser(localStorage.getItem('profile'));
     this.globalService._profile.subscribe(res => {
       this.getUser(res as string);
     })

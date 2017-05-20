@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -27,6 +27,7 @@ import { ProjectsAdminComponent } from './components/admin/projects/projects-adm
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ProjectEditComponent } from './components/admin/projects/project-edit/project-edit.component';
 
+import { LoaderService } from 'app/services/loader.service';
 
 export function authFactory() {
   return provideAuth({
@@ -60,17 +61,20 @@ export function authFactory() {
     FormsModule, ReactiveFormsModule,
     HttpModule, JsonpModule,
     AppRoutingModule,
+    FlashMessagesModule, ConfirmModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCPFGAlVK4bEA8olgRQ11w319TRcRjhH4A'}),
     FlashMessagesModule, ConfirmModule
-
   ],
   providers: [
     Auth0Service, AuthUserGuardService, AuthAdminGuardService,
-    AuthHttp, UserService, GlobalProfileService,
+    AuthHttp, UserService, GlobalProfileService, LoaderService,
     {
       provide: AuthHttp,
       useFactory:  authFactory
     }
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
