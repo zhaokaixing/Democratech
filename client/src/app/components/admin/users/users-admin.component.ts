@@ -28,7 +28,6 @@ export class UsersAdminComponent implements OnInit {
 
   deleteUser(id: number){
     this.userService.delete(this.users[id]._id).subscribe(res => {
-      console.log(res);
       if (res.ok) {
         let username = this.users[id].name + (this.users[id].lastName ? ' ' + this.users[id].lastName : '');
         this.flashMessagesService.show('Utilisateur ' + username + ' supprimé !', 

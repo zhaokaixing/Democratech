@@ -88,7 +88,6 @@ export class ProjectComponent implements OnInit {
 
     updateVoteStyle(vote:number):void{
         if(vote==1){
-          console.log("Vote pour")
             var button = document.getElementById("like");
             button.style.color='rgba(91,192,222,100)';
             button = document.getElementById("dislike");

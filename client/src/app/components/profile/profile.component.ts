@@ -9,6 +9,7 @@ import { DepartmentService } from "app/services/department.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { userInfo } from "os";
 import { Auth0Service } from "app/services/auth0.service";
+import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 
 @Component({
   selector: 'app-profile',
@@ -20,15 +21,20 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
   infoUserForm : FormGroup;
+  passwordFormGroup : FormGroup;
+  addressFormGroup : FormGroup;
   departments = [{}];
 
   constructor(private userService: UserService, private departmentService: DepartmentService,
               private formBuilder: FormBuilder, private flashMessagesService: FlashMessagesService,
+              private windowRef: WindowRef,
               private router : Router, private authService: Auth0Service) {
 
     this.initializeFormInfo();
+    this.initializePasswordForm();
+    this.initializeAddressForm();
   }
-  
+
   ngOnInit() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
@@ -38,7 +44,8 @@ export class ProfileComponent implements OnInit {
         this.user = usr ? usr : this.user;
         this.user.image = this.user.image ? this.user.image : profile['picture'];
         this.initializeFormInfo();
-        console.log(this.user);
+        this.initializePasswordForm();
+        this.initializeAddressForm();
       });
   }
 
@@ -65,6 +72,42 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  initializePasswordForm(){
+    this.passwordFormGroup = this.formBuilder.group({
+
+      oldPassword: [null],
+
+      password: [null, [Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(12),
+        //To improve
+        Validators.pattern('[a-zA-Z]+[0-9]+')]],
+
+      passwordConf: [null, [Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(12),
+        Validators.pattern('[a-zA-Z]+[0-9]+')]]
+    })
+  }
+
+
+  initializeAddressForm(){
+    this.addressFormGroup = this.formBuilder.group({
+      country : [''],
+
+      department : [''],
+
+      city : [null],
+
+      postalCode : [null,
+        [Validators.pattern('[0-9]{5}')]],
+
+      streetNumber : [null],
+
+      streetName : [null,
+        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
+    })
+  }
   getDepartments() {
     this.departmentService.getAll().subscribe(dpts => {
       this.departments = dpts;
@@ -83,22 +126,19 @@ export class ProfileComponent implements OnInit {
       }
       this.user.description = params.description;
 
-      console.log(this.user);
-
       this.userService.update(this.user).subscribe(res =>{
-        console.log('result:');
-        console.log(res);
         if (res.ok) {
           this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
-          
-          this.router.navigate(['/profile']) ;
-
-          console.log('success');
-      
-      
         }
-         else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
+        else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
       })
+      this.windowRef.getNativeWindow().scrollTo(0,0);
+    }
+  }
+
+  changePassword($event: any) {
+    if (this.infoUserForm.status == "VALID") {
+      let params = this.passwordFormGroup.value;
 
     }
   }

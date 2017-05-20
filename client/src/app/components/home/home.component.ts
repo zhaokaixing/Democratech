@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
     this.loaderService.display(true);
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects;
-      console.log(projects);
       this.loaderService.display(false);
     });
   }

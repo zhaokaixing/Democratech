@@ -84,10 +84,8 @@ export class ProjectEditComponent implements OnInit {
     }
     console.log(this.project)
     this.projectService.update(this.project).subscribe(res => {
-      console.log(res);
       if (res.ok) {
         this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
-        console.log('success');
       } else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
       this.windowRef.getNativeWindow().scrollTo(0,0);
     })

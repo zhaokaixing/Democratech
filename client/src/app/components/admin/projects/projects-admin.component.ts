@@ -31,7 +31,6 @@ export class ProjectsAdminComponent implements OnInit {
   deleteProject(id: number){
     //todo: archive ? suppress ? comments, project followed...
     this.projectService.delete(this.projects[id]._id).subscribe(res => {
-      console.log(res);
       if (res.ok) {
         this.flashMessagesService.show('Projet ' + this.projects[id].title + ' supprimé !', 
           { cssClass: 'alert-success', timeout: 5000 });
@@ -47,7 +46,6 @@ export class ProjectsAdminComponent implements OnInit {
   getProjects() {
     this.projectService.getAll().subscribe(res => {
       this.projects = res;
-      console.log(this.projects);
     })
   }
   
