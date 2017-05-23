@@ -13,12 +13,16 @@ import { Country } from "app/models/Country";
 import {GlobalProfileService} from "../../services/global.service";
 import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 
+import {MailService} from "../../services/mail.service";
+import {Mail} from "../../models/Mail";
+
+
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [ DepartmentService, CityService, FormBuilder]
+  providers: [ DepartmentService, CityService, FormBuilder,MailService ]
 })
 
 export class RegisterComponent implements OnInit {
@@ -32,10 +36,8 @@ export class RegisterComponent implements OnInit {
   mail: FormControl;
   firstSubmit: boolean;
 
-
-  constructor(private departmentService: DepartmentService, 
-              private windowRef: WindowRef,
-              private cityService: CityService,
+  constructor(private  mailService:MailService,
+              private departmentService: DepartmentService,
               private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,

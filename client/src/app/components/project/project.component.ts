@@ -13,9 +13,6 @@ import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
 
 
-
-
-
 @Component({
   moduleId: module.id,
   selector: 'app-project',
@@ -40,6 +37,7 @@ export class ProjectComponent implements OnInit {
                 private authService: Auth0Service) {}
 
     ngOnInit(): void {
+
         this.getUserInfo();
 
         this.route.params.switchMap(params => {
