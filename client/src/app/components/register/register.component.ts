@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
               private departmentService: DepartmentService,
               private userService: UserService,
               private formBuilder: FormBuilder,
+              private windowRef: WindowRef,
               private router: Router,
               private globalService : GlobalProfileService,
               private flashMessagesService: FlashMessagesService) {
