@@ -11,6 +11,8 @@ import { userInfo } from "os";
 import { Auth0Service } from "app/services/auth0.service";
 import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 
+import { LoaderService } from 'app/services/loader.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -25,7 +27,8 @@ export class ProfileComponent implements OnInit {
   addressFormGroup : FormGroup;
   departments = [{}];
 
-  constructor(private userService: UserService, private departmentService: DepartmentService,
+  constructor(private loaderService: LoaderService,
+              private userService: UserService, private departmentService: DepartmentService,
               private formBuilder: FormBuilder, private flashMessagesService: FlashMessagesService,
               private windowRef: WindowRef,
               private router : Router, private authService: Auth0Service) {
@@ -36,6 +39,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loaderService.display(true);
     let profile = JSON.parse(localStorage.getItem('profile'));
     let identity = profile['identities'][0];
 
@@ -46,6 +50,7 @@ export class ProfileComponent implements OnInit {
         this.initializeFormInfo();
         this.initializePasswordForm();
         this.initializeAddressForm();
+        this.loaderService.display(false);
       });
   }
 
