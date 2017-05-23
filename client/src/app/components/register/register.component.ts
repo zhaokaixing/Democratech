@@ -101,7 +101,6 @@ export class RegisterComponent implements OnInit {
     $event.preventDefault();
     this.firstSubmit = true;
 
-    var newUser: User;
     if (this.registerOrganisationForm.status == "VALID") {
       let params = this.registerOrganisationForm.value
 
@@ -112,7 +111,6 @@ export class RegisterComponent implements OnInit {
 
       this.register(params, true);
     }
-    console.log(newUser);
   }
 
   private register(params: any, isPhysic: boolean) {
@@ -148,6 +146,7 @@ export class RegisterComponent implements OnInit {
             console.log(res)
             if (res._id) {
 
+              console.log("hello");
               let mail:Mail = {
                 from:'democratec.projet@gmail.com',
                 to:newUser.mail,
