@@ -63,7 +63,7 @@ export function authFactory() {
     AppRoutingModule,
     FlashMessagesModule, ConfirmModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCPFGAlVK4bEA8olgRQ11w319TRcRjhH4A'}),
-    FlashMessagesModule, ConfirmModule
+    FlashMessagesModule
   ],
   providers: [
     Auth0Service, AuthUserGuardService, AuthAdminGuardService,
