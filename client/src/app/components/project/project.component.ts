@@ -15,9 +15,6 @@ import { Project } from "app/models/Project";
 import { LoaderService } from 'app/services/loader.service';
 
 
-
-
-
 @Component({
   moduleId: module.id,
   selector: 'app-project',
@@ -44,6 +41,7 @@ export class ProjectComponent implements OnInit {
 
     ngOnInit(): void {
         this.loaderService.display(true);
+
         this.getUserInfo();
 
         this.route.params.switchMap(params => {

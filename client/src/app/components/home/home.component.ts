@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private loaderService: LoaderService,
               private projectService: ProjectService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,) {}
 
   projects: Project[];
   result: any;

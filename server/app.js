@@ -14,7 +14,7 @@ let cities = require('./routes/API/cities');
 let project = require('./routes/API/projects');
 let comment = require('./routes/API/comments');
 let opinion=require('./routes/API/opinion');
-
+let mail=require('./routes/API/mail');
 let app = express();
 
 // Body parser middleware
@@ -36,7 +36,10 @@ app.use('/api', users);
 app.use('/api', project);
 app.use('/api',comment);
 app.use('/api',opinion);
+app.use('/api',mail);
 // app.use('**', index);
+
+
 
 app.listen(port, function(){
   console.log('server start on port '+port);

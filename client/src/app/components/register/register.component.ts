@@ -13,12 +13,16 @@ import { Country } from "app/models/Country";
 import {GlobalProfileService} from "../../services/global.service";
 import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 
+import {MailService} from "../../services/mail.service";
+import {Mail} from "../../models/Mail";
+
+
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [ DepartmentService, CityService, FormBuilder]
+  providers: [ DepartmentService, CityService, FormBuilder,MailService ]
 })
 
 export class RegisterComponent implements OnInit {
@@ -32,11 +36,10 @@ export class RegisterComponent implements OnInit {
   mail: FormControl;
   firstSubmit: boolean;
 
-
-  constructor(private departmentService: DepartmentService, 
-              private windowRef: WindowRef,
-              private cityService: CityService,
+  constructor(private mailService:MailService,
+              private departmentService: DepartmentService,
               private userService: UserService,
+              private windowRef: WindowRef,
               private formBuilder: FormBuilder,
               private router: Router,
               private globalService : GlobalProfileService,
@@ -139,11 +142,20 @@ export class RegisterComponent implements OnInit {
             newUser.isPublic = params.type == 'Public' ? true : false;
           }
           console.log(newUser)
-          
+
           this.userService.add(newUser).subscribe(res =>{
             console.log("result:")
             console.log(res)
             if (res._id) {
+
+              let mail:Mail = {
+                from:'democratec.projet@gmail.com',
+                to:newUser.mail,
+                subject:'Vous êtes enregistré',
+                text:'Vous êtes enregistré',
+                html:'<b>Bonjour</b>'
+              }
+              this.mailService.send(mail).subscribe();
               this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
               this.router.navigate(['/'])
               // console.log('success');
