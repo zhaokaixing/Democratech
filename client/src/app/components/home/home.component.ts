@@ -10,6 +10,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+
 @Component({
   moduleId: module.id,
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private projectService: ProjectService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,) {}
 
   projects: Project[];
   result: any;
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects;
       console.log(projects);
+
     });
   }
   selectProject(project: Project):void {

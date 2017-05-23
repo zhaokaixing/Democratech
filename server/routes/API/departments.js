@@ -9,6 +9,7 @@ router.get('/departments', (rep, res) => {
         if (err) res.send(err);
         res.jsonp(items)
     })
+
 });
 
 module.exports = router;

@@ -10,12 +10,16 @@ import { UserService } from "app/services/user.service";
 import { User } from "app/models/User";
 import { Country } from "app/models/Country";
 
+import {MailService} from "../../services/mail.service";
+import {Mail} from "../../models/Mail";
+
+
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [ DepartmentService, CityService, FormBuilder ]
+  providers: [ DepartmentService, CityService, FormBuilder,MailService ]
 })
 
 export class RegisterComponent implements OnInit {
@@ -24,9 +28,9 @@ export class RegisterComponent implements OnInit {
   registerUserForm : FormGroup;
   registerOrganisationForm : FormGroup;
 
-  constructor(private departmentService: DepartmentService, 
-              private cityService: CityService,
-              private userService: UserService, 
+  constructor(private  mailService:MailService,
+              private departmentService: DepartmentService,
+              private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
               private flashMessagesService: FlashMessagesService) {
@@ -188,8 +192,8 @@ export class RegisterComponent implements OnInit {
         }
         else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
 
-      }) 
-    } 
+      })
+    }
     else if (this.registerUserForm.status == "VALID") {
       console.log(this.registerUserForm)
       let params = this.registerUserForm.value
@@ -212,11 +216,18 @@ export class RegisterComponent implements OnInit {
       console.log(newUser);
 
       this.userService.add(newUser).subscribe(res => {
-        console.log(res)
+        //console.log(res)
         if (res._id) {
+
+          let mail:Mail = {
+            from:'zhaokaixing@gmail.com',
+            to:newUser.mail,
+            subject:'Vous êtes enregistré',
+            text:'Vous êtes enregistré',
+            html:'<b>Bonjour</b>'
+          }
+          this.mailService.send(mail).subscribe();
           this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
-          this.router.navigate(['/'])
-          console.log('success');
         }
         else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
       })

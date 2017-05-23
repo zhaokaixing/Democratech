@@ -12,6 +12,7 @@ import { Opinion } from "app/models/Opinion";
 import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
 
+
 @Component({
   moduleId: module.id,
   selector: 'app-project',
@@ -29,12 +30,13 @@ export class ProjectComponent implements OnInit {
 
     constructor(private opinionService: OpinionService,
                 private projectService: ProjectService,
-                private commentService:CommentService, 
-                private router: Router, 
+                private commentService:CommentService,
+                private router: Router,
                 private route: ActivatedRoute,
                 private authService: Auth0Service) {}
 
     ngOnInit(): void {
+
         this.getUserInfo();
 
         this.route.params.switchMap(params => {
@@ -42,7 +44,7 @@ export class ProjectComponent implements OnInit {
         })
         .subscribe(project => {
                 this.project = project;
-                
+
                 var progressBar = document.getElementById("progress");
                 progressBar.style.width=((this.project.progress*100).toString())+"%";
 
@@ -65,7 +67,7 @@ export class ProjectComponent implements OnInit {
                 this.updateVoteStyle(res ? res.opinion : 2)
                 this.getVotesCount(this.project);
             })
-        } 
+        }
     }
     getComments(idProject: string):void{
         this.commentService
@@ -112,7 +114,7 @@ export class ProjectComponent implements OnInit {
         this.messageToSend="";
         this.getComments(this.project._id);
     }
-    
+
 
     vote(value:number):void{
         if (!this.opinion) {

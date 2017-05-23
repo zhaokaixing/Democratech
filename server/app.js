@@ -17,6 +17,7 @@ let citizens = require('./routes/API/citizens');
 let project = require('./routes/API/projects');
 let comment = require('./routes/API/comments');
 let opinion=require('./routes/API/opinion');
+let mail=require('./routes/API/mail');
 let app = express();
 
 // View engine
@@ -50,7 +51,10 @@ app.use('/api', users);
 app.use('/api', project);
 app.use('/api',comment);
 app.use('/api',opinion);
+app.use('/api',mail);
 // app.use('**', index);
+
+
 
 app.listen(port, function(){
   console.log('server start on port '+port);
