@@ -6,6 +6,8 @@ import { ConfirmOptions, Position } from "angular2-bootstrap-confirm";
 import { FlashMessagesService } from "angular2-flash-messages";
 import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 
+import { LoaderService } from 'app/services/loader.service';
+
 @Component({
   selector: 'app-users-admin',
   templateUrl: './users-admin.component.html',
@@ -18,11 +20,13 @@ export class UsersAdminComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private userService: UserService, 
+  constructor(private loaderService: LoaderService,
+              private userService: UserService,
               private windowRef: WindowRef,
               private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
+    this.loaderService.display(true);
     this.getUsers();
   }
 
@@ -30,11 +34,11 @@ export class UsersAdminComponent implements OnInit {
     this.userService.delete(this.users[id]._id).subscribe(res => {
       if (res.ok) {
         let username = this.users[id].name + (this.users[id].lastName ? ' ' + this.users[id].lastName : '');
-        this.flashMessagesService.show('Utilisateur ' + username + ' supprimé !', 
+        this.flashMessagesService.show('Utilisateur ' + username + ' supprimé !',
           { cssClass: 'alert-success', timeout: 5000 });
         this.getUsers();
       }
-      else this.flashMessagesService.show('Erreur lors de la suppression de l\'utilisateur.', 
+      else this.flashMessagesService.show('Erreur lors de la suppression de l\'utilisateur.',
             { cssClass: 'alert-danger', timeout: 5000 });
 
       this.windowRef.getNativeWindow().scrollTo(0,0);
@@ -44,6 +48,7 @@ export class UsersAdminComponent implements OnInit {
   getUsers(){
     this.userService.getAll().subscribe(res => {
       this.users = res;
+      this.loaderService.display(false);
     })
   }
 }
