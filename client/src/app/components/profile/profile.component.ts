@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
   infoUserForm : FormGroup;
-  passwordFormGroup : FormGroup;
   addressFormGroup : FormGroup;
   departments = [{}];
 
@@ -31,7 +30,6 @@ export class ProfileComponent implements OnInit {
               private router : Router, private authService: Auth0Service) {
 
     this.initializeFormInfo();
-    this.initializePasswordForm();
     this.initializeAddressForm();
   }
 
@@ -44,7 +42,6 @@ export class ProfileComponent implements OnInit {
         this.user = usr ? usr : this.user;
         this.user.image = this.user.image ? this.user.image : profile['picture'];
         this.initializeFormInfo();
-        this.initializePasswordForm();
         this.initializeAddressForm();
       });
   }
@@ -72,40 +69,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  initializePasswordForm(){
-    this.passwordFormGroup = this.formBuilder.group({
-
-      oldPassword: [null],
-
-      password: [null, [Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(12),
-        //To improve
-        Validators.pattern('[a-zA-Z]+[0-9]+')]],
-
-      passwordConf: [null, [Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(12),
-        Validators.pattern('[a-zA-Z]+[0-9]+')]]
-    })
-  }
-
-
   initializeAddressForm(){
+
+    if(this.user.address == null){
+      this.user.address  = { country : '', department : '', city : '',
+        postalCode : '', streetName : '', streetNumber : 0};
+    }
     this.addressFormGroup = this.formBuilder.group({
-      country : [''],
+      country : [this.user.address.country],
 
-      department : [''],
+      department : [this.user.address.department],
 
-      city : [null],
+      city : [this.user.address.city],
 
-      postalCode : [null,
-        [Validators.pattern('[0-9]{5}')]],
+      postalCode : [this.user.address.postalCode],
 
-      streetNumber : [null],
+      streetNumber : [this.user.address.streetNumber],
 
-      streetName : [null,
-        [Validators.pattern('[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ -]*')]],
+      streetName : [this.user.address.streetName],
     })
   }
   getDepartments() {
@@ -136,10 +117,20 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  changePassword($event: any) {
-    if (this.infoUserForm.status == "VALID") {
-      let params = this.passwordFormGroup.value;
-
+  saveAddress($event: any) {
+    $event.preventDefault();
+    if (this.addressFormGroup.status == "VALID") {
+      let params = this.addressFormGroup.value;
+      this.user.address = { country : params.country, department : params.department, city : params.city,
+        postalCode : params.postalCode, streetName : params.streetName, streetNumber : params.streetNumber};
+      console.log("lol");
+      this.userService.update(this.user).subscribe(res =>{
+        if (res.ok) {
+          this.flashMessagesService.show('Modifications enregistrées !', { cssClass: 'alert-success', timeout: 5000 });
+        }
+        else this.flashMessagesService.show('Une erreur est survenue lors de l\'enregistrement.', { cssClass: 'alert-danger', timeout: 5000 });
+      })
+      this.windowRef.getNativeWindow().scrollTo(0,0);
     }
   }
 }
