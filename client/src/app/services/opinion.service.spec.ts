@@ -10,7 +10,7 @@ describe('OpinionService', () => {
     });
   });
 
-  it('should ...', inject([OpinionService], (service: OpinionService) => {
+/*  it('should ...', inject([OpinionService], (service: OpinionService) => {
     expect(service).toBeTruthy();
-  }));
+  }));*/
 });

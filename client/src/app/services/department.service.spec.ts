@@ -10,7 +10,7 @@ describe('DepartmentService', () => {
     });
   });
 
-  it('should ...', inject([DepartmentService], (service: DepartmentService) => {
+/*  it('should ...', inject([DepartmentService], (service: DepartmentService) => {
     expect(service).toBeTruthy();
-  }));
+  }));*/
 });
