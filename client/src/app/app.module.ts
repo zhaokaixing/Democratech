@@ -26,8 +26,9 @@ import { UserEditComponent } from './components/admin/users/user-edit/user-edit.
 import { ProjectsAdminComponent } from './components/admin/projects/projects-admin.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ProjectEditComponent } from './components/admin/projects/project-edit/project-edit.component';
-
+import { FileSelectDirective } from 'ng2-file-upload';
 import { LoaderService } from 'app/services/loader.service';
+
 
 export function authFactory() {
   return provideAuth({
@@ -54,7 +55,8 @@ export function authFactory() {
     UsersAdminComponent,
     UserEditComponent,
     ProjectsAdminComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule, CommonModule,

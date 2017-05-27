@@ -3,13 +3,47 @@
  */
 let express = require('express');
 let router = express.Router();
-
+var fs = require('fs');
+var crypto = require('crypto');
 let mongojs = require('mongojs');
 
 let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', ['projects']);
-
+var path = require('path')
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
+var DIR = './uploads/';
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+      var count =0;
+      MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
+
+        var collection = db2.collection('projects');
+        collection.count(function (err, countProject) {
+          count = countProject;
+          console.log("Count: " + count);
+          cb(null, count + path.extname(file.originalname))
+          db2.close();
+        });
+      });
+
+    })
+  }
+})
+
+var upload = multer({storage: storage});
+
+
+router.post('/project/add',upload.single('file'), function (req, res) {
+    newFicher=req.file.filename;
+    res.end('File is uploaded');
+});
+
+
 
 router.get('/projects', function(req, res, next) {
     MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {

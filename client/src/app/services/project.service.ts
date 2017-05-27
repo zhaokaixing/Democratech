@@ -19,11 +19,18 @@ export class ProjectService{
         //console.log('Project Service Initialized...');
     }
 
+  addOffer():Observable<string> {
+      var nom;
+    return this.http.get(BaseUrl.API + 'api/project/add')
+      .map(res => res.toString())
+      .catch(err => this.handleError(err));
+
+  }
     getAll():Observable<Project[]> {
     return this.http.get(BaseUrl.API + 'api/projects')
         .map(res => res.json())
         .catch(err => this.handleError(err));
-}
+    }
 
     getOne(id: string): Observable<Project> {
         return this.http.get(BaseUrl.API + 'api/project/' + id)
