@@ -11,7 +11,6 @@ let db = mongojs('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch'
 var path = require('path')
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
-var DIR = './uploads/';
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -19,18 +18,8 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
       if (err) return cb(err)
-      var count =0;
-      MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
 
-        var collection = db2.collection('projects');
-        collection.count(function (err, countProject) {
-          count = countProject;
-          console.log("Count: " + count);
-          cb(null, count + path.extname(file.originalname))
-          db2.close();
-        });
-      });
-
+      cb(null, file.originalname)
     })
   }
 })

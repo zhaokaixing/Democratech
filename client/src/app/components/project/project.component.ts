@@ -12,10 +12,6 @@ import { Opinion } from "app/models/Opinion";
 import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
 
-
-
-
-
 @Component({
   moduleId: module.id,
   selector: 'app-project',
@@ -161,4 +157,5 @@ export class ProjectComponent implements OnInit {
             project.minusMark = res;
         })
     }
+
 }

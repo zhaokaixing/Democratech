@@ -30,6 +30,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { LoaderService } from 'app/services/loader.service';
 
 
+
 export function authFactory() {
   return provideAuth({
       headerName: 'Authorization',
@@ -56,7 +57,8 @@ export function authFactory() {
     UserEditComponent,
     ProjectsAdminComponent,
     ProjectEditComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ProjectEditComponent
   ],
   imports: [
     BrowserModule, CommonModule,
