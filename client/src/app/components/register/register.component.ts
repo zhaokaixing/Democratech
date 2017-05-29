@@ -6,7 +6,7 @@ import { FlashMessagesService } from "angular2-flash-messages";
 import { CityService } from "app/services/city.service";
 import { DepartmentService } from "app/services/department.service";
 import { UserService } from "app/services/user.service";
-import { passwordMatcher } from "./passwordMatcher";
+import { passwordMatcher } from "./password-matcher";
 
 import { User } from "app/models/User";
 import { Country } from "app/models/Country";
@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private mailService: MailService,
               private departmentService: DepartmentService,
+              private cityService: CityService,
               private userService: UserService,
               private formBuilder: FormBuilder,
               private windowRef: WindowRef,

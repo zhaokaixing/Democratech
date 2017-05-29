@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { userInfo } from "os";
 import { Auth0Service } from "app/services/auth0.service";
 import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
+import {ProjectService} from "app/services/project.service"
 
 import { LoaderService } from 'app/services/loader.service';
 
@@ -17,7 +18,7 @@ import { LoaderService } from 'app/services/loader.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [ DepartmentService, FormBuilder ]
+  providers: [ DepartmentService, FormBuilder, ProjectService ]
 })
 export class ProfileComponent implements OnInit {
 
