@@ -8,6 +8,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class LoaderService {
   public status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+  /**
+   * display or hide loader
+   * @param value true to display loader, false otherwise
+   */
   display(value: boolean) {
     this.status.next(value);
   }

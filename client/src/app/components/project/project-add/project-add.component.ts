@@ -66,8 +66,8 @@ export class ProjectAddComponent implements OnInit {
   updateProjectForm() {
     this.editProjectForm = this.formBuilder.group({
       title: [this.project.title, Validators.required],
-      latitude: [this.project.latitude, Validators.required],
-      longitude: [this.project.longitude, Validators.required],
+      latitude: [this.project.latitude ? this.project.latitude : 0, Validators.required],
+      longitude: [this.project.longitude  ? this.project.longitude : 0, Validators.required],
 
       offers: [this.project.offers ? this.project.offers : ''],
       image: [this.project.image ? this.project.offers: '/ressources/images/undefined.jpg'],

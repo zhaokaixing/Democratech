@@ -3,6 +3,7 @@ import { User } from "app/models/User";
 import { FileUploader,FileItem,ParsedResponseHeaders } from 'ng2-file-upload';
 import { BaseUrl } from '../../../config/auth.config'
 import { Router, ActivatedRoute } from '@angular/router';
+import { Project } from "app/models/Project";
 
 const URL = BaseUrl.API+'api/project/add';
 
@@ -14,17 +15,19 @@ const URL = BaseUrl.API+'api/project/add';
 
 export class ProfileOrganisationComponent implements OnInit {
   @Input() user: User;
+  public projects: [Project]
   public uploader:FileUploader = new FileUploader({url: URL});
-
 
   constructor(private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit() {
 
   }
-  close(){
+
+  close() {
     this.router.navigate(['/add']);
   }
+
   /*
   sendFile(){
     this.projectService.addOffer()
