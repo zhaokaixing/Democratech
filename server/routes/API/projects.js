@@ -74,7 +74,7 @@ router.put('/project/:id', (req, res) => {
     if (!project) res.status(400).json({'error': 'bad data'});
     delete project._id;
 
-    db.projects.update({_id: mongojs.ObjectId(req.params.id)}, {$set: project}, {}, (err, proj) => {
+    db.users.update({_id: mongojs.ObjectId(req.params.id)}, {$set: project}, {}, (err, proj) => {
         if (err) res.send(err);
         res.json(proj);
     });
