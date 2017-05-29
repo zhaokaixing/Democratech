@@ -8,6 +8,7 @@ import { FlashMessagesService } from "angular2-flash-messages";
 import { WindowRef } from "angular2-google-maps/core/utils/browser-globals";
 import { FileUploader,FileItem,ParsedResponseHeaders } from 'ng2-file-upload';
 import { BaseUrl } from '../../../config/auth.config';
+import { Router} from '@angular/router';
 
 const URL = BaseUrl.API+'api/project/add';
 
@@ -27,7 +28,8 @@ export class ProjectAddComponent implements OnInit {
               private windowRef: WindowRef,
               private departmentService: DepartmentService,
               private projectService: ProjectService,
-              private flashMessagesService: FlashMessagesService) {
+              private flashMessagesService: FlashMessagesService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -39,9 +41,27 @@ export class ProjectAddComponent implements OnInit {
   }
 
   addProject(){
-    console.log(this.uploader.queue[0].file.name);
+    console.log("debut");
     this.uploader.queue[0].upload();
-    this.uploader= new FileUploader({url: URL});
+    let params = this.editProjectForm.value;
+    params.offers=this.uploader.queue[0].file.name;
+    this.project.title=params.title;
+    this.project.latitude=params.latitude;
+    this.project.longitude=params.longitude;
+    this.project.offers=params.offers;
+    this.project.image=params.image;
+
+    var adress={streetNumber:params.streetNumber, streetName:params.streetName,
+      city:params.city,postalCode:params.postalCode,
+      department:params.department,country:params.country};
+    this.project.address=adress;
+
+    console.log("Let's try !");
+    this.projectService.add(this.project).subscribe(res => {
+      alert("Le projet a bien été ajouté !");
+      this.router.navigate(['/profile']);
+    })
+
   }
   updateProjectForm() {
     this.editProjectForm = this.formBuilder.group({
@@ -49,15 +69,16 @@ export class ProjectAddComponent implements OnInit {
       latitude: [this.project.latitude, Validators.required],
       longitude: [this.project.longitude, Validators.required],
 
-      offers: [this.project.offers],
-      image: [this.project.image],
+      offers: [this.project.offers ? this.project.offers : ''],
+      image: [this.project.image ? this.project.offers: '/ressources/images/undefined.jpg'],
 
       country: [this.project.address ? this.project.address.country : ''],
       department: [this.project.address ? this.project.address.department : ''],
       city: [this.project.address ? this.project.address.city : ''],
       postalCode: [this.project.address ? this.project.address.postalCode : null],
-      streetNumber: [this.project.address ? this.project.address.streetNumber : ''],
+      streetNumber: [this.project.address ? this.project.address.streetNumber : null],
       streetName: [this.project.address ? this.project.address.streetName : ''],
+
     })
   }
 

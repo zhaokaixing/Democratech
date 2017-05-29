@@ -1,8 +1,8 @@
-<h1 class="page-header">Modification du projet {{project?.title}}</h1>
+<h1 class="page-header">Ajout d'un projet</h1>
 <div class="container">
   <div class="row tab-content">
     <div role="tabpanel" class="tab-pane active">
-      <form class="form-horizontal" id="edit-project-form" [formGroup]="editProjectForm" (submit)="editProject($event)">
+      <form class="form-horizontal" id="edit-project-form" [formGroup]="editProjectForm" (submit)="addProject($event)">
         <br>
 
         <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['title'].valid}">
@@ -97,7 +97,7 @@
             </table>
           </div>
         </div>
-        <button type="submit" (click)="addProject()" class="btn btn-primary" [disabled]="!editProjectForm.valid ">Valider</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!editProjectForm.valid ">Valider</button>
       </form>
     </div>
   </div>

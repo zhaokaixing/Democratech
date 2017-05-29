@@ -11,6 +11,8 @@ import 'rxjs/add/operator/switchMap';
 import { Opinion } from "app/models/Opinion";
 import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
+import {isUndefined} from "util";
+import {isNullOrUndefined} from "util";
 
 @Component({
   moduleId: module.id,
@@ -55,7 +57,10 @@ export class ProjectComponent implements OnInit {
                 {
                     objTag.setAttribute('data', this.project.offers);
                 }
-                this.Info=this.project.tenders[this.project.tenders.length-1];
+                if(isNullOrUndefined(this.project.tenders)==false){
+                  this.Info=this.project.tenders[this.project.tenders.length-1];
+                }
+
         });
     }
     getUserInfo() {

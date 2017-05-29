@@ -83,12 +83,10 @@ router.post('/project', (req, res) => {
     var project = req.body;
     MongoClient.connect('mongodb://florent:adelaide@ds113580.mlab.com:13580/democratch', function (err, db2) {
         var collection = db2.collection('projects');
-        if (form.isValidProject(project)) {
-            collection.save(project,(err, project) => {
+        collection.save(project,(err, project) => {
                 if (err) res.send(err);
                 res.json(project)
-            })
-        }
+        })
     });
 });
 
