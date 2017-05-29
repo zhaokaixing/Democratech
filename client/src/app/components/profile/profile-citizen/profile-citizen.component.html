@@ -28,7 +28,7 @@
         </thead>
       </table>
       <div class="panel-body">
-        <p><button class="btn btn-primary btn-md" data-toggle="modal" data-target="#addressForm" (click)="getDepartments()">
+        <p><button class="btn btn-primary btn-md">
           Modifier les expériences<span class="glyphicon glyphicon-edit"></span>
         </button></p>
       </div>
@@ -45,7 +45,7 @@
       </div>
       <div class="panel-body">
         <p><span></span></p>
-        <p><button class="btn btn-primary btn-md" data-toggle="modal" data-target="#addressForm" (click)="getDepartments()">
+        <p><button class="btn btn-primary btn-md">
           Modifier les compétences<span class="glyphicon glyphicon-edit"></span>
         </button></p>
       </div>
@@ -68,64 +68,9 @@
       </table>
       <div class="panel-body">
         <p><span></span></p>
-        <p><button class="btn btn-primary btn-md" data-toggle="modal" data-target="#addressForm" (click)="getDepartments()">
+        <p><button class="btn btn-primary btn-md">
           Modifier les formations<span class="glyphicon glyphicon-edit"></span>
         </button></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="skillForm" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">
-          Modification de vos compétences
-        </h4>
-      </div>
-
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <form role="form">
-          <div class="form-group">
-            <label for="country">Pays</label>
-            <input type="text" class="form-control" id="country" value="{{user.address?.country}}"/>
-          </div>
-          <div class="form-group">
-            <label for="department" class="col-sm-2">Département</label>
-
-            <select class="form-control" id="department">
-              <option value="">-- sélectionnez un département --</option>
-              <option *ngFor="let department of departments"
-                      [selected]="department.name == user.address?.department"
-                      [value]="department.name">
-                {{department.zip_code}} - {{department.name}}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="postalCode">Code postal</label>
-            <input type="text" class="form-control" id="postalCode" value="{{user.address?.postalCode}}"/>
-          </div>
-          <div class="form-group">
-            <label for="city">Ville</label>
-            <input type="text" class="form-control" id="city" value="{{user.address?.city}}"/>
-          </div>
-          <p>
-            <button type="submit" class="btn btn-default">Modifier</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-          </p>
-        </form>
       </div>
     </div>
   </div>
