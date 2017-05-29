@@ -12,6 +12,8 @@ import { Opinion } from "app/models/Opinion";
 import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
 
+import { LoaderService } from 'app/services/loader.service';
+
 
 @Component({
   moduleId: module.id,
@@ -29,7 +31,8 @@ export class ProjectComponent implements OnInit {
     opinion: Opinion = null;
     Info={};
 
-    constructor(private opinionService: OpinionService,
+    constructor(private loaderService: LoaderService,
+                private opinionService: OpinionService,
                 private projectService: ProjectService,
                 private commentService:CommentService,
                 private router: Router,
@@ -37,6 +40,7 @@ export class ProjectComponent implements OnInit {
                 private authService: Auth0Service) {}
 
     ngOnInit(): void {
+        this.loaderService.display(true);
 
         this.getUserInfo();
 
@@ -58,6 +62,7 @@ export class ProjectComponent implements OnInit {
                     objTag.setAttribute('data', this.project.offers);
                 }
                 this.Info=this.project.tenders[this.project.tenders.length-1];
+                this.loaderService.display(false);
         });
     }
     getUserInfo() {

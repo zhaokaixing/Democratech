@@ -36,9 +36,10 @@ export class RegisterComponent implements OnInit {
   mail: FormControl;
   firstSubmit: boolean;
 
-  constructor(private  mailService:MailService,
+  constructor(private mailService:MailService,
               private departmentService: DepartmentService,
               private userService: UserService,
+              private windowRef: WindowRef,
               private formBuilder: FormBuilder,
               private windowRef: WindowRef,
               private router: Router,
@@ -101,7 +102,6 @@ export class RegisterComponent implements OnInit {
     $event.preventDefault();
     this.firstSubmit = true;
 
-    var newUser: User;
     if (this.registerOrganisationForm.status == "VALID") {
       let params = this.registerOrganisationForm.value
 
@@ -112,7 +112,6 @@ export class RegisterComponent implements OnInit {
 
       this.register(params, true);
     }
-    console.log(newUser);
   }
 
   private register(params: any, isPhysic: boolean) {
@@ -142,11 +141,21 @@ export class RegisterComponent implements OnInit {
             newUser.isPublic = params.type == 'Public' ? true : false;
           }
           console.log(newUser)
-          
+
           this.userService.add(newUser).subscribe(res =>{
             console.log("result:")
             console.log(res)
             if (res._id) {
+
+              console.log("hello");
+              let mail:Mail = {
+                from:'democratec.projet@gmail.com',
+                to:newUser.mail,
+                subject:'Vous êtes enregistré',
+                text:'Vous êtes enregistré',
+                html:'<b>Bonjour</b>'
+              }
+              this.mailService.send(mail).subscribe();
               this.flashMessagesService.show('Vous êtes enregistré ! Pensez à vérifier votre email pour vous connecter.', { cssClass: 'alert-success', timeout: 5000 });
               this.router.navigate(['/'])
               // console.log('success');
