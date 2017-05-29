@@ -50,7 +50,7 @@ export class ProjectsAdminComponent implements OnInit {
   getProjects() {
     this.projectService.getAll().subscribe(res => {
       this.projects = res;
-
+      this.loaderService.display(false);
     })
   }
 
