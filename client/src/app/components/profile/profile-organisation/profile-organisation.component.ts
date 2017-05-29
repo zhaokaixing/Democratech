@@ -23,9 +23,7 @@ export class ProfileOrganisationComponent implements OnInit {
 
   }
   close(){
-    console.log(this.uploader.queue[0].file.name);
-    this.uploader= new FileUploader({url: URL});
-    this.router.navigate(['/edit/project']);
+    this.router.navigate(['/add']);
   }
   /*
   sendFile(){

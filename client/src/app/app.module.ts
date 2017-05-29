@@ -28,6 +28,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ProjectEditComponent } from './components/admin/projects/project-edit/project-edit.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { LoaderService } from 'app/services/loader.service';
+import { ProjectAddComponent } from './components/project/project-add/project-add.component';
 
 
 
@@ -58,7 +59,8 @@ export function authFactory() {
     ProjectsAdminComponent,
     ProjectEditComponent,
     FileSelectDirective,
-    ProjectEditComponent
+    ProjectEditComponent,
+    ProjectAddComponent
   ],
   imports: [
     BrowserModule, CommonModule,

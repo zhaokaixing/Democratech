@@ -11,7 +11,7 @@ import { ProfileComponent } from "app/components/profile/profile.component";
 import { HomeAdminComponent } from "app/components/admin/home/home-admin.component";
 import { UsersAdminComponent } from "app/components/admin/users/users-admin.component";
 import { ProjectsAdminComponent } from "app/components/admin/projects/projects-admin.component";
-import { ProjectEditComponent } from "app/components/admin/projects/project-edit/project-edit.component";
+import { ProjectAddComponent } from "app/components/project/project-add/project-add.component";
 import { UserEditComponent } from "app/components/admin/users/user-edit/user-edit.component";
 
 const routes: Routes = [
@@ -25,7 +25,7 @@ const routes: Routes = [
     { path: 'admin/utilisateurs', component: UsersAdminComponent, canActivate: [ AuthAdminGuardService ]},
     { path: 'admin/utilisateur/:id', component: UserEditComponent, canActivate: [ AuthAdminGuardService ]},
     { path: 'admin/projets', component: ProjectsAdminComponent, canActivate: [ AuthAdminGuardService ]},
-    { path: 'profile/edit/projet', component: ProjectEditComponent,canActivate: [ AuthAdminGuardService ]},
+    { path: 'add', component: ProjectAddComponent,canActivate: [ AuthUserGuardService ]},
     { path: '**', redirectTo: '' }
 ];
 

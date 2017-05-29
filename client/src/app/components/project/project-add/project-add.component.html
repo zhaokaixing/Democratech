@@ -1,0 +1,104 @@
+<h1 class="page-header">Modification du projet {{project?.title}}</h1>
+<div class="container">
+  <div class="row tab-content">
+    <div role="tabpanel" class="tab-pane active">
+      <form class="form-horizontal" id="edit-project-form" [formGroup]="editProjectForm" (submit)="editProject($event)">
+        <br>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['title'].valid}">
+          <label for="title" class="col-sm-2">Titre <span class="asterisque"> * </span></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="title" id="title"
+                   placeholder="Titre du projet" [formControl]="editProjectForm.controls['title']">
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['latitude'].valid}">
+          <label for="latitude" class="col-sm-2">Latitude <span class="asterisque"> * </span></label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control bfh-number" name="latitude" id="latitude"
+                   [formControl]="editProjectForm.controls['latitude']" step="0.000001">
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['longitude'].valid}">
+          <label for="longitude" class="col-sm-2">Longitude <span class="asterisque"> * </span></label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control bfh-number" name="longitude" id="longitude"
+                   [formControl]="editProjectForm.controls['longitude']" step="0.000001">
+          </div>
+        </div>
+
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['country'].valid}">
+          <label for="country" class="col-sm-2">Pays </label>
+          <div class="col-sm-10">
+            <select class="form-control" id="country" [formControl]="editProjectForm.controls['country']">
+              <option value="" selected>-- sélectionnez un pays --</option>
+              <option value='France'>France</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['department'].valid}">
+          <label for="department" class="col-sm-2">Département</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="department" [formControl]="editProjectForm.controls['department']">
+              <option value="" selected>-- sélectionnez un département --</option>
+              <option *ngFor="let department of country.departments"
+                      [value]="department.name">
+                {{department.zip_code}} - {{department.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['city'].valid}">
+          <label for="city" class="col-sm-2">Ville </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="city" placeholder="Entrez votre ville de résidence"
+                   [formControl]="editProjectForm.controls['city']">
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['postalCode'].valid}">
+          <label for="postalCode" class="col-sm-2">Code postal </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="postalCode"
+                   placeholder="Entrez votre code postal" [formControl]="editProjectForm.controls['postalCode']">
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['streetNumber'].valid}">
+          <label for="streetNumber" class="col-sm-2">Numéro de rue</label>
+          <div class="col-sm-10">
+            <input type="number" min="0" class="form-control" id="streetNumber"
+                   placeholder="Entrez numéro de rue" [formControl]="editProjectForm.controls['streetNumber']">
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!editProjectForm.controls['streetName'].valid}">
+          <label for="streetName" class="col-sm-2">Rue </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="streetName" placeholder="Entrez votre rue"
+                   [formControl]="editProjectForm.controls['streetName']">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2">Appels d'offre</label>
+          <div class="col-sm-10">
+            <table class="table zebra-striped">
+                <span>Importer l'appel d'offre de votre ordinateur</span>
+                <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+                <tr *ngFor="let item of uploader.queue">
+                  <td><strong>{{ item?.file?.name }}</strong></td>
+               </tr>
+            </table>
+          </div>
+        </div>
+        <button type="submit" (click)="addProject()" class="btn btn-primary" [disabled]="!editProjectForm.valid ">Valider</button>
+      </form>
+    </div>
+  </div>
+</div>
