@@ -6,9 +6,9 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 import { BaseUrl } from '../config/auth.config'
 import {Comment} from 'app/models/Comment'
+import {handleError} from 'app/services/handle-error'
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -18,32 +18,24 @@ export class CommentService{
 
   constructor(private http: Http) {}
 
+  /**
+   * get all comments from one project
+   * @param projectId the project's id
+   */
   getAll(projectId: string): Observable<Comment[]>{
     return this.http.get(BaseUrl.API + 'api/comments/' + projectId)
       .map(res => res.json())
-      .catch(err => this.handleError(err));
+      .catch(err => handleError(err));
   }
 
+  /**
+   * add a new comment
+   * @param comment the comment
+   */
   add(comment: Comment) {
     return this.http
       .post(BaseUrl.API + 'api/comment', JSON.stringify(comment), { headers: this.headers })
       .map(res => res.json())
-      .catch(err => this.handleError(err));
+      .catch(err => handleError(err));
   }
-
-    private handleError(error: Response | any) {
-        // In a real world app, we might use a remote logging infrastructure
-        console.log(error);
-
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable.throw(errMsg);
-    }
 }

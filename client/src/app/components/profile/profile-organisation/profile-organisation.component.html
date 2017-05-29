@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">Mes projets</h2>
+      </div>
+      <div class="panel-body">
+        <table class=" table zebra-striped">
+          <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Ville</th>
+            <th>Pays</th>
+            <th>Avis</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let project of projects; let i=index'>
+              <td>{{project.title}}</td>
+              <td>{{project.address?.city}}</td>
+              <td>{{project.address?.country}}</td>
+              <td>ToDo</td>
+              <td>
+                <a class="text-primary" (click)=selectIndex(i)><span class="glyphicon glyphicon-edit"></span></a> 
+                <a class="text-danger" mwlConfirm [title]="title" [message]="message" (confirm)="deleteProject()">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#offerForm" (click)="close()"> Déposer un appel d'offre </button>
+

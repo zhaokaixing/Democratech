@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Response, Http } from "@angular/http";
 import { BaseUrl } from '../config/auth.config'
+import {handleError} from 'app/services/handle-error'
 
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
@@ -17,31 +18,30 @@ export class UserService {
     getAll(): Observable<User[]>  {
         return this.http.get(BaseUrl.API + 'api/users')
             .map(res => res.json())
-            .catch(err => this.handleError(err));
+            .catch(err => handleError(err));
     }
 
     getWithKey(key : string , value : string){
         return this.http.get(BaseUrl.API + 'api/user/'+key+'/'+value)
           .map(res => res.json())
-          .catch(err => this.handleError(err));
+          .catch(err => handleError(err));
     }
 
     getOne(id: string): Observable<User> {
         return this.http.get(BaseUrl.API + 'api/user/'+id)
             .map(res => res.json())
-            .catch(err => this.handleError(err));
+            .catch(err => handleError(err));
     }
 
     getOneFromField(field: string, value: string): Observable<User> {
         return this.http.get(BaseUrl.API + 'api/user/'+field+'/'+value)
             .map(res => res.json())
-            .catch(err => this.handleError(err));
+            .catch(err => handleError(err));
     }
 
     userExist(mail: string, callback: (data: boolean) => void): void {
         let user = this.getOneFromField('mail', mail);
         user.subscribe(usr => {
-            console.log(usr)
             if (usr) callback(true);
             else callback(false);
         });
@@ -53,7 +53,7 @@ export class UserService {
 
         return this.http.post(BaseUrl.API + 'api/user', JSON.stringify(user), { headers: headers })
             .map(res => res.json())
-            .catch(err => this.handleError(err));
+            .catch(err => handleError(err));
     }
 
     update(user: User) {
@@ -62,28 +62,12 @@ export class UserService {
 
         return this.http.put(BaseUrl.API + 'api/user/' + user._id, JSON.stringify(user), { headers: headers })
             .map(res => res.json())
-            .catch(err => this.handleError(err));
+            .catch(err => handleError(err));
     }
 
     delete(id: String) {
         return this.http.delete(BaseUrl.API + 'api/user/' + id)
             .map(res => res.json())
-            .catch(err => this.handleError(err));
-    }
-
-    private handleError(error: Response | any) {
-        // In a real world app, we might use a remote logging infrastructure
-        console.log(error);
-
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable.throw(errMsg);
+            .catch(err => handleError(err));
     }
 }

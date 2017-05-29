@@ -11,10 +11,9 @@ import 'rxjs/add/operator/switchMap';
 import { Opinion } from "app/models/Opinion";
 import { Comment } from "app/models/Comment";
 import { Project } from "app/models/Project";
-
+import {isUndefined} from "util";
+import {isNullOrUndefined} from "util";
 import { LoaderService } from 'app/services/loader.service';
-
-
 @Component({
   moduleId: module.id,
   selector: 'app-project',
@@ -61,7 +60,9 @@ export class ProjectComponent implements OnInit {
                 {
                     objTag.setAttribute('data', this.project.offers);
                 }
-                this.Info=this.project.tenders[this.project.tenders.length-1];
+                if(isNullOrUndefined(this.project.tenders)==false){
+                  this.Info=this.project.tenders[this.project.tenders.length-1];
+                }
                 this.loaderService.display(false);
         });
     }
@@ -164,4 +165,5 @@ export class ProjectComponent implements OnInit {
             project.minusMark = res;
         })
     }
+
 }

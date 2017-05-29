@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { GlobalProfileService } from "app/services/global.service";
 import { LoaderService } from 'app/services/loader.service';
 
+
 @Component({
   moduleId: module.id,
   selector: 'app-root',
@@ -20,8 +21,8 @@ export class AppComponent implements OnInit {
 
 
   constructor(private loaderService: LoaderService,
-              private authService: Auth0Service, 
-              private userService: UserService, 
+              private authService: Auth0Service,
+              private userService: UserService,
               private globalService: GlobalProfileService) {}
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit {
 
   getUser(profileStr: any) {
     let profile = JSON.parse(profileStr);
-    if (profile) { 
+    if (profile) {
       let userId = profile['identities'][0]['user_id'];
       if (userId) {
         this.userService.getOne(userId).subscribe(res => {
@@ -47,9 +48,9 @@ export class AppComponent implements OnInit {
   }
 
   isAdmin(): string {
-    if (!this.role) 
+    if (!this.role)
       this.role = this.authService.isAdmin() ? 'admin' : 'user';
-    
+
     return this.role;
   }
 }
